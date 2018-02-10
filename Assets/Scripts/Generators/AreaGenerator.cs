@@ -68,9 +68,8 @@ public class AreaGenerator : MonoBehaviour {
         float heightBetween = 0.75f;
         for (int i = 0; i < HillSize; i++) {
             int pos = Random.Range(0, tiles.Count);
-            Vector3 tilePos = tiles[pos].transform.position;
             heightLevel[pos]++;
-            Debug.Log(pos + " - " + heightLevel[pos]);
+            Vector3 tilePos = tiles[pos].transform.position;
             hills[i].transform.position = new Vector3(tilePos.x, tilePos.y + heightBetween * heightLevel[pos], tilePos.z);
         }
     }
