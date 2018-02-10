@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1516940055944078}
+  m_IsPrefabParent: 1
+--- !u!1 &1516940055944078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4121850317489522}
+  - component: {fileID: 114307540818374968}
+  m_Layer: 0
+  m_Name: TR_Bunny
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4121850317489522
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1516940055944078}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114307540818374968
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1516940055944078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d1b06a1c7e75c947a2a9f339d36587a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Bunny
+  Description: Unit has doubled jump power.
+  AllowDiagonal: 0
+  DisallowStraight: 0
+  HealthOnHit: 0
+  SpecialOnHit: 0
+  GoldOnHit: 0
+  HealthOnKill: 0
+  SpecialOnKill: 0
+  GoldOnKill: 0
+  MoveAddition: 0
+  JumpAddition: 0
+  HealthPointsAddition: 0
+  SpecialPointsAddition: 0
+  AttackAddition: 0
+  DefenseAddition: 0
+  IntelligenceAddition: 0
+  ResistanceAddition: 0
+  HitAddition: 0
+  SpeedAddition: 0
+  FireAffinityAddition: 0
+  IceAffinityAddition: 0
+  WindAffinityAddition: 0
+  GoldAddition: 0
+  MoveMultiplier: 0
+  JumpMultiplier: 2
+  HealthPointsMultiplier: 0
+  SpecialPointsMultiplier: 0
+  AttackMultiplier: 0
+  DefenseMultiplier: 0
+  IntelligenceMultiplier: 0
+  ResistanceMultiplier: 0
+  HitMultiplier: 0
+  SpeedMultiplier: 0
+  FireAffinityMultiplier: 0
+  IceAffinityMultiplier: 0
+  WindAffinityMultiplier: 0
+  GoldMultiplier: 0
