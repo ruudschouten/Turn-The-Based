@@ -1,0 +1,4 @@
+Tiles
+Should be at y:0.45 for characters to stand on it.
+2.8 width
+0.75 height
