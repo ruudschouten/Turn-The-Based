@@ -18,8 +18,10 @@ public class AreaGenerator : MonoBehaviour {
     private Dictionary<int, int> heightLevel = new Dictionary<int, int>();
 
     private GameObject baseTile;
+    float heightBetween = 0.75f;
+    float widthBetween = 2.8f;
     //    private int lastIndex;
-    
+
     public GameObject GetBaseTile() {
         return baseTile;
     }
@@ -45,7 +47,6 @@ public class AreaGenerator : MonoBehaviour {
     private void SetGroundPosition() {
         int currentX = 0;
         int currentZ = 0;
-        float widthBetween = 2.8f;
         foreach (var tile in tiles) {
             tile.transform.position = new Vector3(widthBetween * currentX, 0, widthBetween * currentZ);
             currentX++;
@@ -65,7 +66,6 @@ public class AreaGenerator : MonoBehaviour {
     }
 
     private void SetHillPosition() {
-        float heightBetween = 0.75f;
         for (int i = 0; i < HillSize; i++) {
             int pos = Random.Range(0, tiles.Count);
             heightLevel[pos]++;
@@ -75,8 +75,11 @@ public class AreaGenerator : MonoBehaviour {
     }
 
     private void SetBase() {
-        Vector3 tilePos = tiles[tiles.Count-1].transform.position;
-        baseTile = Instantiate(BaseTilePrefab, tilePos, new Quaternion(), TileContainer);
+        int pos = Random.Range(0, tiles.Count);
+        Vector3 tilePos = tiles[pos].transform.position;
+        int height = heightLevel[pos];
+
+        baseTile = Instantiate(BaseTilePrefab, new Vector3(tilePos.x, height * heightBetween, tilePos.z), new Quaternion(), TileContainer);
     }
 
     int GetRandom(int length) {
