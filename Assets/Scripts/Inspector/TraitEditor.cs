@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts;
 using Assets.Scripts.Unit;
@@ -50,8 +51,8 @@ public class TraitEditor : Editor {
                 EditorGUI.indentLevel++;
                 traits.HealthMultiplier =
                     EditorGUILayout.FloatField("Health", traits.HealthMultiplier);
-                traits.SpecialMultiplier =
-                    EditorGUILayout.FloatField("Special", traits.SpecialMultiplier);
+                traits.MagicMultiplier =
+                    EditorGUILayout.FloatField("Special", traits.MagicMultiplier);
                 traits.StrengthMultiplier = EditorGUILayout.FloatField("Strength", traits.StrengthMultiplier);
                 traits.DefenseMultiplier = EditorGUILayout.FloatField("Defense", traits.DefenseMultiplier);
                 traits.IntelligenceMultiplier =
@@ -93,8 +94,8 @@ public class TraitEditor : Editor {
                 EditorGUI.indentLevel++;
                 traits.HealthAddition =
                     EditorGUILayout.IntField("Health ", traits.HealthAddition);
-                traits.SpecialAddition =
-                    EditorGUILayout.IntField("Special ", traits.SpecialAddition);
+                traits.MagicAddition =
+                    EditorGUILayout.IntField("Special ", traits.MagicAddition);
                 traits.StrengthAddition = EditorGUILayout.IntField("Strength", traits.StrengthAddition);
                 traits.DefenseAddition = EditorGUILayout.IntField("Defense", traits.DefenseAddition);
                 traits.IntelligenceAddition =
@@ -122,21 +123,132 @@ public class TraitEditor : Editor {
         }
 
         showOnHit = EditorGUILayout.Foldout(showOnHit, "On Hit");
-        if(showOnHit) {
+        if (showOnHit) {
             EditorGUI.indentLevel++;
             traits.HealthOnHit = EditorGUILayout.IntField("Gain Health on Hit", traits.HealthOnHit);
-            traits.SpecialOnHit = EditorGUILayout.IntField("Gain Special on Hit", traits.SpecialOnHit);
+            traits.MagicOnHit = EditorGUILayout.IntField("Gain Magic on Hit", traits.MagicOnHit);
             traits.GoldOnHit = EditorGUILayout.IntField("Gain Gold on Hit", traits.GoldOnHit);
             EditorGUI.indentLevel--;
         }
 
         showOnKill = EditorGUILayout.Foldout(showOnKill, "On Kill");
-        if(showOnKill) {
+        if (showOnKill) {
             EditorGUI.indentLevel++;
             traits.HealthOnKill = EditorGUILayout.IntField("Gain Health on Kill", traits.HealthOnKill);
-            traits.SpecialOnKill = EditorGUILayout.IntField("Gain Special on Kill", traits.SpecialOnKill);
+            traits.MagicOnKill = EditorGUILayout.IntField("Gain Magic on Kill", traits.MagicOnKill);
             traits.GoldOnKill = EditorGUILayout.IntField("Gain Gold on Kill", traits.GoldOnKill);
             EditorGUI.indentLevel--;
+        }
+    }
+
+    public void PrintTraitLabel(Trait trait) {
+        EditorGUILayout.LabelField(trait.Name);
+        EditorGUILayout.LabelField(trait.Description);
+        
+        if (trait.HealthOnHit != 0) {
+            EditorGUILayout.LabelField("Health on Hit", trait.HealthOnHit.ToString());
+        }
+        if (trait.MagicOnHit != 0) {
+            EditorGUILayout.LabelField("Magic on Hit", trait.MagicOnHit.ToString());
+        }
+        if (trait.GoldOnHit != 0) {
+            EditorGUILayout.LabelField("Gold on Hit", trait.GoldOnHit.ToString());
+        }
+
+        if (trait.HealthOnKill != 0) {
+            EditorGUILayout.LabelField("Health on Kill", trait.HealthOnKill.ToString());
+        }
+        if (trait.MagicOnKill != 0) {
+            EditorGUILayout.LabelField("Magic on Kill", trait.MagicOnKill.ToString());
+        }
+        if (trait.GoldOnKill != 0) {
+            EditorGUILayout.LabelField("Gold on Kill", trait.GoldOnKill.ToString());
+        }
+
+        if (trait.MoveAddition != 0) {
+            EditorGUILayout.LabelField("Adds " + trait.MoveAddition + " Move");
+        }
+        if (Math.Abs(trait.JumpAddition) > 0) {
+            EditorGUILayout.LabelField("Adds " + trait.JumpAddition + " Jump");
+        }
+        if (trait.HealthAddition != 0) {
+            EditorGUILayout.LabelField("Adds " + trait.HealthAddition + " Health");
+        }
+        if (trait.MagicAddition != 0) {
+            EditorGUILayout.LabelField("Adds " + trait.MagicAddition + " Magic");
+        }
+        if (trait.StrengthAddition != 0) {
+            EditorGUILayout.LabelField("Adds " + trait.StrengthAddition + " Strength");
+        }
+        if (trait.DefenseAddition != 0) {
+            EditorGUILayout.LabelField("Adds " + trait.DefenseAddition + " Defense");
+        }
+        if (trait.IntelligenceAddition != 0) {
+            EditorGUILayout.LabelField("Adds " + trait.IntelligenceAddition + " Intelligence");
+        }
+        if (trait.ResistanceAddition != 0) {
+            EditorGUILayout.LabelField("Adds " + trait.ResistanceAddition + " Resistance");
+        }
+        if (trait.PrecisionAddition != 0) {
+            EditorGUILayout.LabelField("Adds " + trait.PrecisionAddition + " Precision");
+        }
+        if (trait.AgilityAddition != 0) {
+            EditorGUILayout.LabelField("Adds " + trait.AgilityAddition + " Agility");
+        }
+        if (trait.FireAttunementAddition != 0) {
+            EditorGUILayout.LabelField("Adds " + trait.FireAttunementAddition + " Fire Attunement");
+        }
+        if (trait.IceAttunementAddition != 0) {
+            EditorGUILayout.LabelField("Adds " + trait.IceAttunementAddition + " Ice Attunement");
+        }
+        if (trait.WindAttunementAddition != 0) {
+            EditorGUILayout.LabelField("Adds " + trait.WindAttunementAddition + " Wind Attunement");
+        }
+        if (trait.GoldAddition != 0) {
+            EditorGUILayout.LabelField("Adds " + trait.GoldAddition + " Gold");
+        }
+
+        if (Math.Abs(trait.MoveMultiplier) > 0) {
+            EditorGUILayout.LabelField("Has " + trait.MoveMultiplier * 100 + "% Move");
+        }
+        if (Math.Abs(trait.JumpMultiplier) > 0) {
+            EditorGUILayout.LabelField("Has " + trait.JumpMultiplier * 100 + "% Jump");
+        }
+        if (Math.Abs(trait.HealthMultiplier) > 0) {
+            EditorGUILayout.LabelField("Has " + trait.HealthMultiplier * 100 + "% Health");
+        }
+        if (Math.Abs(trait.MagicMultiplier) > 0) {
+            EditorGUILayout.LabelField("Has " + trait.MagicMultiplier * 100 + "% Magic");
+        }
+        if (Math.Abs(trait.StrengthMultiplier) > 0) {
+            EditorGUILayout.LabelField("Has " + trait.StrengthMultiplier * 100 + "% Strength");
+        }
+        if (Math.Abs(trait.DefenseMultiplier) > 0) {
+            EditorGUILayout.LabelField("Has " + trait.DefenseMultiplier * 100 + "% Defense");
+        }
+        if (Math.Abs(trait.IntelligenceMultiplier) > 0) {
+            EditorGUILayout.LabelField("Has " + trait.IntelligenceMultiplier * 100 + "% Intelligence");
+        }
+        if (Math.Abs(trait.ResistanceMultiplier) > 0) {
+            EditorGUILayout.LabelField("Has " + trait.ResistanceMultiplier * 100 + "% Resistance");
+        }
+        if (Math.Abs(trait.PrecisionMultiplier) > 0) {
+            EditorGUILayout.LabelField("Has " + trait.PrecisionMultiplier * 100 + "% Precision");
+        }
+        if (Math.Abs(trait.AgilityMultiplier) > 0) {
+            EditorGUILayout.LabelField("Has " + trait.AgilityMultiplier * 100 + "% Agility");
+        }
+        if (Math.Abs(trait.FireAttunementMultiplier) > 0) {
+            EditorGUILayout.LabelField("Has " + trait.FireAttunementMultiplier * 100 + "% Fire Attunement");
+        }
+        if (Math.Abs(trait.IceAttunementMultiplier) > 0) {
+            EditorGUILayout.LabelField("Has " + trait.IceAttunementMultiplier * 100 + "% Ice Attunement");
+        }
+        if (Math.Abs(trait.WindAttunementMultiplier) > 0) {
+            EditorGUILayout.LabelField("Has " + trait.WindAttunementMultiplier * 100 + "% Wind Attunement");
+        }
+        if (Math.Abs(trait.GoldMultiplier) > 0) {
+            EditorGUILayout.LabelField("Has " + trait.GoldMultiplier * 100 + "% Gold");
         }
     }
 }
