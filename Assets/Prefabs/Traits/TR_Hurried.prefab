@@ -53,15 +53,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Hurried
   Description: Unit can move twice as far, but has 50% health.
-  MoveModifier: 2
-  JumpModifier: 0
-  HealthPointsModifier: 0.5
-  SpecialPointsModifier: 0
-  AttackModifier: 0
-  DefenseModifier: 0
-  IntelligenceModifier: 0
-  ResistanceModifier: 0
-  FireAffinityModifier: 0
-  IceAffinityModifier: 0
-  WindAffinityModifier: 0
+  AllowDiagonal: 0
+  DisallowStraight: 0
+  HealthOnHit: 0
+  MagicOnHit: 0
+  GoldOnHit: 0
+  HealthOnKill: 0
+  MagicOnKill: 0
+  GoldOnKill: 0
+  MoveAddition: 0
+  JumpAddition: 0
+  HealthAddition: 0
+  MagicAddition: 0
+  StrengthAddition: 0
+  DefenseAddition: 0
+  IntelligenceAddition: 0
+  ResistanceAddition: 0
+  PrecisionAddition: 0
+  AgilityAddition: 0
+  FireAttunementAddition: 0
+  IceAttunementAddition: 0
+  WindAttunementAddition: 0
+  GoldAddition: 0
+  MoveMultiplier: 2
+  JumpMultiplier: 0
+  HealthMultiplier: 0.5
+  MagicMultiplier: 0
+  StrengthMultiplier: 0
+  DefenseMultiplier: 0
+  IntelligenceMultiplier: 0
+  ResistanceMultiplier: 0
+  PrecisionMultiplier: 0
+  AgilityMultiplier: 0
+  FireAttunementMultiplier: 0
+  IceAttunementMultiplier: 0
+  WindAttunementMultiplier: 0
   GoldMultiplier: 0

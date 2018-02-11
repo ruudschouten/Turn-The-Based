@@ -11,12 +11,12 @@ namespace Assets.Scripts.Unit {
         #endregion
         #region AfterHit
         public int HealthOnHit;
-        public int SpecialOnHit;
+        public int MagicOnHit;
         public int GoldOnHit;
         #endregion
         #region AfterKill
         public int HealthOnKill;
-        public int SpecialOnKill;
+        public int MagicOnKill;
         public int GoldOnKill;
         #endregion
         #region Additions
@@ -25,7 +25,7 @@ namespace Assets.Scripts.Unit {
         public float JumpAddition;
         //Base Stats
         public int HealthAddition;
-        public int SpecialAddition;
+        public int MagicAddition;
         public int StrengthAddition;
         public int DefenseAddition;
         public int IntelligenceAddition;
@@ -45,7 +45,7 @@ namespace Assets.Scripts.Unit {
         public float JumpMultiplier;
         //Base Stats
         public float HealthMultiplier;
-        public float SpecialMultiplier;
+        public float MagicMultiplier;
         public float StrengthMultiplier;
         public float DefenseMultiplier;
         public float IntelligenceMultiplier;

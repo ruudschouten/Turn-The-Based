@@ -56,36 +56,36 @@ MonoBehaviour:
   AllowDiagonal: 1
   DisallowStraight: 1
   HealthOnHit: 0
-  SpecialOnHit: 0
+  MagicOnHit: 0
   GoldOnHit: 0
   HealthOnKill: 0
-  SpecialOnKill: 0
+  MagicOnKill: 0
   GoldOnKill: 0
   MoveAddition: 1
   JumpAddition: 0
-  HealthPointsAddition: 0
-  SpecialPointsAddition: 0
-  AttackAddition: 0
+  HealthAddition: 0
+  MagicAddition: 0
+  StrengthAddition: 0
   DefenseAddition: 0
   IntelligenceAddition: 0
   ResistanceAddition: 0
-  HitAddition: 0
-  SpeedAddition: 0
-  FireAffinityAddition: 0
-  IceAffinityAddition: 0
-  WindAffinityAddition: 0
+  PrecisionAddition: 0
+  AgilityAddition: 0
+  FireAttunementAddition: 0
+  IceAttunementAddition: 0
+  WindAttunementAddition: 0
   GoldAddition: 0
   MoveMultiplier: 0
   JumpMultiplier: 0
-  HealthPointsMultiplier: 0
-  SpecialPointsMultiplier: 0
-  AttackMultiplier: 0
+  HealthMultiplier: 0
+  MagicMultiplier: 0
+  StrengthMultiplier: 0
   DefenseMultiplier: 0
   IntelligenceMultiplier: 0
   ResistanceMultiplier: 0
-  HitMultiplier: 0
-  SpeedMultiplier: 0
-  FireAffinityMultiplier: 0
-  IceAffinityMultiplier: 0
-  WindAffinityMultiplier: 0
+  PrecisionMultiplier: 0
+  AgilityMultiplier: 0
+  FireAttunementMultiplier: 0
+  IceAttunementMultiplier: 0
+  WindAttunementMultiplier: 0
   GoldMultiplier: 0
