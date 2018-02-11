@@ -6,7 +6,6 @@ namespace Assets.Scripts.Generators {
     [RequireComponent(typeof(TraitGenerator))]
     [RequireComponent(typeof(NameGenerator))]
     public class CharacterGenerator : MonoBehaviour {
-        public GameObject EmptyGameObj;
         public GameObject[] CharaPrefabs;
         public GameObject[] BasePrefabs;
 
@@ -26,17 +25,19 @@ namespace Assets.Scripts.Generators {
         }
 
         public void Generate() {
-            GameObject go = Instantiate(EmptyGameObj);
+            GameObject go = Instantiate(new GameObject());
             go.AddComponent<Character>();
             character = go.GetComponent<Character>();
             character.Name = nameGen.GetName();
             character.Rarity = rarityGetter.Calculate();
+            Instantiate(BasePrefabs[(int)character.Rarity], go.transform);
             for (int i = 0; i < (int) character.Rarity; i++) {
                 character.Traits.Add(traitGen.GetTrait(go.transform));
             }
-            character.Stats = statsGen.GetStats();
-            Instantiate(BasePrefabs[(int) character.Rarity], go.transform);
-            Instantiate(CharaPrefabs[Random.Range(0, CharaPrefabs.Length)], go.transform);
+            int charaRoll = Random.Range(0, CharaPrefabs.Length);
+            character.Type = (CharacterType) charaRoll;
+            Instantiate(CharaPrefabs[charaRoll], go.transform);
+            character.Stats = statsGen.GetStats(character.Type);
         }
     }
 }

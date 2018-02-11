@@ -10,9 +10,18 @@ namespace Assets.Scripts.Chara {
         public string Name;
         public Stats Stats;
         public Rarity Rarity;
+        public CharacterType Type;
         public List<Trait> Traits = new List<Trait>();
 
         public void Start() {
         }
+    }
+
+    public enum CharacterType {
+        Acolyte = 0, // Bird
+        Esquire = 1, // Goat
+        Rogue = 2,   // Ermine
+        Ruler = 3,   // Wolf & Fox
+        Cavalry = 4 // Horse & Puss
     }
 }
