@@ -194,34 +194,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &709805351
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 709805352}
-  m_Layer: 0
-  m_Name: CharaTemp
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &709805352
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 709805351}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &922901268
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,7 +412,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfd2a7c47fce08b4895facd4480ea1d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EmptyGameObj: {fileID: 709805351}
   CharaPrefabs:
   - {fileID: 1781603370706860, guid: 5c78f4ccf9a9e104995e654e0a5d3494, type: 2}
   - {fileID: 1062228166487258, guid: 04da521023ab9de40bcb8b19a3a27a8f, type: 2}

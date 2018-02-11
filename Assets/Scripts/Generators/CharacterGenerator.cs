@@ -21,11 +21,10 @@ namespace Assets.Scripts.Generators {
             traitGen = GetComponent<TraitGenerator>();
             statsGen = GetComponent<StatsGenerator>();
             rarityGetter = new RarityGetter();
-            Generate();
         }
 
         public void Generate() {
-            GameObject go = Instantiate(new GameObject());
+            GameObject go = new GameObject();
             go.AddComponent<Character>();
             character = go.GetComponent<Character>();
             character.Name = nameGen.GetName();
@@ -37,7 +36,8 @@ namespace Assets.Scripts.Generators {
             int charaRoll = Random.Range(0, CharaPrefabs.Length);
             character.Type = (CharacterType) charaRoll;
             Instantiate(CharaPrefabs[charaRoll], go.transform);
-            character.Stats = statsGen.GetStats(character.Type);
+            character.Stats = statsGen.AlterWithTraits(statsGen.GetStats(character.Type), character);
+            go.name = string.Format("[{0}] {1} {2}",character.Rarity, character.Name, character.Type);
         }
     }
 }

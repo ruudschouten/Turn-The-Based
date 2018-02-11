@@ -5,7 +5,6 @@ using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.Generators {
     public class StatsGenerator : MonoBehaviour {
-
         public Stats GetStats(CharacterType type) {
             Stats stats = new Stats();
             //35 points in total.
@@ -70,6 +69,65 @@ namespace Assets.Scripts.Generators {
                     stats.Precision = 6;
                     stats.Agility = 15;
                     break;
+            }
+            return stats;
+        }
+
+        public Stats AlterWithTraits(Stats stats, Character character) {
+            foreach (var trait in character.Traits) {
+                if (trait.MoveAddition != 0) stats.Move += trait.MoveAddition;
+                if (Math.Abs(trait.JumpAddition) > 0) stats.Jump += trait.JumpAddition;
+                if (trait.HealthAddition != 0) stats.Health += trait.HealthAddition;
+                if (trait.MagicAddition != 0) stats.Magic += trait.MagicAddition;
+                if (trait.StrengthAddition != 0) stats.Strength += trait.StrengthAddition;
+                if (trait.DefenseAddition != 0) stats.Defense += trait.DefenseAddition;
+                if (trait.IntelligenceAddition != 0) stats.Intelligence += trait.IntelligenceAddition;
+                if (trait.ResistanceAddition != 0) stats.Resistance += trait.ResistanceAddition;
+                if (trait.PrecisionAddition != 0) stats.Precision += trait.PrecisionAddition;
+                if (trait.AgilityAddition != 0) stats.Agility += trait.AgilityAddition;
+                if (trait.FireAttunementAddition != 0) stats.FireAttunement += trait.FireAttunementAddition;
+                if (trait.IceAttunementAddition != 0) stats.IceAttunement += trait.IceAttunementAddition;
+                if (trait.WindAttunementAddition != 0) stats.WindAttunement += trait.WindAttunementAddition;
+
+                if (Math.Abs(trait.MoveMultiplier) > 0) {
+                    stats.Move = (int) (trait.MoveMultiplier * stats.Move);
+                }
+                if (Math.Abs(trait.JumpMultiplier) > 0) {
+                    stats.Jump = (int) (trait.JumpMultiplier * stats.Jump);
+                }
+                if (Math.Abs(trait.HealthMultiplier) > 0) {
+                    stats.Health = (int) (trait.HealthMultiplier * stats.Health);
+                }
+                if (Math.Abs(trait.MagicMultiplier) > 0) {
+                    stats.Magic = (int) (trait.MagicMultiplier * stats.Magic);
+                }
+                if (Math.Abs(trait.StrengthMultiplier) > 0) {
+                    stats.Strength = (int) (trait.StrengthMultiplier * stats.Strength);
+                }
+                if (Math.Abs(trait.DefenseMultiplier) > 0) {
+                    stats.Defense = (int) (trait.DefenseMultiplier * stats.Defense);
+                }
+                if (Math.Abs(trait.IntelligenceMultiplier) > 0) {
+                    stats.Intelligence = (int) (trait.IntelligenceMultiplier * stats.Intelligence);
+                }
+                if (Math.Abs(trait.ResistanceMultiplier) > 0) {
+                    stats.Resistance = (int) (trait.ResistanceMultiplier * stats.Resistance);
+                }
+                if (Math.Abs(trait.PrecisionMultiplier) > 0) {
+                    stats.Precision = (int) (trait.PrecisionMultiplier * stats.Precision);
+                }
+                if (Math.Abs(trait.AgilityMultiplier) > 0) {
+                    stats.Agility = (int) (trait.AgilityMultiplier * stats.Agility);
+                }
+                if (Math.Abs(trait.FireAttunementMultiplier) > 0) {
+                    stats.FireAttunement = (int) (trait.FireAttunementMultiplier * stats.FireAttunement);
+                }
+                if (Math.Abs(trait.IceAttunementMultiplier) > 0) {
+                    stats.IceAttunement = (int) (trait.IceAttunementMultiplier * stats.IceAttunement);
+                }
+                if (Math.Abs(trait.WindAttunementMultiplier) > 0) {
+                    stats.WindAttunement = (int) (trait.WindAttunementMultiplier * stats.WindAttunement);
+                }
             }
             return stats;
         }
