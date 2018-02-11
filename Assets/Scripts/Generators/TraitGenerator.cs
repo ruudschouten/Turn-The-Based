@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Assets.Scripts.Chara;
+using Assets.Scripts.Unit;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

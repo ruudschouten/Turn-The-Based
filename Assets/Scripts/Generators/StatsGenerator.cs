@@ -1,5 +1,5 @@
 ﻿using System;
-using Assets.Scripts.Chara;
+using Assets.Scripts.Unit;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

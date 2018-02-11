@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Chara;
+﻿using Assets.Scripts.Unit;
 using UnityEngine;
 
 namespace Assets.Scripts.Generators {

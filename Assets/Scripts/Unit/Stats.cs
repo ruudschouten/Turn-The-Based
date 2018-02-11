@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Assets.Scripts.Chara {
+﻿namespace Assets.Scripts.Unit {
     public class Stats {
         //Movement related
         public int Move;

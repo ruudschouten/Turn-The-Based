@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Chara {
+namespace Assets.Scripts.Unit {
     public class Trait : MonoBehaviour {
         public string Name;
         public string Description;

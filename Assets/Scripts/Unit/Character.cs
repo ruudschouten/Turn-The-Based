@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Assets.Scripts.Generators;
 using UnityEngine;
 
-namespace Assets.Scripts.Chara {
+namespace Assets.Scripts.Unit {
     public class Character : MonoBehaviour {
         public string Name;
         public Stats Stats;
