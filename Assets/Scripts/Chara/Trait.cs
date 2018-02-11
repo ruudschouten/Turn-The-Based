@@ -24,18 +24,18 @@ namespace Assets.Scripts.Chara {
         public int MoveAddition;
         public float JumpAddition;
         //Base Stats
-        public int HealthPointsAddition;
-        public int SpecialPointsAddition;
-        public int AttackAddition;
+        public int HealthAddition;
+        public int SpecialAddition;
+        public int StrengthAddition;
         public int DefenseAddition;
         public int IntelligenceAddition;
         public int ResistanceAddition;
-        public int HitAddition;
-        public int SpeedAddition;
+        public int PrecisionAddition;
+        public int AgilityAddition;
         //Elemental Resists
-        public int FireAffinityAddition;
-        public int IceAffinityAddition;
-        public int WindAffinityAddition;
+        public int FireAttunementAddition;
+        public int IceAttunementAddition;
+        public int WindAttunementAddition;
         //Misc
         public int GoldAddition;
         #endregion
@@ -44,18 +44,18 @@ namespace Assets.Scripts.Chara {
         public float MoveMultiplier;
         public float JumpMultiplier;
         //Base Stats
-        public float HealthPointsMultiplier;
-        public float SpecialPointsMultiplier;
-        public float AttackMultiplier;
+        public float HealthMultiplier;
+        public float SpecialMultiplier;
+        public float StrengthMultiplier;
         public float DefenseMultiplier;
         public float IntelligenceMultiplier;
         public float ResistanceMultiplier;
-        public float HitMultiplier;
-        public float SpeedMultiplier;
+        public float PrecisionMultiplier;
+        public float AgilityMultiplier;
         //Elemental Resists
-        public float FireAffinityMultiplier;
-        public float IceAffinityMultiplier;
-        public float WindAffinityMultiplier;
+        public float FireAttunementMultiplier;
+        public float IceAttunementMultiplier;
+        public float WindAttunementMultiplier;
         //Misc
         public float GoldMultiplier;
         #endregion

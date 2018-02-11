@@ -48,25 +48,25 @@ public class TraitEditor : Editor {
             showMultiBase = EditorGUILayout.Foldout(showMultiBase, "Base Stats");
             if (showMultiBase) {
                 EditorGUI.indentLevel++;
-                traits.HealthPointsMultiplier =
-                    EditorGUILayout.FloatField("Health Points", traits.HealthPointsMultiplier);
-                traits.SpecialPointsMultiplier =
-                    EditorGUILayout.FloatField("Special Points", traits.SpecialPointsMultiplier);
-                traits.AttackMultiplier = EditorGUILayout.FloatField("Attack", traits.AttackMultiplier);
+                traits.HealthMultiplier =
+                    EditorGUILayout.FloatField("Health", traits.HealthMultiplier);
+                traits.SpecialMultiplier =
+                    EditorGUILayout.FloatField("Special", traits.SpecialMultiplier);
+                traits.StrengthMultiplier = EditorGUILayout.FloatField("Strength", traits.StrengthMultiplier);
                 traits.DefenseMultiplier = EditorGUILayout.FloatField("Defense", traits.DefenseMultiplier);
                 traits.IntelligenceMultiplier =
                     EditorGUILayout.FloatField("Intelligence", traits.IntelligenceMultiplier);
                 traits.ResistanceMultiplier = EditorGUILayout.FloatField("Resistance", traits.ResistanceMultiplier);
-                traits.HitMultiplier = EditorGUILayout.FloatField("Hit", traits.HitMultiplier);
-                traits.SpeedMultiplier = EditorGUILayout.FloatField("Speed", traits.SpeedMultiplier);
+                traits.PrecisionMultiplier = EditorGUILayout.FloatField("Precision", traits.PrecisionMultiplier);
+                traits.AgilityMultiplier = EditorGUILayout.FloatField("Agility", traits.AgilityMultiplier);
                 EditorGUI.indentLevel--;
             }
-            showMultiAff = EditorGUILayout.Foldout(showMultiAff, "Affinity");
+            showMultiAff = EditorGUILayout.Foldout(showMultiAff, "Attunement");
             if (showMultiAff) {
                 EditorGUI.indentLevel++;
-                traits.FireAffinityMultiplier = EditorGUILayout.FloatField("Fire", traits.FireAffinityMultiplier);
-                traits.IceAffinityMultiplier = EditorGUILayout.FloatField("Ice", traits.IceAffinityMultiplier);
-                traits.WindAffinityMultiplier = EditorGUILayout.FloatField("Wind", traits.WindAffinityMultiplier);
+                traits.FireAttunementMultiplier = EditorGUILayout.FloatField("Fire", traits.FireAttunementMultiplier);
+                traits.IceAttunementMultiplier = EditorGUILayout.FloatField("Ice", traits.IceAttunementMultiplier);
+                traits.WindAttunementMultiplier = EditorGUILayout.FloatField("Wind", traits.WindAttunementMultiplier);
                 EditorGUI.indentLevel--;
             }
             showMultiMisc = EditorGUILayout.Foldout(showMultiMisc, "Misc");
@@ -91,25 +91,25 @@ public class TraitEditor : Editor {
             showAddiBase = EditorGUILayout.Foldout(showAddiBase, "Base Stats");
             if (showAddiBase) {
                 EditorGUI.indentLevel++;
-                traits.HealthPointsAddition =
-                    EditorGUILayout.IntField("Health Points", traits.HealthPointsAddition);
-                traits.SpecialPointsAddition =
-                    EditorGUILayout.IntField("Special Points", traits.SpecialPointsAddition);
-                traits.AttackAddition = EditorGUILayout.IntField("Attack", traits.AttackAddition);
+                traits.HealthAddition =
+                    EditorGUILayout.IntField("Health ", traits.HealthAddition);
+                traits.SpecialAddition =
+                    EditorGUILayout.IntField("Special ", traits.SpecialAddition);
+                traits.StrengthAddition = EditorGUILayout.IntField("Strength", traits.StrengthAddition);
                 traits.DefenseAddition = EditorGUILayout.IntField("Defense", traits.DefenseAddition);
                 traits.IntelligenceAddition =
                     EditorGUILayout.IntField("Intelligence", traits.IntelligenceAddition);
                 traits.ResistanceAddition = EditorGUILayout.IntField("Resistance", traits.ResistanceAddition);
-                traits.HitAddition = EditorGUILayout.IntField("Hit", traits.HitAddition);
-                traits.SpeedAddition = EditorGUILayout.IntField("Speed", traits.SpeedAddition);
+                traits.PrecisionAddition = EditorGUILayout.IntField("Precision", traits.PrecisionAddition);
+                traits.AgilityAddition = EditorGUILayout.IntField("Agility", traits.AgilityAddition);
                 EditorGUI.indentLevel--;
             }
-            showAddiAff = EditorGUILayout.Foldout(showAddiAff, "Affinity");
+            showAddiAff = EditorGUILayout.Foldout(showAddiAff, "Attunement");
             if (showAddiAff) {
                 EditorGUI.indentLevel++;
-                traits.FireAffinityAddition = EditorGUILayout.IntField("Fire", traits.FireAffinityAddition);
-                traits.IceAffinityAddition = EditorGUILayout.IntField("Ice", traits.IceAffinityAddition);
-                traits.WindAffinityAddition = EditorGUILayout.IntField("Wind", traits.WindAffinityAddition);
+                traits.FireAttunementAddition = EditorGUILayout.IntField("Fire", traits.FireAttunementAddition);
+                traits.IceAttunementAddition = EditorGUILayout.IntField("Ice", traits.IceAttunementAddition);
+                traits.WindAttunementAddition = EditorGUILayout.IntField("Wind", traits.WindAttunementAddition);
                 EditorGUI.indentLevel--;
             }
             showAddiMisc = EditorGUILayout.Foldout(showAddiMisc, "Misc");
