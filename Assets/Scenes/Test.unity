@@ -415,6 +415,7 @@ MonoBehaviour:
   CharaPrefabs:
   - {fileID: 1781603370706860, guid: 5c78f4ccf9a9e104995e654e0a5d3494, type: 2}
   - {fileID: 1062228166487258, guid: 04da521023ab9de40bcb8b19a3a27a8f, type: 2}
+  - {fileID: 1849509393303580, guid: 6f0b037ff91b5d74fbbe799dd058450c, type: 2}
   BasePrefabs:
   - {fileID: 1133343393580202, guid: 08b69f02bf4364042a29ecf17468feaf, type: 2}
   - {fileID: 1362752173962082, guid: 294bc000d485f354fab20759ccc86645, type: 2}
