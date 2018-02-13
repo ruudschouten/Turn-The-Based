@@ -8,7 +8,6 @@ public class AreaGenerator : MonoBehaviour {
 
     public GameObject[] TilePrefabs;
     public GameObject BaseTilePrefab;
-    public Transform TileContainer;
     public int GridSize;
     public int HillSize;
 
@@ -17,10 +16,10 @@ public class AreaGenerator : MonoBehaviour {
 
     private Dictionary<int, int> heightLevel = new Dictionary<int, int>();
 
+    private GameObject tileContainer;
     private GameObject baseTile;
     float heightBetween = 0.75f;
     float widthBetween = 2.8f;
-    //    private int lastIndex;
 
     public GameObject GetBaseTile() {
         return baseTile;
@@ -28,6 +27,7 @@ public class AreaGenerator : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        tileContainer = new GameObject("Tiles");
 		SpawnGround();
         SetGroundPosition();
         SpawnHills();
@@ -37,7 +37,7 @@ public class AreaGenerator : MonoBehaviour {
 
     private void SpawnGround() {
         for (int i = 0; i < GridSize * GridSize; i++) {
-            GameObject tile = Instantiate(TilePrefabs[GetRandom(TilePrefabs.Length)], new Vector3(), new Quaternion(), TileContainer);
+            GameObject tile = Instantiate(TilePrefabs[GetRandom(TilePrefabs.Length)], new Vector3(), new Quaternion(), tileContainer.transform);
             tile.name = "GroundTile" + i;
             tiles.Add(tile);
             heightLevel.Add(i, 0);
@@ -59,7 +59,7 @@ public class AreaGenerator : MonoBehaviour {
 
     private void SpawnHills() {
         for (int i = 0; i < HillSize; i++) {
-            GameObject lev = Instantiate(TilePrefabs[GetRandom(TilePrefabs.Length)], new Vector3(), new Quaternion(), TileContainer);
+            GameObject lev = Instantiate(TilePrefabs[GetRandom(TilePrefabs.Length)], new Vector3(), new Quaternion(), tileContainer.transform);
             lev.name = "HillTile" + i;
             hills.Add(lev);
         }
@@ -79,17 +79,10 @@ public class AreaGenerator : MonoBehaviour {
         Vector3 tilePos = tiles[pos].transform.position;
         int height = heightLevel[pos];
 
-        baseTile = Instantiate(BaseTilePrefab, new Vector3(tilePos.x, height * heightBetween, tilePos.z), new Quaternion(), TileContainer);
+        baseTile = Instantiate(BaseTilePrefab, new Vector3(tilePos.x, height * heightBetween, tilePos.z), new Quaternion(), tileContainer.transform);
     }
 
     int GetRandom(int length) {
         return Random.Range(0, length);
-        /*
-        if (length <= 1) { return 0; }
-        int randomIndex = lastIndex;
-        while (randomIndex == lastIndex) { randomIndex = Random.Range(0, length); }
-        lastIndex = randomIndex;
-        return randomIndex;
-        */
     }
 }
