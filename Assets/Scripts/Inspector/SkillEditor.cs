@@ -42,5 +42,20 @@ namespace Assets.Scripts.Inspector {
                 }
             }
         }
+
+        public void PrintLabel(Skill skill) {
+            EditorGUILayout.LabelField(skill.Name);
+            if(skill.Element != Element.None) EditorGUILayout.LabelField("Element",skill.Element.ToString());
+            EditorGUILayout.LabelField("Boosted By", skill.BoostedBy.ToString());
+            EditorGUILayout.LabelField("Mana Cost",skill.ManaCost.ToString());
+            EditorGUILayout.LabelField("Range",skill.Range.ToString());
+            EditorGUILayout.LabelField("Height",skill.Height.ToString("##.00"));
+            EditorGUILayout.LabelField("Damage Modifier",skill.DamageModifier.ToString("##.00"));
+            if (skill.Diagonal) EditorGUILayout.LabelField("Can be used diagonally");
+            if (skill.HasAoE) {
+                EditorGUILayout.LabelField("Has Area of Effect");
+                EditorGUILayout.LabelField("Size of" + skill.AreaOfEffectSize);
+            }
+        }
     }
 }

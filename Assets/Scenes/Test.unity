@@ -317,6 +317,7 @@ GameObject:
   - component: {fileID: 1793270383}
   - component: {fileID: 1793270382}
   - component: {fileID: 1793270381}
+  - component: {fileID: 1793270386}
   m_Layer: 0
   m_Name: CharaGen
   m_TagString: Untagged
@@ -404,3 +405,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1793270386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1793270380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36f9dc381eacdc4186fe21f97ab22e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AcolyteSkills:
+  - {fileID: 114627843185800692, guid: a3e86d98bfc7609429b8eb9e4256e4a6, type: 2}
+  EsquireSkills: []
+  RogueSkills: []
+  RulerSkills: []
+  CavalrySkills: []

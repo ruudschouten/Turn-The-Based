@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Assets.Scripts.Battle;
 using Assets.Scripts.Generators;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ namespace Assets.Scripts.Unit {
         public Rarity Rarity;
         public CharacterType Type;
         public List<Trait> Traits = new List<Trait>();
+        public Attack DefaultAttack;
+        public List<Skill> Skills = new List<Skill>();
 
         public void Start() {
         }

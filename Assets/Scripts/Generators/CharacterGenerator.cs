@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Assets.Scripts.Generators {
     [RequireComponent(typeof(StatsGenerator))]
     [RequireComponent(typeof(TraitGenerator))]
+    [RequireComponent(typeof(SkillGenerator))]
     [RequireComponent(typeof(NameGenerator))]
     public class CharacterGenerator : MonoBehaviour {
         public GameObject[] CharaPrefabs;
@@ -12,6 +13,7 @@ namespace Assets.Scripts.Generators {
         private NameGenerator nameGen;
         private TraitGenerator traitGen;
         private StatsGenerator statsGen;
+        private SkillGenerator skillGen;
         private RarityGetter rarityGetter;
 
         private Character character;
@@ -20,6 +22,7 @@ namespace Assets.Scripts.Generators {
             nameGen = GetComponent<NameGenerator>();
             traitGen = GetComponent<TraitGenerator>();
             statsGen = GetComponent<StatsGenerator>();
+            skillGen = GetComponent<SkillGenerator>();
             rarityGetter = new RarityGetter();
         }
 
@@ -35,6 +38,7 @@ namespace Assets.Scripts.Generators {
             }
             int charaRoll = Random.Range(0, CharaPrefabs.Length);
             character.Type = (CharacterType) charaRoll;
+            character.Skills = skillGen.GetSkills(character.Type);
             Instantiate(CharaPrefabs[charaRoll], go.transform);
             character.Stats = statsGen.AlterWithTraits(statsGen.GetStats(character.Type), character);
             go.name = string.Format("[{0}] {1} {2}",character.Rarity, character.Name, character.Type);

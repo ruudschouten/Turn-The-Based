@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Generators;
+﻿using Assets.Scripts.Battle;
+using Assets.Scripts.Generators;
 using Assets.Scripts.Unit;
 using UnityEditor;
 
@@ -7,6 +8,8 @@ namespace Assets.Scripts.Inspector {
     public class CharacterEditor : Editor {
         private bool showStats;
         private bool showTraits;
+        private bool showSkills;
+
         public override void OnInspectorGUI() {
             Character character = (Character) target;
             EditorGUILayout.LabelField("Name", character.Name);
@@ -17,6 +20,14 @@ namespace Assets.Scripts.Inspector {
                 EditorGUI.indentLevel++;
                 PrintStats(character.Stats);
                 EditorGUI.indentLevel--;
+            }
+            if (character.Skills.Count != 0) {
+                showSkills = EditorGUILayout.Foldout(showSkills, "Skills");
+                if (showSkills) {
+                    foreach (var skill in character.Skills) {
+                        PrintSkills(skill);
+                    }
+                }
             }
             if (character.Rarity != Rarity.Normal) {
                 showTraits = EditorGUILayout.Foldout(showTraits, "Traits");
@@ -34,6 +45,11 @@ namespace Assets.Scripts.Inspector {
         private void PrintStats(Stats stats) {
             StatsEditor statsEditor = new StatsEditor();
             statsEditor.PrintStatsLabel(stats);
+        }
+
+        private void PrintSkills(Skill skill) {
+            SkillEditor skillEditor = new SkillEditor();
+            skillEditor.PrintLabel(skill);
         }
 
         private void PrintTrait(Trait trait) {
