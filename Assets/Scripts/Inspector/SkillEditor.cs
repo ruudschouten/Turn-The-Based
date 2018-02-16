@@ -54,7 +54,7 @@ namespace Assets.Scripts.Inspector {
             if (skill.Diagonal) EditorGUILayout.LabelField("Can be used diagonally");
             if (skill.HasAoE) {
                 EditorGUILayout.LabelField("Has Area of Effect");
-                EditorGUILayout.LabelField("Size of" + skill.AreaOfEffectSize);
+                EditorGUILayout.LabelField("Size of " + skill.AreaOfEffectSize);
             }
         }
     }

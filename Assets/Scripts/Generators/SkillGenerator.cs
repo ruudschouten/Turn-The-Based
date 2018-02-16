@@ -10,6 +10,7 @@ namespace Assets.Scripts.Generators {
     public class SkillGenerator : MonoBehaviour {
         public Skill[] AcolyteSkills;
         public Skill[] EsquireSkills;
+        public Skill[] BruteSkills;
         public Skill[] RogueSkills;
         public Skill[] RulerSkills;
         public Skill[] CavalrySkills;
@@ -23,6 +24,9 @@ namespace Assets.Scripts.Generators {
                     break;
                 case CharacterType.Esquire:
                     skills.AddRange(EsquireSkills);
+                    break;
+                case CharacterType.Brute:
+                    skills.AddRange(BruteSkills);
                     break;
                 case CharacterType.Rogue:
                     skills.AddRange(RogueSkills);

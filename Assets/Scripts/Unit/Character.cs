@@ -20,8 +20,9 @@ namespace Assets.Scripts.Unit {
     public enum CharacterType {
         Acolyte = 0, // Bird
         Esquire = 1, // Goat
-        Rogue = 2,   // Ermine
-        Ruler = 3,   // Wolf & Fox
-        Cavalry = 4 // Horse & Puss
+        Brute = 2, // Roided Goat
+        Rogue = 3,   // Ermine
+        Ruler = 4,   // Wolf & Fox
+        Cavalry = 5 // Horse & Puss
     }
 }

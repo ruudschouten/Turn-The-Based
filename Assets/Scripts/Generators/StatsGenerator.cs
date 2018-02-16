@@ -22,6 +22,18 @@ namespace Assets.Scripts.Generators {
                     stats.Agility = 8;
                     break;
                 case CharacterType.Esquire:
+                    stats.Health = 60;
+                    stats.Magic = 30;
+                    stats.Move = 2;
+                    stats.Jump = 2f;
+                    stats.Strength = 12;
+                    stats.Defense = 12;
+                    stats.Intelligence = 7;
+                    stats.Resistance = 11;
+                    stats.Precision = 10;
+                    stats.Agility = 7;
+                    break;
+                case CharacterType.Brute:
                     stats.Health = 80;
                     stats.Magic = 20;
                     stats.Move = 2;

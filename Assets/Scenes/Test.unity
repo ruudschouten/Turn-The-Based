@@ -253,7 +253,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1395140499}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: -4.5, y: 10.54, z: 7.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -290,8 +290,8 @@ MonoBehaviour:
   - {fileID: 1167409536488034, guid: f0dac5a4f5993054b83f6b1662bbc3a7, type: 2}
   BaseTilePrefab: {fileID: 1396283889600802, guid: 62f8c6d7ca9cf704e8f9a77fed3dd767,
     type: 2}
-  GridSize: 5
-  HillSize: 20
+  GridSize: 6
+  HillSize: 36
 --- !u!4 &1712668718
 Transform:
   m_ObjectHideFlags: 0
@@ -386,7 +386,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharaPrefabs:
   - {fileID: 1781603370706860, guid: 5c78f4ccf9a9e104995e654e0a5d3494, type: 2}
-  - {fileID: 1062228166487258, guid: 04da521023ab9de40bcb8b19a3a27a8f, type: 2}
+  - {fileID: 1212624201908180, guid: 04da521023ab9de40bcb8b19a3a27a8f, type: 2}
+  - {fileID: 1236383954703158, guid: b55b5e9938fa3a241af112ae61e01f09, type: 2}
   - {fileID: 1849509393303580, guid: 6f0b037ff91b5d74fbbe799dd058450c, type: 2}
   BasePrefabs:
   - {fileID: 1133343393580202, guid: 08b69f02bf4364042a29ecf17468feaf, type: 2}
@@ -419,6 +420,7 @@ MonoBehaviour:
   AcolyteSkills:
   - {fileID: 114627843185800692, guid: a3e86d98bfc7609429b8eb9e4256e4a6, type: 2}
   EsquireSkills: []
+  BruteSkills: []
   RogueSkills: []
   RulerSkills: []
   CavalrySkills: []
