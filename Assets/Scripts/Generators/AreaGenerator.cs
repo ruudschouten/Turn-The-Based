@@ -28,11 +28,24 @@ public class AreaGenerator : MonoBehaviour {
     // Use this for initialization
     void Start () {
         tileContainer = new GameObject("Tiles");
-		SpawnGround();
+    }
+
+    public void Generate() {
+        ResetTiles();
+        SpawnGround();
         SetGroundPosition();
         SpawnHills();
         SetHillPosition();
         SetBase();
+    }
+
+    private void ResetTiles() {
+        foreach (Transform child in tileContainer.transform) {
+            Destroy(child.gameObject);
+        }
+        heightLevel.Clear();
+        tiles.Clear();
+        hills.Clear();
     }
 
     private void SpawnGround() {
