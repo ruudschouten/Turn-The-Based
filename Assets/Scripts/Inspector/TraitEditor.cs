@@ -24,6 +24,8 @@ public class TraitEditor : Editor {
     private bool showAddiAff;
     private bool showAddiMisc;
 
+    //TODO: Refactor this into methods
+    //TODO: Add Attack Additions and Modifiers
     public override void OnInspectorGUI() {
         Trait traits = (Trait) target;
         traits.Name = EditorGUILayout.TextField("Name", traits.Name);

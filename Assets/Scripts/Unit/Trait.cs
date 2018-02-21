@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Battle;
+using UnityEngine;
 
 namespace Assets.Scripts.Unit {
     public class Trait : MonoBehaviour {
@@ -23,6 +24,11 @@ namespace Assets.Scripts.Unit {
         //Movement related
         public int MoveAddition;
         public float JumpAddition;
+        //Attack related
+        public int RangeAddition;
+        public int AttackCostAddition;
+        public float DamageModifierAddition;
+        public int AreaOfEffectSizeAddition;
         //Base Stats
         public int HealthAddition;
         public int MagicAddition;
@@ -43,6 +49,12 @@ namespace Assets.Scripts.Unit {
         //Movement related
         public float MoveMultiplier;
         public float JumpMultiplier;
+        //Attack related
+        public float RangeMultiplier;
+        public float AttackCostMultiplier;
+        public float DamageModifierMultiplier;
+        public float AreaOfEffectSizeMultiplier;
+        public Element ElementOverride;
         //Base Stats
         public float HealthMultiplier;
         public float MagicMultiplier;
