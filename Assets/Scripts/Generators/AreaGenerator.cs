@@ -18,8 +18,8 @@ public class AreaGenerator : MonoBehaviour {
 
     private GameObject tileContainer;
     private GameObject baseTile;
-    float heightBetween = 0.75f;
-    float widthBetween = 2.8f;
+    float heightBetween = 1f;
+    float widthBetween = 4f;
 
     public GameObject GetBaseTile() {
         return baseTile;

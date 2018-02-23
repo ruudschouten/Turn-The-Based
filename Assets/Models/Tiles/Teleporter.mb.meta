@@ -1,33 +1,23 @@
 fileFormatVersion: 2
-guid: 143b8044204b8a04a926333e714ce081
-timeCreated: 1518266796
+guid: cd65c74e57fb1a047b1483a60232dbcf
+timeCreated: 1519387776
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: Base
-    100002: Base 1
-    100004: Floating_Effect_1
-    100006: Floating_Effect_2
-    100008: pCube1
-    100010: pCylinder1
-    100012: //RootNode
-    100014: transform1
-    100016: transform2
+    100002: Floating_Effect_1
+    100004: Floating_Effect_2
+    100006: //RootNode
     400000: Base
-    400002: Base 1
-    400004: Floating_Effect_1
-    400006: Floating_Effect_2
-    400008: pCube1
-    400010: pCylinder1
-    400012: //RootNode
-    400014: transform1
-    400016: transform2
-    2100000: lambert1
-    2300000: Base 1
+    400002: Floating_Effect_1
+    400004: Floating_Effect_2
+    400006: //RootNode
+    2100000: Teleporter
+    2300000: Base
     2300002: Floating_Effect_1
     2300004: Floating_Effect_2
-    3300000: Base 1
+    3300000: Base
     3300002: Floating_Effect_1
     3300004: Floating_Effect_2
     4300000: Floating_Effect_1
@@ -64,7 +54,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 75
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

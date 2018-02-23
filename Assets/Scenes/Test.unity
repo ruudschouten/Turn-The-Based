@@ -287,8 +287,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TilePrefabs:
-  - {fileID: 1167409536488034, guid: f0dac5a4f5993054b83f6b1662bbc3a7, type: 2}
-  BaseTilePrefab: {fileID: 1396283889600802, guid: 62f8c6d7ca9cf704e8f9a77fed3dd767,
+  - {fileID: 1035452277340222, guid: f8ef106497abdc6468dff99265a273a0, type: 2}
+  - {fileID: 1177353827096896, guid: 4887e1da2b3936a47802d0a028bd93c1, type: 2}
+  BaseTilePrefab: {fileID: 1456223846581770, guid: 62f8c6d7ca9cf704e8f9a77fed3dd767,
     type: 2}
   GridSize: 8
   HillSize: 50

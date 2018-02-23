@@ -1,34 +1,16 @@
 fileFormatVersion: 2
-guid: 8e2cf1cd9f41aaf42b0ef2e273353e9a
-timeCreated: 1518266797
+guid: 040701ac2fef9634c937122f1062f179
+timeCreated: 1519379806
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: group
-    100002: group1
-    100004: group2
-    100006: //RootNode
-    100008: pasted__group1
-    100010: pasted__pCube1
-    100012: pasted__pCube1 1
-    100014: pasted__pCylinder1
-    100016: pasted__transform1
-    100018: pasted__transform2
-    400000: group
-    400002: group1
-    400004: group2
-    400006: //RootNode
-    400008: pasted__group1
-    400010: pasted__pCube1
-    400012: pasted__pCube1 1
-    400014: pasted__pCylinder1
-    400016: pasted__transform1
-    400018: pasted__transform2
-    2100000: lambert1
-    2300000: pasted__pCube1 1
-    3300000: pasted__pCube1 1
-    4300000: pasted__pCube1
+    100000: //RootNode
+    400000: //RootNode
+    2100000: WhiteWood
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Tile
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -60,7 +42,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 75
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
