@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -194,6 +194,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &979801049
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4688964628188926, guid: 89ab8d727b6f90d43b8778b3be6eb7e3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688964628188926, guid: 89ab8d727b6f90d43b8778b3be6eb7e3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688964628188926, guid: 89ab8d727b6f90d43b8778b3be6eb7e3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688964628188926, guid: 89ab8d727b6f90d43b8778b3be6eb7e3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688964628188926, guid: 89ab8d727b6f90d43b8778b3be6eb7e3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688964628188926, guid: 89ab8d727b6f90d43b8778b3be6eb7e3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688964628188926, guid: 89ab8d727b6f90d43b8778b3be6eb7e3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688964628188926, guid: 89ab8d727b6f90d43b8778b3be6eb7e3, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 89ab8d727b6f90d43b8778b3be6eb7e3, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1395140499
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +331,7 @@ MonoBehaviour:
   TilePrefabs:
   - {fileID: 1035452277340222, guid: f8ef106497abdc6468dff99265a273a0, type: 2}
   - {fileID: 1177353827096896, guid: 4887e1da2b3936a47802d0a028bd93c1, type: 2}
-  BaseTilePrefab: {fileID: 1456223846581770, guid: 62f8c6d7ca9cf704e8f9a77fed3dd767,
+  BaseTilePrefab: {fileID: 1673570559494360, guid: 89ab8d727b6f90d43b8778b3be6eb7e3,
     type: 2}
   GridSize: 8
   HillSize: 50

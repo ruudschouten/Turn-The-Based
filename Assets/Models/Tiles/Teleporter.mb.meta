@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: cd65c74e57fb1a047b1483a60232dbcf
-timeCreated: 1519387776
+guid: f0bc046d2f4fd5c4c8ddb63a6ad283c3
+timeCreated: 1519892066
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -24,7 +24,12 @@ ModelImporter:
     4300002: Floating_Effect_2
     4300004: Base
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Teleporter
+    second: {fileID: 2100000, guid: 778eb59f5075bcc48835ba53001d6ceb, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
