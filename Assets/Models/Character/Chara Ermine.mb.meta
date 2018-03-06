@@ -1,42 +1,16 @@
 fileFormatVersion: 2
-guid: a440af800de92b04f967f0eef031d1af
-timeCreated: 1518463388
+guid: 0908c8133f2b93048bcac9ea55e00c9a
+timeCreated: 1519492853
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Body
-    100002: //RootNode
-    100004: Head
-    100006: Hood
-    100008: Left_Arm
-    100010: Left_Arm1
-    100012: Left_Arm1 1
-    100014: pCube2
-    100016: transform1
-    100018: transform2
-    100020: transform3
-    400000: Body
-    400002: //RootNode
-    400004: Head
-    400006: Hood
-    400008: Left_Arm
-    400010: Left_Arm1
-    400012: Left_Arm1 1
-    400014: pCube2
-    400016: transform1
-    400018: transform2
-    400020: transform3
-    2100000: lambert1
-    2300000: Hood
-    2300002: Left_Arm1
-    2300004: pCube2
-    3300000: Hood
-    3300002: Left_Arm1
-    3300004: pCube2
-    4300000: pCube2
-    4300002: Hood
-    4300004: Left_Arm1
+    100000: //RootNode
+    400000: //RootNode
+    2100000: lambert6
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Ermine
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -68,7 +42,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 75
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

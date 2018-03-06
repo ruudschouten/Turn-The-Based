@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: f758279b8275bf44989467aaa9901b70, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -389,7 +389,7 @@ MonoBehaviour:
   - {fileID: 1781603370706860, guid: 5c78f4ccf9a9e104995e654e0a5d3494, type: 2}
   - {fileID: 1212624201908180, guid: 04da521023ab9de40bcb8b19a3a27a8f, type: 2}
   - {fileID: 1236383954703158, guid: b55b5e9938fa3a241af112ae61e01f09, type: 2}
-  - {fileID: 1849509393303580, guid: 6f0b037ff91b5d74fbbe799dd058450c, type: 2}
+  - {fileID: 1668259719401656, guid: 6f0b037ff91b5d74fbbe799dd058450c, type: 2}
   BasePrefabs:
   - {fileID: 1133343393580202, guid: 08b69f02bf4364042a29ecf17468feaf, type: 2}
   - {fileID: 1362752173962082, guid: 294bc000d485f354fab20759ccc86645, type: 2}
