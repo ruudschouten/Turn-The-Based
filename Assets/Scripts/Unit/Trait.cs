@@ -13,12 +13,10 @@ namespace Assets.Scripts.Unit {
         #region AfterHit
         public int HealthOnHit;
         public int MagicOnHit;
-        public int GoldOnHit;
         #endregion
         #region AfterKill
         public int HealthOnKill;
         public int MagicOnKill;
-        public int GoldOnKill;
         #endregion
         #region Additions
         //Movement related
@@ -42,8 +40,6 @@ namespace Assets.Scripts.Unit {
         public int FireAttunementAddition;
         public int IceAttunementAddition;
         public int WindAttunementAddition;
-        //Misc
-        public int GoldAddition;
         #endregion
         #region Multipliers
         //Movement related
@@ -68,8 +64,6 @@ namespace Assets.Scripts.Unit {
         public float FireAttunementMultiplier;
         public float IceAttunementMultiplier;
         public float WindAttunementMultiplier;
-        //Misc
-        public float GoldMultiplier;
         #endregion
     }
 }

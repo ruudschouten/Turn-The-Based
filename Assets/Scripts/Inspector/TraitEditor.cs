@@ -16,13 +16,11 @@ public class TraitEditor : Editor {
     private bool showMultiMove;
     private bool showMultiBase;
     private bool showMultiAff;
-    private bool showMultiMisc;
-
+    
     private bool showAddition;
     private bool showAddiMove;
     private bool showAddiBase;
     private bool showAddiAff;
-    private bool showAddiMisc;
 
     //TODO: Refactor this into methods
     //TODO: Add Attack Additions and Modifiers
@@ -72,12 +70,6 @@ public class TraitEditor : Editor {
                 traits.WindAttunementMultiplier = EditorGUILayout.FloatField("Wind", traits.WindAttunementMultiplier);
                 EditorGUI.indentLevel--;
             }
-            showMultiMisc = EditorGUILayout.Foldout(showMultiMisc, "Misc");
-            if (showMultiMisc) {
-                EditorGUI.indentLevel++;
-                traits.GoldMultiplier = EditorGUILayout.FloatField("Gold Multiplier", traits.GoldMultiplier);
-                EditorGUI.indentLevel--;
-            }
             EditorGUI.indentLevel--;
         }
 
@@ -115,12 +107,6 @@ public class TraitEditor : Editor {
                 traits.WindAttunementAddition = EditorGUILayout.IntField("Wind", traits.WindAttunementAddition);
                 EditorGUI.indentLevel--;
             }
-            showAddiMisc = EditorGUILayout.Foldout(showAddiMisc, "Misc");
-            if (showAddiMisc) {
-                EditorGUI.indentLevel++;
-                traits.GoldAddition = EditorGUILayout.IntField("Gold Addition", traits.GoldAddition);
-                EditorGUI.indentLevel--;
-            }
             EditorGUI.indentLevel--;
         }
 
@@ -129,7 +115,6 @@ public class TraitEditor : Editor {
             EditorGUI.indentLevel++;
             traits.HealthOnHit = EditorGUILayout.IntField("Gain Health on Hit", traits.HealthOnHit);
             traits.MagicOnHit = EditorGUILayout.IntField("Gain Magic on Hit", traits.MagicOnHit);
-            traits.GoldOnHit = EditorGUILayout.IntField("Gain Gold on Hit", traits.GoldOnHit);
             EditorGUI.indentLevel--;
         }
 
@@ -138,7 +123,6 @@ public class TraitEditor : Editor {
             EditorGUI.indentLevel++;
             traits.HealthOnKill = EditorGUILayout.IntField("Gain Health on Kill", traits.HealthOnKill);
             traits.MagicOnKill = EditorGUILayout.IntField("Gain Magic on Kill", traits.MagicOnKill);
-            traits.GoldOnKill = EditorGUILayout.IntField("Gain Gold on Kill", traits.GoldOnKill);
             EditorGUI.indentLevel--;
         }
     }
@@ -153,18 +137,12 @@ public class TraitEditor : Editor {
         if (trait.MagicOnHit != 0) {
             EditorGUILayout.LabelField("Magic on Hit", trait.MagicOnHit.ToString());
         }
-        if (trait.GoldOnHit != 0) {
-            EditorGUILayout.LabelField("Gold on Hit", trait.GoldOnHit.ToString());
-        }
 
         if (trait.HealthOnKill != 0) {
             EditorGUILayout.LabelField("Health on Kill", trait.HealthOnKill.ToString());
         }
         if (trait.MagicOnKill != 0) {
             EditorGUILayout.LabelField("Magic on Kill", trait.MagicOnKill.ToString());
-        }
-        if (trait.GoldOnKill != 0) {
-            EditorGUILayout.LabelField("Gold on Kill", trait.GoldOnKill.ToString());
         }
 
         if (trait.MoveAddition != 0) {
@@ -206,9 +184,6 @@ public class TraitEditor : Editor {
         if (trait.WindAttunementAddition != 0) {
             EditorGUILayout.LabelField("Adds " + trait.WindAttunementAddition + " Wind Attunement");
         }
-        if (trait.GoldAddition != 0) {
-            EditorGUILayout.LabelField("Adds " + trait.GoldAddition + " Gold");
-        }
 
         if (Math.Abs(trait.MoveMultiplier) > 0) {
             EditorGUILayout.LabelField("Has " + trait.MoveMultiplier * 100 + "% Move");
@@ -248,9 +223,6 @@ public class TraitEditor : Editor {
         }
         if (Math.Abs(trait.WindAttunementMultiplier) > 0) {
             EditorGUILayout.LabelField("Has " + trait.WindAttunementMultiplier * 100 + "% Wind Attunement");
-        }
-        if (Math.Abs(trait.GoldMultiplier) > 0) {
-            EditorGUILayout.LabelField("Has " + trait.GoldMultiplier * 100 + "% Gold");
         }
     }
 }
