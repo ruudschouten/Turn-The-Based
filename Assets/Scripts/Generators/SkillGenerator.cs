@@ -13,7 +13,6 @@ namespace Assets.Scripts.Generators {
         public Skill[] BruteSkills;
         public Skill[] RogueSkills;
         public Skill[] RulerSkills;
-        public Skill[] CavalrySkills;
 
         public List<Skill> GetSkills(CharacterType type) {
             List<Skill> skills = new List<Skill>();
@@ -33,9 +32,6 @@ namespace Assets.Scripts.Generators {
                     break;
                 case CharacterType.Ruler:
                     skills.AddRange(RulerSkills);
-                    break;
-                case CharacterType.Cavalry:
-                    skills.AddRange(CavalrySkills);
                     break;
             }
 

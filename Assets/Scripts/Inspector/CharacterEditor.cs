@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Battle;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Battle;
 using Assets.Scripts.Generators;
 using Assets.Scripts.Unit;
 using UnityEditor;
@@ -40,6 +41,10 @@ namespace Assets.Scripts.Inspector {
                     EditorGUI.indentLevel--;
                 }
             }
+        }
+
+        private void PrintCosts(Dictionary<Resource.Resource, int> costs) {
+            
         }
 
         private void PrintStats(Stats stats) {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.622047, g: 0.72451425, b: 0.8788274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -354,8 +354,8 @@ MonoBehaviour:
   - {fileID: 1516940055944078, guid: 598c97ea08616d045a0ebafde88ddd61, type: 2}
   - {fileID: 1642449256709652, guid: ac7a9e9c438111841b476019c3c2a2ae, type: 2}
   - {fileID: 1522916330747380, guid: da29d2b38a2dda741a864c7325cd5a57, type: 2}
-  - {fileID: 1215951133753280, guid: ad33cd99d0d81f249bdc77d142c160f2, type: 2}
-  - {fileID: 1042754973913336, guid: 6f490caa879bfba4580da20ceb290786, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 1142852265283142, guid: 6be387a8448fc1c48bb93047e9d4501f, type: 2}
   - {fileID: 1135469647528104, guid: 2c3d7049984ee334493d19c25b7b8388, type: 2}
   - {fileID: 1899128127608702, guid: e5bf294f4ae5dc143baf97ffa054b6f8, type: 2}
@@ -424,4 +424,3 @@ MonoBehaviour:
   BruteSkills: []
   RogueSkills: []
   RulerSkills: []
-  CavalrySkills: []

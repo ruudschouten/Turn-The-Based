@@ -10,11 +10,11 @@ namespace Assets.Scripts.Unit {
         public Rarity Rarity;
         public CharacterType Type;
         public List<Trait> Traits = new List<Trait>();
+        //Attacks
         public Attack DefaultAttack;
         public List<Skill> Skills = new List<Skill>();
-
-        public void Start() {
-        }
+        //Resource
+        public Dictionary<Resource.Resource, int> Cost;
     }
 
     public enum CharacterType {
@@ -22,7 +22,6 @@ namespace Assets.Scripts.Unit {
         Esquire = 1, // Goat
         Brute = 2, // Roided Goat
         Rogue = 3,   // Ermine
-        Ruler = 4,   // Wolf & Fox
-        Cavalry = 5 // Horse & Puss
+        Ruler = 4   // Wolf & Fox
     }
 }

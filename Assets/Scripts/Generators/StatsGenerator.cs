@@ -69,18 +69,6 @@ namespace Assets.Scripts.Generators {
                     stats.Precision = 10;
                     stats.Agility = 6;
                     break;
-                case CharacterType.Cavalry:
-                    stats.Health = 50;
-                    stats.Magic = 30;
-                    stats.Move = 2;
-                    stats.Jump = 3f;
-                    stats.Strength = 18;
-                    stats.Defense = 8;
-                    stats.Intelligence = 6;
-                    stats.Resistance = 6;
-                    stats.Precision = 6;
-                    stats.Agility = 15;
-                    break;
             }
             return stats;
         }
