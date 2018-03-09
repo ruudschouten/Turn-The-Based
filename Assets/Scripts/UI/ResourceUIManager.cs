@@ -28,11 +28,11 @@ namespace Resource {
         private void CreateResourcePanel(Resource resource) {
             var newPanel = Instantiate(ResourcePanel, PanelParent.transform);
             newPanel.name = string.Format("{0} UI Element", resource.Name);
-            newPanel.transform.Find("ResourceName").GetComponent<Text>().text = resource.Name;
-            newPanel.transform.Find("ResourceValue").GetComponent<Text>().text = resource.Amount.ToString();
-            newPanel.transform.Find("ButtonAdd").GetComponent<Button>().onClick
+            newPanel.transform.GetChild(0).GetComponent<Text>().text = resource.Name;
+            newPanel.transform.GetChild(1).GetComponent<Text>().text = resource.Amount.ToString();
+            newPanel.transform.GetChild(2).GetComponent<Button>().onClick
                 .AddListener(() => resource.ChangeAmount(1));
-            newPanel.transform.Find("ButtonRemove").GetComponent<Button>().onClick
+            newPanel.transform.GetChild(3).GetComponent<Button>().onClick
                 .AddListener(() => resource.ChangeAmount(-1));
             var newY = index * PanelHeightPerResource;
             newPanel.transform.position = new Vector3(0, 600 - newY, 0);
