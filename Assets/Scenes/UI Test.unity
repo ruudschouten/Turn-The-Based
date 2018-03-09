@@ -142,8 +142,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerName: {fileID: 0}
   PanelParent: {fileID: 2107156226}
-  ResourcePanel: {fileID: 1372648672501616, guid: a4a5179cd02ecb74abee929a71f595b6,
-    type: 2}
+  ResourcePanel: {fileID: 2107156226}
+  ResourceName: {fileID: 0}
+  ResourceValue: {fileID: 0}
+  ButtonAdd: {fileID: 0}
+  ButtonRemove: {fileID: 0}
   Resources:
   - {fileID: 1616219176}
   - {fileID: 1953094295}

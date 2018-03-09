@@ -36,6 +36,7 @@ namespace Resource {
                 .AddListener(() => resource.ChangeAmount(-1));
             var newY = index * PanelHeightPerResource;
             newPanel.transform.position = new Vector3(0, 600 - newY, 0);
+            //TODO: How fix this
         }
 
         private void UpdateUI(Resource resource) {
