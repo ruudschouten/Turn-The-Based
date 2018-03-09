@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 5761ac294accfee438e2ebb6bfe12635
+timeCreated: 1520586665
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Fantasque Sans Mono
+  fontNames:
+  - Fantasque Sans Mono
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 1d5c20c513ace14439a91809193ecf9f, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
