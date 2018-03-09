@@ -34,6 +34,7 @@ namespace Resource {
                 .AddListener(() => resource.ChangeAmount(-5));
             var newY = _index * PanelHeightPerResource;
             newPanel.transform.position = new Vector3(0, 600 - newY, 0);
+            //TODO: How fix this
         }
 
 
