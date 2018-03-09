@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Battle;
 using Assets.Scripts.Generators;
+using UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Unit {
-    public class Character : MonoBehaviour {
+    public class Character : MonoBehaviour, IPointerClickHandler {
         public string Name;
         public Stats Stats;
         public Rarity Rarity;
@@ -15,6 +17,10 @@ namespace Assets.Scripts.Unit {
         public List<Skill> Skills = new List<Skill>();
         //Resource
         public Dictionary<Resource.Resource, int> Cost;
+
+        public void OnPointerClick(PointerEventData eventData) {
+            Debug.Log(string.Format("Clicked {0}-{1}", Type, Name));
+        }
     }
 
     public enum CharacterType {
