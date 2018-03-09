@@ -467,7 +467,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Wood
   Amount: 0
-  InitialAmount: 0
   OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -502,7 +501,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Iron
   Amount: 0
-  InitialAmount: 0
   OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1279,7 +1277,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Gold
   Amount: 0
-  InitialAmount: 0
   OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
