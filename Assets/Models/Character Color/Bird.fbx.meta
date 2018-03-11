@@ -1,45 +1,67 @@
 fileFormatVersion: 2
-guid: d34eac1343f22904db85f9d31f4a53bb
-timeCreated: 1519978221
+guid: ef85a6635341ec0439f58784a29a6ab2
+timeCreated: 1520712604
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Goat
-    100004: Head1
-    100006: Hips
-    100008: L_Arm
-    100010: L_Foot
-    100012: L_Hand
-    100014: L_Leg
-    100016: Midriff
-    100018: Neck
-    100020: R_Arm
-    100022: R_Foot
-    100024: R_Hand
-    100026: R_Leg
-    100028: Shoulder
-    400000: //RootNode
-    400002: Goat
-    400004: Head1
-    400006: Hips
-    400008: L_Arm
-    400010: L_Foot
-    400012: L_Hand
-    400014: L_Leg
-    400016: Midriff
-    400018: Neck
-    400020: R_Arm
-    400022: R_Foot
-    400024: R_Hand
-    400026: R_Leg
-    400028: Shoulder
+    100000: Arms
+    100002: Beak
+    100004: //RootNode
+    100006: Body
+    100008: Dress
+    100010: Eyes
+    100012: Face
+    100014: Hat
+    100016: Head
+    100018: Left_Arm
+    100020: Left_Eye
+    100022: Neck
+    100024: Right_Arm
+    100026: Right_Eye
+    400000: Arms
+    400002: Beak
+    400004: //RootNode
+    400006: Body
+    400008: Dress
+    400010: Eyes
+    400012: Face
+    400014: Hat
+    400016: Head
+    400018: Left_Arm
+    400020: Left_Eye
+    400022: Neck
+    400024: Right_Arm
+    400026: Right_Eye
     2100000: lambert1
-    4300000: Goat
-    7400000: Take 001
+    2300000: Beak
+    2300002: Dress
+    2300004: Face
+    2300006: Hat
+    2300008: Left_Arm
+    2300010: Left_Eye
+    2300012: Neck
+    2300014: Right_Arm
+    2300016: Right_Eye
+    3300000: Beak
+    3300002: Dress
+    3300004: Face
+    3300006: Hat
+    3300008: Left_Arm
+    3300010: Left_Eye
+    3300012: Neck
+    3300014: Right_Arm
+    3300016: Right_Eye
+    4300000: Dress
+    4300002: Left_Arm
+    4300004: Right_Arm
+    4300006: Neck
+    4300008: Beak
+    4300010: Face
+    4300012: Hat
+    4300014: Left_Eye
+    4300016: Right_Eye
     9500000: //RootNode
-    13700000: Goat
   externalObjects: {}
   materials:
     importMaterials: 1
