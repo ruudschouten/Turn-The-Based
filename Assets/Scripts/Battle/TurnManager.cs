@@ -1,24 +1,34 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 
 public class TurnManager : MonoBehaviour {
+    public List<Player> players;
 
-    public Player RedPlayer;
-    public Player BluePlayer;
+    public int CurrentPlayer;
 
-    public Player.TeamColor Beginner;
+    private bool firstRound;
 
     private void Start() {
-        
     }
-    
+
     private void Update() {
-        if (Beginner == Player.TeamColor.Red) {
-            RedPlayer.Act();
+        if (firstRound) {
+            //Wait for dice roll
+
+            players[CurrentPlayer].Act();
+            CurrentPlayer++;
+            firstRound = false;
         }
-        else {
-            
-        }
+
+        if (CurrentPlayer > players.Count - 1) CurrentPlayer = 0;
+        players[CurrentPlayer].Act();
+        CurrentPlayer++;
+    }
+
+    public void ShowDice() {
+        throw new NotImplementedException();
     }
 
     public enum TurnActions {
