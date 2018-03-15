@@ -16,7 +16,7 @@ namespace Assets.Scripts.Unit {
         public Attack DefaultAttack;
         public List<Skill> Skills = new List<Skill>();
         //Resource
-        public Dictionary<Resource.Resource, int> Cost;
+        public Resource Cost;
 
         public void OnPointerClick(PointerEventData eventData) {
             Debug.Log(string.Format("Clicked {0}-{1}", Type, Name));
@@ -26,8 +26,8 @@ namespace Assets.Scripts.Unit {
     public enum CharacterType {
         Acolyte = 0, // Bird
         Esquire = 1, // Goat
-        Brute = 2, // Roided Goat
+        Brute = 2,   // Roided Goat
         Rogue = 3,   // Ermine
-        Ruler = 4   // Wolf & Fox
+        Ruler = 4    // Wolf
     }
 }

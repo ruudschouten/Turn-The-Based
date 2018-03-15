@@ -43,7 +43,7 @@ namespace Assets.Scripts.Inspector {
             }
         }
 
-        private void PrintCosts(Dictionary<Resource.Resource, int> costs) {
+        private void PrintCosts(Dictionary<Resource, int> costs) {
             
         }
 

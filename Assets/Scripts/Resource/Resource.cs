@@ -1,25 +1,24 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace Resource {
-    public class Resource : MonoBehaviour {
-        public string Name;
-        public int Amount;
-        public int InitialAmount;
 
-        public UnityEvent OnValueChanged;
+public class Resource : MonoBehaviour {
+    public string Name;
+    public int Amount;
+    public int InitialAmount;
 
-        private void Awake() {
-            Amount = InitialAmount;
-        }
+    public UnityEvent OnValueChanged;
 
-        public void ChangeAmount(int amount) {
-            Amount += amount;
-            OnValueChanged.Invoke();
-        }
+    private void Awake() {
+        Amount = InitialAmount;
+    }
 
-        public bool CanAfford(int cost) {
-            return Amount >= cost;
-        }
+    public void ChangeAmount(int amount) {
+        Amount += amount;
+        OnValueChanged.Invoke();
+    }
+
+    public bool CanAfford(int cost) {
+        return Amount >= cost;
     }
 }

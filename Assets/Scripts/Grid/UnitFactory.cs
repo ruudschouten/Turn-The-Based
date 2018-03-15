@@ -45,7 +45,7 @@ namespace Grid {
 
         [Serializable]
         public class ResourceCost {
-            public Resource.Resource Resource;
+            public Resource Resource;
             public int Cost;
 
             public bool CanAfford() {
