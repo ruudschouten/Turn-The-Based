@@ -7,17 +7,13 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 	public string Name;
 	public TeamColor Color;
-	public GameObject[] UnitsPrefabs;
-	public int Gold;
+	public Resource Gold;
 	[HideInInspector]
 	public List<Character> Units { get; private set; }
 	
 
 	// Use this for initialization
 	void Start () {
-		foreach (var prefab in UnitsPrefabs) {
-			Units.Add(prefab.GetComponent<Character>());
-		}
 	}
 	
 	// Update is called once per frame

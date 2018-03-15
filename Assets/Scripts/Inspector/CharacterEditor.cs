@@ -16,6 +16,7 @@ namespace Assets.Scripts.Inspector {
             EditorGUILayout.LabelField("Name", character.Name);
             EditorGUILayout.LabelField("Rarity", character.Rarity.ToString());
             EditorGUILayout.LabelField("Type", character.Type.ToString());
+            PrintCosts(character.Cost);
             showStats = EditorGUILayout.Foldout(showStats, "Stats");
             if (showStats) {
                 EditorGUI.indentLevel++;
@@ -43,8 +44,8 @@ namespace Assets.Scripts.Inspector {
             }
         }
 
-        private void PrintCosts(Dictionary<Resource, int> costs) {
-            
+        private void PrintCosts(Resource cost) {
+            EditorGUILayout.LabelField(string.Format("{0}: {1}", cost.Name, cost.Amount));
         }
 
         private void PrintStats(Stats stats) {
