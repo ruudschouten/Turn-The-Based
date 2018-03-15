@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -43,18 +42,6 @@ namespace Grid {
             }
         }
 
-        [Serializable]
-        public class ResourceCost {
-            public Resource Resource;
-            public int Cost;
-
-            public bool CanAfford() {
-                return Resource.CanAfford(Cost);
-            }
-
-            public void Pay() {
-                Resource.ChangeAmount(-Cost);
-            }
-        }
+        
     }
 }
