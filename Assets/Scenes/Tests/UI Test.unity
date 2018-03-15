@@ -148,6 +148,7 @@ MonoBehaviour:
   - {fileID: 1953094295}
   - {fileID: 975551944}
   - {fileID: 781564976}
+  ShowButtons: 0
 --- !u!4 &27731958
 Transform:
   m_ObjectHideFlags: 0
@@ -415,7 +416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Iron
   Amount: 0
-  InitialAmount: 0
+  InitialAmount: 60
   OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -549,7 +550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Stone
   Amount: 0
-  InitialAmount: 0
+  InitialAmount: 120
   OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -712,7 +713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Wood
   Amount: 0
-  InitialAmount: 0
+  InitialAmount: 500
   OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -862,7 +863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Gold
   Amount: 0
-  InitialAmount: 0
+  InitialAmount: 250
   OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
