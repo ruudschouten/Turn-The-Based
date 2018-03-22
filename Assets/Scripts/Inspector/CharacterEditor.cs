@@ -45,7 +45,7 @@ namespace Assets.Scripts.Inspector {
         }
 
         private void PrintCosts(Resource cost) {
-            EditorGUILayout.LabelField(string.Format("{0}: {1}", cost.Name, cost.Amount));
+            if(cost != null) EditorGUILayout.LabelField(string.Format("{0}: {1}", cost.Name, cost.Amount));
         }
 
         private void PrintStats(Stats stats) {
