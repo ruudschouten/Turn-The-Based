@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4931866749954062}
+  - component: {fileID: 114352913947387044}
   m_Layer: 0
   m_Name: Black Tile
   m_TagString: Untagged
@@ -37,6 +38,7 @@ GameObject:
   - component: {fileID: 33445402607031602}
   - component: {fileID: 23535341661116106}
   - component: {fileID: 95298860426514790}
+  - component: {fileID: 64142915193938172}
   m_Layer: 0
   m_Name: BlackTile
   m_TagString: Untagged
@@ -112,6 +114,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1660779274923004}
   m_Mesh: {fileID: 4300000, guid: 4dac964c649da0244b2d9ead24e4ea64, type: 3}
+--- !u!64 &64142915193938172
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1660779274923004}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 4dac964c649da0244b2d9ead24e4ea64, type: 3}
 --- !u!95 &95298860426514790
 Animator:
   serializedVersion: 3
@@ -129,3 +145,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114352913947387044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1035452277340222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de026dbac03b448cb9481639e9b786a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Width: 4
+  Height: 2
+  UiManager: {fileID: 0}

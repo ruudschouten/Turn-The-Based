@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33829936011069980}
   - component: {fileID: 23938327630391308}
   - component: {fileID: 95420300508479078}
+  - component: {fileID: 64635828753110332}
   m_Layer: 0
   m_Name: WhiteTile
   m_TagString: Untagged
@@ -37,6 +38,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4551457818960422}
+  - component: {fileID: 114008552220948234}
   m_Layer: 0
   m_Name: White Tile
   m_TagString: Untagged
@@ -112,6 +114,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1137451116702310}
   m_Mesh: {fileID: 4300000, guid: 040701ac2fef9634c937122f1062f179, type: 3}
+--- !u!64 &64635828753110332
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1137451116702310}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 040701ac2fef9634c937122f1062f179, type: 3}
 --- !u!95 &95420300508479078
 Animator:
   serializedVersion: 3
@@ -129,3 +145,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114008552220948234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1177353827096896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de026dbac03b448cb9481639e9b786a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Width: 4
+  Height: 2
+  UiManager: {fileID: 0}

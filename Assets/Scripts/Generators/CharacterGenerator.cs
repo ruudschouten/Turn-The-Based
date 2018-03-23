@@ -7,6 +7,8 @@ namespace Assets.Scripts.Generators {
     [RequireComponent(typeof(SkillGenerator))]
     [RequireComponent(typeof(NameGenerator))]
     public class CharacterGenerator : MonoBehaviour {
+        public TurnManager TurnManager;
+        public UnitUIManager UnitUiManager;
         public GameObject[] CharaPrefabs;
         public GameObject[] BasePrefabs;
 
@@ -32,6 +34,9 @@ namespace Assets.Scripts.Generators {
             character = go.GetComponent<Character>();
             character.Name = nameGen.GetName();
             character.Rarity = rarityGetter.Calculate();
+            character.Ownable = go.AddComponent<Ownable>();
+            character.Ownable.Initialize(TurnManager.CurrentPlayer);
+            character.UnitUI = UnitUiManager;
             Instantiate(BasePrefabs[(int)character.Rarity], go.transform);
             for (int i = 0; i < (int) character.Rarity; i++) {
                 character.Traits.Add(traitGen.GetTrait(go.transform));

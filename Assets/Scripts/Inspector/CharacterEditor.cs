@@ -7,9 +7,9 @@ using UnityEditor;
 namespace Assets.Scripts.Inspector {
     [CustomEditor(typeof(Character))]
     public class CharacterEditor : Editor {
-        private bool showStats;
-        private bool showTraits;
-        private bool showSkills;
+        private bool _showStats;
+        private bool _showTraits;
+        private bool _showSkills;
 
         public override void OnInspectorGUI() {
             Character character = (Character) target;
@@ -17,23 +17,23 @@ namespace Assets.Scripts.Inspector {
             EditorGUILayout.LabelField("Rarity", character.Rarity.ToString());
             EditorGUILayout.LabelField("Type", character.Type.ToString());
             PrintCosts(character.Cost);
-            showStats = EditorGUILayout.Foldout(showStats, "Stats");
-            if (showStats) {
+            _showStats = EditorGUILayout.Foldout(_showStats, "Stats");
+            if (_showStats) {
                 EditorGUI.indentLevel++;
                 PrintStats(character.Stats);
                 EditorGUI.indentLevel--;
             }
             if (character.Skills.Count != 0) {
-                showSkills = EditorGUILayout.Foldout(showSkills, "Skills");
-                if (showSkills) {
+                _showSkills = EditorGUILayout.Foldout(_showSkills, "Skills");
+                if (_showSkills) {
                     foreach (var skill in character.Skills) {
                         PrintSkills(skill);
                     }
                 }
             }
             if (character.Rarity != Rarity.Normal) {
-                showTraits = EditorGUILayout.Foldout(showTraits, "Traits");
-                if (showTraits) {
+                _showTraits = EditorGUILayout.Foldout(_showTraits, "Traits");
+                if (_showTraits) {
                     EditorGUI.indentLevel++;
                     foreach (var trait in character.Traits) {
                         PrintTrait(trait);
@@ -45,7 +45,8 @@ namespace Assets.Scripts.Inspector {
         }
 
         private void PrintCosts(Resource cost) {
-            if(cost != null) EditorGUILayout.LabelField(string.Format("{0}: {1}", cost.Name, cost.Amount));
+            if(cost != null)
+            EditorGUILayout.LabelField(string.Format("{0}: {1}", cost.Name, cost.Amount));
         }
 
         private void PrintStats(Stats stats) {

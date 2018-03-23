@@ -1,14 +1,16 @@
 ﻿using Tiles;
 using UI;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace DefaultNamespace {
     public class BasePanel : Tile, IPointerClickHandler {
         public BasePanelUIManager UiManager;
-        public Player player;
+        [HideInInspector]
+        public TurnManager TurnManager;
         
         public void OnPointerClick(PointerEventData eventData) {
-            UiManager.ShowUnitList(player.Units);
+            UiManager.ShowUnitList(TurnManager.CurrentPlayer.Units);
         }
     }
 }

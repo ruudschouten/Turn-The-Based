@@ -70,6 +70,9 @@ namespace Assets.Scripts.Generators {
                     stats.Agility = 6;
                     break;
             }
+
+            stats.MaxHealth = stats.Health;
+            stats.MaxMagic = stats.Magic;
             return stats;
         }
 
@@ -92,43 +95,58 @@ namespace Assets.Scripts.Generators {
                 if (Math.Abs(trait.MoveMultiplier) > 0) {
                     stats.Move = (int) (trait.MoveMultiplier * stats.Move);
                 }
+
                 if (Math.Abs(trait.JumpMultiplier) > 0) {
                     stats.Jump = (int) (trait.JumpMultiplier * stats.Jump);
                 }
+
                 if (Math.Abs(trait.HealthMultiplier) > 0) {
                     stats.Health = (int) (trait.HealthMultiplier * stats.Health);
                 }
+
                 if (Math.Abs(trait.MagicMultiplier) > 0) {
                     stats.Magic = (int) (trait.MagicMultiplier * stats.Magic);
                 }
+
                 if (Math.Abs(trait.StrengthMultiplier) > 0) {
                     stats.Strength = (int) (trait.StrengthMultiplier * stats.Strength);
                 }
+
                 if (Math.Abs(trait.DefenseMultiplier) > 0) {
                     stats.Defense = (int) (trait.DefenseMultiplier * stats.Defense);
                 }
+
                 if (Math.Abs(trait.IntelligenceMultiplier) > 0) {
                     stats.Intelligence = (int) (trait.IntelligenceMultiplier * stats.Intelligence);
                 }
+
                 if (Math.Abs(trait.ResistanceMultiplier) > 0) {
                     stats.Resistance = (int) (trait.ResistanceMultiplier * stats.Resistance);
                 }
+
                 if (Math.Abs(trait.PrecisionMultiplier) > 0) {
                     stats.Precision = (int) (trait.PrecisionMultiplier * stats.Precision);
                 }
+
                 if (Math.Abs(trait.AgilityMultiplier) > 0) {
                     stats.Agility = (int) (trait.AgilityMultiplier * stats.Agility);
                 }
+
                 if (Math.Abs(trait.FireAttunementMultiplier) > 0) {
                     stats.FireAttunement = (int) (trait.FireAttunementMultiplier * stats.FireAttunement);
                 }
+
                 if (Math.Abs(trait.IceAttunementMultiplier) > 0) {
                     stats.IceAttunement = (int) (trait.IceAttunementMultiplier * stats.IceAttunement);
                 }
+
                 if (Math.Abs(trait.WindAttunementMultiplier) > 0) {
                     stats.WindAttunement = (int) (trait.WindAttunementMultiplier * stats.WindAttunement);
                 }
             }
+
+            stats.MaxHealth = stats.Health;
+            stats.MaxMagic = stats.Magic;
             return stats;
         }
     }
