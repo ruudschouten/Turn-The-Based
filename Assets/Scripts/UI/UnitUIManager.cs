@@ -23,6 +23,7 @@ public class UnitUIManager : MonoBehaviour {
     private Text _fireValue;
     private Text _windValue;
     private Text _iceValue;
+    private Text _ownerValue;
 
     private int _traitCount = 0;
     private Vector3 _traitPos = new Vector3(0,-5,0);
@@ -43,6 +44,7 @@ public class UnitUIManager : MonoBehaviour {
         _fireValue = _newStatPanel.transform.GetChild(12).GetComponent<Text>();
         _windValue = _newStatPanel.transform.GetChild(13).GetComponent<Text>();
         _iceValue = _newStatPanel.transform.GetChild(14).GetComponent<Text>();
+        _ownerValue = _newStatPanel.transform.GetChild(15).GetComponent<Text>();
         
         _newTraitPanel = Instantiate(TraitParent, Parent.transform);
         _newStatPanel.SetActive(false);
@@ -73,6 +75,7 @@ public class UnitUIManager : MonoBehaviour {
         _fireValue.text = unit.Stats.FireAttunement.ToString();
         _windValue.text = unit.Stats.WindAttunement.ToString();
         _iceValue.text = unit.Stats.IceAttunement.ToString();
+        _ownerValue.text = unit.Ownable.GetOwner().Name;
     }
 
     private void ShowTraits(Character unit) {
@@ -83,6 +86,7 @@ public class UnitUIManager : MonoBehaviour {
                 PrintTrait(trait);
                 _traitCount++;
             }
+            _traitCount = 0;
         }
     }
 

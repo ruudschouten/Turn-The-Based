@@ -527,6 +527,12 @@ Prefab:
       propertyPath: Parent
       value: 
       objectReference: {fileID: 1990057740}
+    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
+        type: 2}
+      propertyPath: StatPanel
+      value: 
+      objectReference: {fileID: 1723525702020906, guid: 496a87614600a2b44b2f8a32b15821f5,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e68c10fd00d037448b45c1a09a11593b, type: 2}
   m_IsPrefabParent: 0
