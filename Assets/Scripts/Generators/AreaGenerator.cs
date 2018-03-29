@@ -26,11 +26,6 @@ public class AreaGenerator : MonoBehaviour {
     //UI
     private UIManager _uiManager;
 
-    public GameObject GetBaseTile() {
-        return _baseTile;
-    }
-
-    // Use this for initialization
     void Start () {
         _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         _tileContainer = new GameObject("Tiles");

@@ -23,13 +23,19 @@ namespace Assets.Scripts.Unit {
         //Resource
         public Resource Cost;
         [HideInInspector] public Ownable Ownable;
+        [HideInInspector] public TurnManager TurnManager;
         
         //UI
         public UnitUIManager UnitUI;
 
         public void OnPointerClick(PointerEventData eventData) {
-            Debug.Log(string.Format("Clicked {0}-{1}", Type, Name));
-            UnitUI.ShowUI(this);
+            if (TurnManager.CurrentPlayer == Ownable.GetOwner()) {
+                Debug.Log(string.Format("Clicked {0}-{1}", Type, Name));
+                UnitUI.ShowUI(this);
+            }
+            else {
+                Debug.Log("Unit isn't from this player");
+            }
         }
     }
 

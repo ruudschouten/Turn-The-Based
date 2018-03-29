@@ -8,6 +8,9 @@ public class UIManager : MonoBehaviour {
     public TurnManagerUIManager TurnManagerUiManager;
     public UnitUIManager UnitUiManager;
 
+    public void ShowForPlayer(Player player) {
+        ResourceUiManager.ChangeValues(player.Gold);
+    }
 
     public void HideAll() {
         HideUnitUI();

@@ -17,7 +17,7 @@ public class ResourceUIManager : MonoBehaviour {
     private int _panelTotalHeight = 150;
     private int _index;
 
-    public void Start() {
+    public void Awake() {
         foreach (var resource in Resources) {
             UnityAction action = () => UpdateUI(resource);
             resource.OnValueChanged.AddListener(action);
@@ -45,6 +45,11 @@ public class ResourceUIManager : MonoBehaviour {
 
         var newY = _index * PanelHeightPerResource;
         newPanel.transform.localPosition = new Vector3(0, -newY, 0);
+    }
+
+    public void ChangeValues(Resource resource) {
+        newPanel.transform.GetChild(0).GetComponent<Text>().text = resource.Name;
+        newPanel.transform.GetChild(1).GetComponent<Text>().text = resource.Amount.ToString();
     }
 
 

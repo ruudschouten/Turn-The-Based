@@ -9,7 +9,6 @@ public class Player : MonoBehaviour {
     public TeamColor Color;
     public Resource Gold;
 
-    [HideInInspector]
     public List<Character> Units { get; private set; }
 
     public UnityEvent OnTurnStart = new UnityEvent();

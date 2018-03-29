@@ -4,11 +4,12 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour {
+    public UIManager UiManager;
     public Player Prototype;
     [HideInInspector]
     public Player CurrentPlayer;
     public Text CurrentPlayerText;
-    public UnityEvent CurrentPlayerChanged = new UnityEvent();
+    public Player.TeamColor CurrentTeam;
 
     private Queue<Player> _players;
     private int _amountOfPlayers = 2;
@@ -21,12 +22,16 @@ public class TurnManager : MonoBehaviour {
             newPlayer.transform.SetParent(transform);
             newPlayer.ActivateChildren(false);
             newPlayer.Color = (Player.TeamColor) i;
+            if (i % 2 == 0) newPlayer.Name = "Richard";
+            else newPlayer.Name = "Notyard";
             _players.Enqueue(newPlayer);
         }
 
         CurrentPlayer = _players.Dequeue();
         CurrentPlayer.PlayerStartTurn();
-        CurrentPlayerText.text = CurrentPlayer.name;
+        CurrentTeam = CurrentPlayer.Color;
+        CurrentPlayerText.text = string.Format("[{0}] {1}", CurrentTeam, CurrentPlayer.Name);
+        UiManager.ShowForPlayer(CurrentPlayer);
     }
 
     public void NextTurn() {
@@ -34,5 +39,9 @@ public class TurnManager : MonoBehaviour {
         _players.Enqueue(CurrentPlayer);
         CurrentPlayer = _players.Dequeue();
         CurrentPlayer.PlayerStartTurn();
+        CurrentTeam = CurrentPlayer.Color;
+        CurrentPlayerText.text = string.Format("[{0}] {1}", CurrentTeam, CurrentPlayer.Name);
+        UiManager.Hide(true, true, true, true);
+        UiManager.ShowForPlayer(CurrentPlayer);
     }
 }

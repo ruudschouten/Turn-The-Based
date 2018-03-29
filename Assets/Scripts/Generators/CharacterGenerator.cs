@@ -9,7 +9,8 @@ namespace Assets.Scripts.Generators {
     public class CharacterGenerator : MonoBehaviour {
         public TurnManager TurnManager;
         public UnitUIManager UnitUiManager;
-        public GameObject[] CharaPrefabs;
+        public GameObject[] RedCharaPrefabs;
+        public GameObject[] BlueCharaPrefabs;
         public GameObject[] BasePrefabs;
 
         private NameGenerator nameGen;
@@ -37,16 +38,29 @@ namespace Assets.Scripts.Generators {
             character.Ownable = go.AddComponent<Ownable>();
             character.Ownable.Initialize(TurnManager.CurrentPlayer);
             character.UnitUI = UnitUiManager;
+            character.TurnManager = TurnManager;
             Instantiate(BasePrefabs[(int)character.Rarity], go.transform);
             for (int i = 0; i < (int) character.Rarity; i++) {
                 character.Traits.Add(traitGen.GetTrait(go.transform));
             }
-            int charaRoll = Random.Range(0, CharaPrefabs.Length);
-            character.Type = (CharacterType) charaRoll;
-            character.Skills = skillGen.GetSkills(character.Type);
-            Instantiate(CharaPrefabs[charaRoll], go.transform);
+            InstantiateModel(go, TurnManager.CurrentTeam);
             character.Stats = statsGen.AlterWithTraits(statsGen.GetStats(character.Type), character);
             go.name = string.Format("[{0}] {1} {2}",character.Rarity, character.Name, character.Type);
+        }
+
+        private void InstantiateModel(GameObject go, Player.TeamColor color) {
+            if (color == Player.TeamColor.Red) {
+                int charaRoll = Random.Range(0, RedCharaPrefabs.Length);
+                character.Type = (CharacterType) charaRoll;
+                character.Skills = skillGen.GetSkills(character.Type);
+                Instantiate(RedCharaPrefabs[charaRoll], go.transform);
+            }
+            else if (color == Player.TeamColor.Blue) {
+                int charaRoll = Random.Range(0, BlueCharaPrefabs.Length);
+                character.Type = (CharacterType) charaRoll;
+                character.Skills = skillGen.GetSkills(character.Type);
+                Instantiate(BlueCharaPrefabs[charaRoll], go.transform);
+            }
         }
     }
 }
