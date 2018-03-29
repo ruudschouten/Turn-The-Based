@@ -96,6 +96,7 @@ public class AreaGenerator : MonoBehaviour {
 
         _baseTile = Instantiate(BaseTilePrefab, new Vector3(tilePos.x, height * heightBetween, tilePos.z), new Quaternion(), _tileContainer.transform);
         _baseTile.GetComponent<BasePanel>().TurnManager = TurnManager;
+        _baseTile.GetComponent<BasePanel>().UiManager = _uiManager.BasePanelUiManager;
     }
 
     int GetRandom(int length) {

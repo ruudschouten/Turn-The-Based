@@ -10,7 +10,7 @@ namespace DefaultNamespace {
         public TurnManager TurnManager;
         
         public void OnPointerClick(PointerEventData eventData) {
-            UiManager.ShowUnitList(TurnManager.CurrentPlayer.Units);
+            UiManager.ShowBaseUi(TurnManager);
         }
     }
 }
