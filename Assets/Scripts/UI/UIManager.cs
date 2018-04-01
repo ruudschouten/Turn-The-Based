@@ -19,13 +19,6 @@ public class UIManager : MonoBehaviour {
         HideBasePanelUI();
         HideTurnManagerUI();
     }
-
-    public void Hide(bool unit, bool skill, bool basePanel, bool turnManager) {
-        if(unit) HideUnitUI();
-        if(skill) HideSkillUI();
-        if(basePanel) HideBasePanelUI();
-        if(turnManager) HideTurnManagerUI();
-    }
     
     public void Hide(bool unit, bool skill, bool basePanel, bool turnManager, bool resource) {
         if(unit) HideUnitUI();

@@ -1,3 +1,0 @@
-Tiles
-4 width
-1 height

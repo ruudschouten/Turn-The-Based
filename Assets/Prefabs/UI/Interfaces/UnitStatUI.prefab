@@ -39,10 +39,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Parent: {fileID: 0}
-  StatPanel: {fileID: 1541708591717284, guid: 496a87614600a2b44b2f8a32b15821f5, type: 2}
+  StatPanel: {fileID: 1723525702020906, guid: 496a87614600a2b44b2f8a32b15821f5, type: 2}
   TraitParent: {fileID: 1062965821900424, guid: c5daf9287103bfd40b2b330a341131c1,
     type: 2}
   TraitPanel: {fileID: 1653931118669666, guid: 17cf6c882d23f8f4bbb4614100c3e87d, type: 2}
+  ActionPanel: {fileID: 1596525454135900, guid: 1d6b7d92c39c3974983c46455cd0a5ca,
+    type: 2}
 --- !u!224 &224251527310498016
 RectTransform:
   m_ObjectHideFlags: 1

@@ -1,5 +1,8 @@
-﻿using Assets.Scripts.Generators;
+﻿using System;
+using System.Collections.Generic;
+using Assets.Scripts.Generators;
 using Assets.Scripts.Unit;
+using Tiles;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,10 +11,17 @@ public class UnitUIManager : MonoBehaviour {
     public GameObject StatPanel;
     public GameObject TraitParent;
     public GameObject TraitPanel;
+    public GameObject ActionPanel;
+
+    public GameObject HighlightPrefab;
+    public AreaGenerator AreaGen;
 
     private GameObject _newStatPanel;
     private GameObject _newTraitPanel;
+    private GameObject _newActionPanel;
     
+    private List<GameObject> _moveHighlights = new List<GameObject>();
+
     private Text _nameText;
     private Text _classText;
     private Slider _healthSlider;
@@ -25,13 +35,28 @@ public class UnitUIManager : MonoBehaviour {
     private Text _iceValue;
     private Text _ownerValue;
 
+    private Button _btnMove;
+    private Button _btnAttack;
+    private Button _btnCancel;
+
+    private Character currentUnit;
+    private Vector3 unitTile;
+
     private int _traitCount = 0;
-    private Vector3 _traitPos = new Vector3(0,-5,0);
+    private Vector3 _traitPos = new Vector3(0, -5, 0);
     private int _traitHeight = 70;
+
     private int _traitWidth = 150;
     //2 is -75 | 3 = -145
 
     public void Awake() {
+        _newActionPanel = Instantiate(ActionPanel, Parent.transform);
+        _newActionPanel.SetActive(false);
+        _btnMove = _newActionPanel.transform.GetChild(0).GetComponent<Button>();
+        _btnAttack = _newActionPanel.transform.GetChild(1).GetComponent<Button>();
+        _btnCancel = _newActionPanel.transform.GetChild(2).GetComponent<Button>();
+        _btnCancel.onClick.AddListener(HideActionUI);
+
         _newStatPanel = Instantiate(StatPanel, Parent.transform);
         _nameText = _newStatPanel.transform.GetChild(2).GetComponent<Text>();
         _classText = _newStatPanel.transform.GetChild(3).GetComponent<Text>();
@@ -45,19 +70,23 @@ public class UnitUIManager : MonoBehaviour {
         _windValue = _newStatPanel.transform.GetChild(13).GetComponent<Text>();
         _iceValue = _newStatPanel.transform.GetChild(14).GetComponent<Text>();
         _ownerValue = _newStatPanel.transform.GetChild(15).GetComponent<Text>();
-        
+
         _newTraitPanel = Instantiate(TraitParent, Parent.transform);
         _newStatPanel.SetActive(false);
         _newTraitPanel.SetActive(false);
     }
-    
+
     public void Hide() {
         _newStatPanel.SetActive(false);
+        HideActionUI();
+        HideMovementRange();
         Clear();
     }
 
     public void ShowUI(Character unit) {
         Clear();
+        currentUnit = unit;
+        unitTile = unit.TurnStartPos;
         _newStatPanel.SetActive(true);
         ShowStats(unit);
         ShowTraits(unit);
@@ -86,12 +115,88 @@ public class UnitUIManager : MonoBehaviour {
                 PrintTrait(trait);
                 _traitCount++;
             }
+
             _traitCount = 0;
         }
     }
 
+    public void ShowActionUI(Character unit) {
+        _newActionPanel.SetActive(true);
+        _btnMove.onClick.AddListener(() => ShowMovementRange(unit));
+        _btnAttack.onClick.AddListener(() => ShowAttackRange(unit));
+    }
+
+    public void HideActionUI() {
+        _newActionPanel.SetActive(false);
+        _btnMove.onClick.RemoveAllListeners();
+        _btnAttack.onClick.RemoveAllListeners();
+    }
+
+//    private void Movement(Character unit) {
+//        if (highlights.Count == 0) {
+//            ShowMovementRange(unit);
+//        }
+//        else {
+//            
+//        }
+//    }
+    
+    private void ShowMovementRange(Character unit) {
+        var movement = unit.Stats.Move;
+        if (movement == 0) return;
+        var tileWidth = 4f;
+        Vector3 pos = new Vector3(0, 0.5f, 0);
+        var newPos = new Vector3();
+        for (int n = movement; n > 0; n--) {
+            for (int x = 0; x < n + 1; x++) {
+                var y = n - x;
+                //TODO: Make this work better 
+                var prevPos = new Vector3(pos.x + (x * tileWidth), pos.y, pos.z + (y * tileWidth));
+                newPos = new Vector3(
+                    unitTile.x - (pos.x + (x * tileWidth)), 
+                    (pos.y), 
+                    unitTile.z - (pos.z + (y * tileWidth))
+                    );
+                SpawnHighlightTile(newPos);
+
+                prevPos = new Vector3(pos.x + (-x * tileWidth), pos.y, pos.z + (-y * tileWidth));
+                
+                newPos = new Vector3(
+                    unitTile.x - (pos.x + (-x * tileWidth)), 
+                    (pos.y), 
+                    unitTile.z - (pos.z + (-y * tileWidth))
+                );
+                SpawnHighlightTile(newPos);
+            }
+        }
+        SpawnHighlightTile(pos);
+    }
+
+    public void MoveToClick(Transform tile) {
+        currentUnit.transform.SetParent(tile, false);
+        HideMovementRange();
+    }
+
+    private void SpawnHighlightTile(Vector3 newPos) {
+        GameObject tile = AreaGen.GetTile(newPos);
+        if (tile == null) return;
+        _moveHighlights.Add(tile);
+        Instantiate(HighlightPrefab, new Vector3(0, 0.125f, 0), new Quaternion()).transform.SetParent(tile.transform, false);
+    }
+
+    private void ShowAttackRange(Character unit) {
+        //TODO: Implement
+    }
+
+    private void HideMovementRange() {
+        foreach (GameObject highlight in _moveHighlights) {
+            Destroy(highlight.transform.GetChild(1).gameObject);
+        }
+        _moveHighlights.Clear();
+    }
+
     private float GetPercentage(int current, int max) {
-        return ((float)current / max) * 100;
+        return ((float) current / max) * 100;
     }
 
     private void PrintTrait(Trait trait) {
@@ -108,6 +213,7 @@ public class UnitUIManager : MonoBehaviour {
         foreach (Transform child in _newTraitPanel.transform) {
             Destroy(child.gameObject);
         }
+
         _newTraitPanel.SetActive(false);
     }
 }

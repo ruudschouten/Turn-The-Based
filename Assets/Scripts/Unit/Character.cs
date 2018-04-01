@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Battle;
 using Assets.Scripts.Generators;
+using Tiles;
 using UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -24,18 +25,35 @@ namespace Assets.Scripts.Unit {
         public Resource Cost;
         [HideInInspector] public Ownable Ownable;
         [HideInInspector] public TurnManager TurnManager;
+        [HideInInspector] public Vector3 TurnStartPos;
         
         //UI
         public UnitUIManager UnitUI;
 
+        public void Start() {
+            Ownable.TurnStartEvent.AddListener(SetStartPos);
+        }
+
+        private void SetStartPos() {
+            TurnStartPos = GetTilePosition();
+        }
+
         public void OnPointerClick(PointerEventData eventData) {
+            Debug.Log(string.Format("Clicked {0}-{1}", Type, Name));
+            UnitUI.ShowUI(this);
             if (TurnManager.CurrentPlayer == Ownable.GetOwner()) {
-                Debug.Log(string.Format("Clicked {0}-{1}", Type, Name));
                 UnitUI.ShowUI(this);
+                UnitUI.ShowActionUI(this);
             }
             else {
-                Debug.Log("Unit isn't from this player");
+                UnitUI.HideActionUI();
             }
+        }
+
+        
+       
+        public Vector3 GetTilePosition() {
+            return transform.parent.transform.position;
         }
     }
 

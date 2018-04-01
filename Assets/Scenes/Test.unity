@@ -525,6 +525,7 @@ MonoBehaviour:
   CurrentPlayer: {fileID: 0}
   CurrentPlayerText: {fileID: 1797272566}
   CurrentTeam: 0
+  Players: []
 --- !u!4 &1154292109
 Transform:
   m_ObjectHideFlags: 0
@@ -647,6 +648,23 @@ Prefab:
       value: 
       objectReference: {fileID: 1723525702020906, guid: 496a87614600a2b44b2f8a32b15821f5,
         type: 2}
+    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
+        type: 2}
+      propertyPath: ActionPanel
+      value: 
+      objectReference: {fileID: 1319949935753262, guid: 1d6b7d92c39c3974983c46455cd0a5ca,
+        type: 2}
+    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
+        type: 2}
+      propertyPath: HighlightPrefab
+      value: 
+      objectReference: {fileID: 1237282854283240, guid: 9a5a4770ca2d10749894ebacdcecc86d,
+        type: 2}
+    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
+        type: 2}
+      propertyPath: AreaGen
+      value: 
+      objectReference: {fileID: 1712668717}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e68c10fd00d037448b45c1a09a11593b, type: 2}
   m_IsPrefabParent: 0
@@ -1009,9 +1027,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BasePanel: {fileID: 23211341}
-  NormalCost: 50
-  MagicCost: 125
-  RareCost: 300
 --- !u!1 &1712668716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,7 +1037,7 @@ GameObject:
   - component: {fileID: 1712668718}
   - component: {fileID: 1712668717}
   m_Layer: 0
-  m_Name: AreaGenerator
+  m_Name: AreaGen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1046,7 +1061,7 @@ MonoBehaviour:
   BaseTilePrefab: {fileID: 1714974028365014, guid: 89ab8d727b6f90d43b8778b3be6eb7e3,
     type: 2}
   GridSize: 8
-  HillSize: 50
+  HillSize: 0
 --- !u!4 &1712668718
 Transform:
   m_ObjectHideFlags: 0
@@ -1108,6 +1123,50 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &1738365684
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1738365686}
+  - component: {fileID: 1738365685}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1738365685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1738365684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d236b47e5949529a5672be70252bf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AreaGenerator: {fileID: 1712668717}
+  CharacterGenerator: {fileID: 1793270384}
+  TurnManager: {fileID: 1154292108}
+  UiManager: {fileID: 1198437206}
+--- !u!4 &1738365686
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1738365684}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1793270380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,10 +1210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TraitPrefabs:
-  - {fileID: 1764761612598410, guid: 606ea70578584814fa420f29e29d4a3d, type: 2}
   - {fileID: 1631013612976164, guid: 951ba24264b9d7c41b2e3e68a79ce43f, type: 2}
-  - {fileID: 1516940055944078, guid: 598c97ea08616d045a0ebafde88ddd61, type: 2}
-  - {fileID: 1642449256709652, guid: ac7a9e9c438111841b476019c3c2a2ae, type: 2}
   - {fileID: 1522916330747380, guid: da29d2b38a2dda741a864c7325cd5a57, type: 2}
   - {fileID: 1142852265283142, guid: 6be387a8448fc1c48bb93047e9d4501f, type: 2}
   - {fileID: 1135469647528104, guid: 2c3d7049984ee334493d19c25b7b8388, type: 2}
@@ -1192,11 +1248,13 @@ MonoBehaviour:
   - {fileID: 1913073452361444, guid: 74ba43603344daf4dbeb4d9275fe6588, type: 2}
   - {fileID: 1662120209294422, guid: ade0e8edb49544642b8aee2c43614724, type: 2}
   - {fileID: 1161909542551690, guid: fdc1da69db93cd244a6e2dc16ead48af, type: 2}
+  - {fileID: 1411549045515752, guid: dcc06dd4ddcd3284ca23edd37da339c8, type: 2}
   BlueCharaPrefabs:
   - {fileID: 1177109531621342, guid: 1fc84d1acf7b07b4a8a15bd89f41a29b, type: 2}
   - {fileID: 1867302442444986, guid: 65761a7dd94ca514a83e4efacd63f62c, type: 2}
   - {fileID: 1760075970192126, guid: 53ad1ad0c2b46e34faf11fc1b5e1b07f, type: 2}
   - {fileID: 1751805000798922, guid: fa2972e8aee01a349ab56bd4d58d341f, type: 2}
+  - {fileID: 1536681544573358, guid: cbb2844a15503ae458bb3fc7c6fc651f, type: 2}
   BasePrefabs:
   - {fileID: 1133343393580202, guid: 08b69f02bf4364042a29ecf17468feaf, type: 2}
   - {fileID: 1362752173962082, guid: 294bc000d485f354fab20759ccc86645, type: 2}

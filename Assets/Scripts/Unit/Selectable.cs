@@ -12,6 +12,6 @@ public class Selectable : MonoBehaviour, IPointerClickHandler {
     }
 
     public void OnPointerClick(PointerEventData eventData) {
-        Debug.Log(string.Format("Clicked {0} - {1}", unit.Type, unit.Name));
+        if(unit != null) Debug.Log(string.Format("Clicked {0} - {1}", unit.Type, unit.Name));
     }
 }

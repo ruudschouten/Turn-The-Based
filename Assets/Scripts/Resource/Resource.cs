@@ -21,4 +21,10 @@ public class Resource : MonoBehaviour {
     public bool CanAfford(int cost) {
         return Amount >= cost;
     }
+
+    public bool Purchase(int cost) {
+        if (!CanAfford(cost)) return false;
+        ChangeAmount(cost);
+        return true;
+    }
 }

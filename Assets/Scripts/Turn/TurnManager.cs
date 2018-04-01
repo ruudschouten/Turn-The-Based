@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -14,9 +15,12 @@ public class TurnManager : MonoBehaviour {
     private Queue<Player> _players;
     private int _amountOfPlayers = 2;
 
+    public List<Player> Players;
+    
     // Use this for initialization
     void Start() {
         _players = new Queue<Player>();
+        Players = new List<Player>();
         for (int i = 0; i < _amountOfPlayers; i++) {
             Player newPlayer = Instantiate(Prototype);
             newPlayer.transform.SetParent(transform);
@@ -25,6 +29,7 @@ public class TurnManager : MonoBehaviour {
             if (i % 2 == 0) newPlayer.Name = "Richard";
             else newPlayer.Name = "Notyard";
             _players.Enqueue(newPlayer);
+            Players.Add(newPlayer);
         }
 
         CurrentPlayer = _players.Dequeue();
@@ -41,7 +46,7 @@ public class TurnManager : MonoBehaviour {
         CurrentPlayer.PlayerStartTurn();
         CurrentTeam = CurrentPlayer.Color;
         CurrentPlayerText.text = string.Format("[{0}] {1}", CurrentTeam, CurrentPlayer.Name);
-        UiManager.Hide(true, true, true, true);
+        UiManager.Hide(true, true, true, true, false);
         UiManager.ShowForPlayer(CurrentPlayer);
     }
 }
