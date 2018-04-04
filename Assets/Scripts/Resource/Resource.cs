@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
-
 
 public class Resource : MonoBehaviour {
     public string Name;
@@ -24,7 +24,7 @@ public class Resource : MonoBehaviour {
 
     public bool Purchase(int cost) {
         if (!CanAfford(cost)) return false;
-        ChangeAmount(cost);
+        ChangeAmount(-cost);
         return true;
     }
 }

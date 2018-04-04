@@ -25,6 +25,10 @@ public class GameManager : MonoBehaviour {
         UiManager.BasePanelUiManager.SetBuyNormal(() => BuyCharacter(Rarity.Normal));
         UiManager.BasePanelUiManager.SetBuyMagic(() => BuyCharacter(Rarity.Magic));
         UiManager.BasePanelUiManager.SetBuyRare(() => BuyCharacter(Rarity.Rare));
+        UiManager.ResourceUiManager.SetupPanel(TurnManager.Players[0].Gold);
+        foreach (var player in TurnManager.Players) {
+            UiManager.ResourceUiManager.AddListener(player.Gold);
+        }
     }
 
     public void BuyCharacter(Rarity rarity) {

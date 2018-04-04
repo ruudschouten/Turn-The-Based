@@ -8,23 +8,20 @@ public class ResourceUIManager : MonoBehaviour {
     public GameObject PanelParent;
     public GameObject ResourcePanel;
 
-    public List<Resource> Resources;
     public bool ShowButtons;
 
-    private GameObject newPanel;   
-    
-    private const int PanelHeightPerResource = 35;
-    private int _panelTotalHeight = 150;
-    private int _index;
+    private GameObject newPanel;
 
-    public void Awake() {
-        foreach (var resource in Resources) {
-            UnityAction action = () => UpdateUI(resource);
-            resource.OnValueChanged.AddListener(action);
-            CreateResourcePanel(resource);
-            _index++;
-            UpdateUI(resource);
-        }
+    private int _panelTotalHeight = 150;
+
+    public void SetupPanel(Resource resource) {
+        CreateResourcePanel(resource);
+        UpdateUI(resource);
+    }
+    
+    public void AddListener(Resource resource) {
+        UnityAction action = () => UpdateUI(resource);
+        resource.OnValueChanged.AddListener(action);
     }
 
     private void CreateResourcePanel(Resource resource) {
@@ -43,11 +40,11 @@ public class ResourceUIManager : MonoBehaviour {
             newPanel.transform.GetChild(3).gameObject.SetActive(false);
         }
 
-        var newY = _index * PanelHeightPerResource;
-        newPanel.transform.localPosition = new Vector3(0, -newY, 0);
+        newPanel.transform.localPosition = new Vector3(0, 0, 0);
     }
 
     public void ChangeValues(Resource resource) {
+        if (newPanel == null) return;
         newPanel.transform.GetChild(0).GetComponent<Text>().text = resource.Name;
         newPanel.transform.GetChild(1).GetComponent<Text>().text = resource.Amount.ToString();
     }
