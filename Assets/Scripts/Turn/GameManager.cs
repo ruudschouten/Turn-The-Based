@@ -29,9 +29,9 @@ public class GameManager : MonoBehaviour {
         redBase = AreaGenerator.GetBase(Player.TeamColor.Red);
         blueBase = AreaGenerator.GetBase(Player.TeamColor.Blue);
         CharacterGenerator.Generate(CharacterType.Ruler, Rarity.Normal, TurnManager.Players[0],
-            AreaGenerator.GetTile(0, 0).transform);
+            AreaGenerator.GetTileObject(0, 0).transform);
         CharacterGenerator.Generate(CharacterType.Ruler, Rarity.Normal, TurnManager.Players[1],
-            AreaGenerator.GetTile(AreaGenerator.GridSize - 1, AreaGenerator.GridSize - 1).transform);
+            AreaGenerator.GetTileObject(AreaGenerator.GridSize - 1, AreaGenerator.GridSize - 1).transform);
 
         //Set actions for base panel
         UiManager.BasePanelUiManager.SetBuyNormal(() => BuyCharacter(Rarity.Normal));

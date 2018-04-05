@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,6 +12,7 @@ public class TurnManager : MonoBehaviour {
     public Player CurrentPlayer;
     public Text CurrentPlayerText;
     public Player.TeamColor CurrentTeam;
+    public Camera Camera;
 
     private Queue<Player> _players;
     private int _amountOfPlayers = 2;
@@ -48,5 +50,16 @@ public class TurnManager : MonoBehaviour {
         CurrentPlayerText.text = string.Format("[{0}] {1}", CurrentTeam, CurrentPlayer.Name);
         UiManager.Hide(true, true, true, true, false);
         UiManager.ShowForPlayer(CurrentPlayer);
+    }
+
+    private void RotateCamera() {
+        switch (CurrentTeam) {
+            case Player.TeamColor.Red:
+                Camera.transform.rotation = new Quaternion(60, 45, 0, 0);
+                break;
+            case Player.TeamColor.Blue:
+                Camera.transform.rotation = new Quaternion(60, 225, 0, 0);
+                break;
+        }
     }
 }

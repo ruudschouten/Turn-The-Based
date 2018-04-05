@@ -35,12 +35,15 @@ public class AreaGenerator : MonoBehaviour {
     public bool InRange(Tile origin, Tile target, int range, MovementType movementType) {
         switch (movementType) {
             case MovementType.Straight:
-                return ((target.X == origin.X && (target.Y - origin.Y) <= range) ||
-                        (target.Y == origin.Y && (target.X - origin.X) <= range));
+                return ((target.X == origin.X && Mathf.Abs(target.Y - origin.Y) <= range) ||
+                        (target.Y == origin.Y && Mathf.Abs(target.X - origin.X) <= range));
             case MovementType.Radial:
-                return ((Mathf.Sqrt(Mathf.Pow((target.X - origin.X), 2) + Mathf.Pow((target.Y - origin.Y), 2))) <= range);
+                return ((Mathf.Sqrt(Mathf.Pow((target.X - origin.X), 2) + Mathf.Pow((target.Y - origin.Y), 2))) 
+                        <= range);
             case MovementType.Diagonal:
-                return ((Mathf.Abs(target.X - origin.X)) == (Mathf.Abs(target.Y - origin.Y)));
+                return (((Mathf.Abs(target.X - origin.X)) == (Mathf.Abs(target.Y - origin.Y))) &&
+                        ((Mathf.Sqrt(Mathf.Pow((target.X - origin.X), 2) + Mathf.Pow((target.Y - origin.Y), 2)))
+                         <= range));
             default:
                 return false;
         }
@@ -75,16 +78,10 @@ public class AreaGenerator : MonoBehaviour {
     public GameObject GetTileObject(Vector3 position) {
         int z = (int) (position.z / widthBetween);
         int x = (int) (position.x / widthBetween);
-        return GetTile(x, z);
+        return GetTileObject(x, z);
     }
 
-//    public Tile GetTile(Vector3 position) {
-//        int z = (int) (position.z / widthBetween);
-//        int x = (int) (position.x / widthBetween);
-//        
-//    }
-
-    public GameObject GetTile(int x, int z) {
+    public GameObject GetTileObject(int x, int z) {
         try {
             var childNum = z + x * GridSize;
             if (childNum > (GridSize * GridSize) - 1) return null;
@@ -96,7 +93,11 @@ public class AreaGenerator : MonoBehaviour {
             return null;
         }
     }
-    
+
+    public Tile GetTile(int x, int z) {
+        return GetTileObject(x, z).GetComponent<Tile>();
+    }
+
     public void Generate() {
         ResetTiles();
         SpawnGrid();
@@ -138,24 +139,22 @@ public class AreaGenerator : MonoBehaviour {
     }
 
     private void SetBase() {
-        var tile = _tiles[GridSize + 1].transform;
-        Vector3 tilePos = _tiles[GridSize + 1].transform.position;
+        var tile = GetTile(1, 1);
         int height = 0;
 
-        redBase = Instantiate(BaseTilePrefab, new Vector3(tilePos.x, height * heightBetween, tilePos.z),
-            new Quaternion(), tile);
+        redBase = Instantiate(BaseTilePrefab, new Vector3(0, height * heightBetween, 0), new Quaternion());
+        redBase.transform.SetParent(tile.transform, false);
         BasePanel redPanel = redBase.GetComponent<BasePanel>();
         redPanel.TurnManager = TurnManager;
         redPanel.UiManager = _uiManager;
         redPanel.Ownable = redBase.AddComponent<Ownable>();
         redPanel.Ownable.Initialize(TurnManager.Players[0]);
-        
-        tile = _tiles[(GridSize * GridSize) - GridSize].transform;
-        tilePos = new Vector3((GridSize - 2) * widthBetween, 0, (GridSize - 2) * widthBetween);
+
+        tile = GetTile(GridSize - 2, GridSize - 2);
         height = 0;
 
-        blueBase = Instantiate(BaseTilePrefab, new Vector3(tilePos.x, height * heightBetween, tilePos.z),
-            new Quaternion(), tile);
+        blueBase = Instantiate(BaseTilePrefab, new Vector3(0, height * heightBetween, 0), new Quaternion());
+        blueBase.transform.SetParent(tile.transform, false);
         BasePanel bluePanel = blueBase.GetComponent<BasePanel>();
         bluePanel.TurnManager = TurnManager;
         bluePanel.UiManager = _uiManager;
