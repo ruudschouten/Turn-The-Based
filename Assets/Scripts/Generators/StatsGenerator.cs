@@ -78,6 +78,9 @@ namespace Assets.Scripts.Generators {
 
         public Stats AlterWithTraits(Stats stats, Character character) {
             foreach (var trait in character.Traits) {
+                if (trait.RadialOnly) character.MoveType = MovementType.Radial;
+                if (trait.DiagonalOnly) character.MoveType = MovementType.Diagonal;
+                
                 if (trait.MoveAddition != 0) stats.Move += trait.MoveAddition;
                 if (Math.Abs(trait.JumpAddition) > 0) stats.Jump += trait.JumpAddition;
                 if (trait.HealthAddition != 0) stats.Health += trait.HealthAddition;

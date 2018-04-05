@@ -7,8 +7,8 @@ namespace Assets.Scripts.Unit {
         public string Description;
 
         #region Toggles
-        public bool AllowDiagonal;
-        public bool DisallowStraight;
+        public bool DiagonalOnly;
+        public bool RadialOnly;
         #endregion
         #region AfterHit
         public int HealthOnHit;

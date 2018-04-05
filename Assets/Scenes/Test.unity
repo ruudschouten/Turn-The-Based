@@ -665,6 +665,12 @@ Prefab:
       propertyPath: AreaGen
       value: 
       objectReference: {fileID: 1712668717}
+    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
+        type: 2}
+      propertyPath: MovementHighlightPrefab
+      value: 
+      objectReference: {fileID: 1237282854283240, guid: 9a5a4770ca2d10749894ebacdcecc86d,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e68c10fd00d037448b45c1a09a11593b, type: 2}
   m_IsPrefabParent: 0
@@ -1211,8 +1217,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TraitPrefabs:
   - {fileID: 1631013612976164, guid: 951ba24264b9d7c41b2e3e68a79ce43f, type: 2}
+  - {fileID: 1013192770928526, guid: 074a354de747ad4409cfa7f2ba9fdc6a, type: 2}
   - {fileID: 1522916330747380, guid: da29d2b38a2dda741a864c7325cd5a57, type: 2}
   - {fileID: 1142852265283142, guid: 6be387a8448fc1c48bb93047e9d4501f, type: 2}
+  - {fileID: 1624055568746122, guid: a22a2b81b74bcd94092815fc6a6503fc, type: 2}
   - {fileID: 1135469647528104, guid: 2c3d7049984ee334493d19c25b7b8388, type: 2}
   - {fileID: 1899128127608702, guid: e5bf294f4ae5dc143baf97ffa054b6f8, type: 2}
 --- !u!114 &1793270383

@@ -2,6 +2,7 @@
 using Assets.Scripts.Battle;
 using Assets.Scripts.Generators;
 using Tiles;
+using TreeEditor;
 using UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,6 +14,7 @@ namespace Assets.Scripts.Unit {
         public Stats Stats;
         public Rarity Rarity;
         public CharacterType Type;
+        public MovementType MoveType;
 
         public List<Trait> Traits = new List<Trait>();
 
@@ -25,17 +27,31 @@ namespace Assets.Scripts.Unit {
         public Resource Cost;
         [HideInInspector] public Ownable Ownable;
         [HideInInspector] public TurnManager TurnManager;
-        [HideInInspector] public Vector3 TurnStartPos;
-        
+//        [HideInInspector] public Vector3 TurnStartPos;
+        [HideInInspector] private Tile _turnStartTile;
+
         //UI
         public UnitUIManager UnitUI;
 
         public void Start() {
-            Ownable.TurnStartEvent.AddListener(SetStartPos);
+            Ownable.TurnStartEvent.AddListener(SetStartTile);
+            SetStartTile();
         }
 
-        private void SetStartPos() {
-            TurnStartPos = GetTilePosition();
+//        private void SetStartPos() {
+//            TurnStartPos = GetTilePosition();
+//        }
+
+        private void SetStartTile() {
+            _turnStartTile = GetTile();
+        }
+
+        public Tile GetStartTile() {
+            if (_turnStartTile == null) {
+                SetStartTile();
+            }
+
+            return _turnStartTile;
         }
 
         public void OnPointerClick(PointerEventData eventData) {
@@ -50,10 +66,9 @@ namespace Assets.Scripts.Unit {
             }
         }
 
-        
-       
-        public Vector3 GetTilePosition() {
-            return transform.parent.transform.position;
+        public Tile GetTile() {
+            var t = transform.GetComponentInParent<Tile>();
+            return t;
         }
     }
 
@@ -63,5 +78,11 @@ namespace Assets.Scripts.Unit {
         Brute = 2, // Roided Goat
         Rogue = 3, // Ermine
         Ruler = 4 // Wolf
+    }
+
+    public enum MovementType {
+        Straight,
+        Radial,
+        Diagonal
     }
 }

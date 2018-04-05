@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Generators;
+﻿using System.Collections;
+using Assets.Scripts.Generators;
 using Assets.Scripts.Unit;
 using UnityEngine;
 
@@ -11,6 +12,17 @@ public class GameManager : MonoBehaviour {
     private Transform redBase;
     private Transform blueBase;
 
+    public void Start() {
+        StartCoroutine(LateStart(0.25f));
+    }
+ 
+    IEnumerator LateStart(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        
+        StartPlaying();
+    }
+    
     public void StartPlaying() {
         AreaGenerator.Generate();
         //Add Rulers

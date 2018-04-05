@@ -13,13 +13,13 @@ public class UnitUIManager : MonoBehaviour {
     public GameObject TraitPanel;
     public GameObject ActionPanel;
 
-    public GameObject HighlightPrefab;
+    public GameObject MovementHighlightPrefab;
     public AreaGenerator AreaGen;
 
     private GameObject _newStatPanel;
     private GameObject _newTraitPanel;
     private GameObject _newActionPanel;
-    
+
     private List<GameObject> _moveHighlights = new List<GameObject>();
 
     private Text _nameText;
@@ -83,10 +83,16 @@ public class UnitUIManager : MonoBehaviour {
         Clear();
     }
 
+    public void HideGUI() {
+        _newStatPanel.SetActive(false);
+        _newTraitPanel.SetActive(false);
+        HideActionUI();
+    }
+
     public void ShowUI(Character unit) {
         Clear();
         currentUnit = unit;
-        unitTile = unit.TurnStartPos;
+        unitTile = unit.GetStartTile().Position;
         _newStatPanel.SetActive(true);
         ShowStats(unit);
         ShowTraits(unit);
@@ -110,7 +116,6 @@ public class UnitUIManager : MonoBehaviour {
     private void ShowTraits(Character unit) {
         if (unit.Rarity != Rarity.Normal) {
             _newTraitPanel.SetActive(true);
-//            _newStatPanel.transform.localPosition = new Vector3(470, 0, 0);
             foreach (var trait in unit.Traits) {
                 PrintTrait(trait);
                 _traitCount++;
@@ -132,44 +137,12 @@ public class UnitUIManager : MonoBehaviour {
         _btnAttack.onClick.RemoveAllListeners();
     }
 
-//    private void Movement(Character unit) {
-//        if (highlights.Count == 0) {
-//            ShowMovementRange(unit);
-//        }
-//        else {
-//            
-//        }
-//    }
-    
     private void ShowMovementRange(Character unit) {
-        var movement = unit.Stats.Move;
-        if (movement == 0) return;
-        var tileWidth = 4f;
-        Vector3 pos = new Vector3(0, 0.5f, 0);
-        var newPos = new Vector3();
-        for (int n = movement; n > 0; n--) {
-            for (int x = 0; x < n + 1; x++) {
-                var y = n - x;
-                //TODO: Make this work better 
-                var prevPos = new Vector3(pos.x + (x * tileWidth), pos.y, pos.z + (y * tileWidth));
-                newPos = new Vector3(
-                    unitTile.x - (pos.x + (x * tileWidth)), 
-                    (pos.y), 
-                    unitTile.z - (pos.z + (y * tileWidth))
-                    );
-                SpawnHighlightTile(newPos);
-
-                prevPos = new Vector3(pos.x + (-x * tileWidth), pos.y, pos.z + (-y * tileWidth));
-                
-                newPos = new Vector3(
-                    unitTile.x - (pos.x + (-x * tileWidth)), 
-                    (pos.y), 
-                    unitTile.z - (pos.z + (-y * tileWidth))
-                );
-                SpawnHighlightTile(newPos);
-            }
+        var userTile = unit.GetStartTile();
+        foreach (var tile in AreaGen.GetTilesInRange(userTile, unit.Stats.Move, unit.MoveType)) {
+            SpawnHighlightTile(tile);
         }
-        SpawnHighlightTile(pos);
+        HideGUI();
     }
 
     public void MoveToClick(Transform tile) {
@@ -177,11 +150,11 @@ public class UnitUIManager : MonoBehaviour {
         HideMovementRange();
     }
 
-    private void SpawnHighlightTile(Vector3 newPos) {
-        GameObject tile = AreaGen.GetTile(newPos);
+    private void SpawnHighlightTile(GameObject tile) {
         if (tile == null) return;
         _moveHighlights.Add(tile);
-        Instantiate(HighlightPrefab, new Vector3(0, 0.125f, 0), new Quaternion()).transform.SetParent(tile.transform, false);
+        Instantiate(MovementHighlightPrefab, new Vector3(0, 0.125f, 0), new Quaternion()).transform
+            .SetParent(tile.transform, false);
     }
 
     private void ShowAttackRange(Character unit) {
@@ -189,9 +162,15 @@ public class UnitUIManager : MonoBehaviour {
     }
 
     private void HideMovementRange() {
-        foreach (GameObject highlight in _moveHighlights) {
-            Destroy(highlight.transform.GetChild(1).gameObject);
+        foreach (GameObject tile in _moveHighlights) {
+            foreach (Transform child in tile.transform) {
+                if (child.name.ToLower().Contains("move")) {
+                    Destroy(child.gameObject);
+                }
+                String s = "";
+            }
         }
+
         _moveHighlights.Clear();
     }
 

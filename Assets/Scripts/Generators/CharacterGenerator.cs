@@ -31,13 +31,8 @@ namespace Assets.Scripts.Generators {
             GameObject go = new GameObject();
             go.transform.SetParent(parent, false);
             go.AddComponent<Character>();
-            character = go.GetComponent<Character>();
-            character.Name = nameGen.GetName();
-            character.Rarity = rarity;
-            character.Ownable = go.AddComponent<Ownable>();
-            character.Ownable.Initialize(TurnManager.CurrentPlayer);
-            character.UnitUI = UnitUiManager;
-            character.TurnManager = TurnManager;
+            SetupCharacter(rarity, go);
+            
             Instantiate(BasePrefabs[(int)character.Rarity], go.transform);
             for (int i = 0; i < (int) character.Rarity; i++) {
                 character.Traits.Add(traitGen.GetTrait(go.transform));
@@ -47,18 +42,13 @@ namespace Assets.Scripts.Generators {
             go.name = string.Format("[{0}] {1} {2}",character.Rarity, character.Name, character.Type);
             return go;
         }
-        
+
         public GameObject Generate(CharacterType type, Rarity rarity, Player owner, Transform parent) {
             GameObject go = new GameObject();
             go.transform.SetParent(parent, false);
             go.AddComponent<Character>();
-            character = go.GetComponent<Character>();
-            character.Name = nameGen.GetName();
-            character.Rarity = rarity;
-            character.Ownable = go.AddComponent<Ownable>();
-            character.Ownable.Initialize(owner);
-            character.UnitUI = UnitUiManager;
-            character.TurnManager = TurnManager;
+            SetupCharacter(rarity, go, owner);
+            
             Instantiate(BasePrefabs[(int)character.Rarity], go.transform);
             for (int i = 0; i < (int) character.Rarity; i++) {
                 character.Traits.Add(traitGen.GetTrait(go.transform));
@@ -67,6 +57,27 @@ namespace Assets.Scripts.Generators {
             character.Stats = statsGen.AlterWithTraits(statsGen.GetStats(character.Type), character);
             go.name = string.Format("[{0}] {1} {2}",character.Rarity, character.Name, character.Type);
             return go;
+        }
+        
+        private void SetupCharacter(Rarity rarity, GameObject go, Player owner) {
+            character = go.GetComponent<Character>();
+            character.Name = nameGen.GetName();
+            character.Rarity = rarity;
+            character.MoveType = MovementType.Straight;
+            character.Ownable = go.AddComponent<Ownable>();
+            if (owner == null) {
+                character.Ownable.Initialize(TurnManager.CurrentPlayer);
+            }
+            else {
+                character.Ownable.Initialize(owner);
+            }
+
+            character.UnitUI = UnitUiManager;
+            character.TurnManager = TurnManager;
+        }
+
+        private void SetupCharacter(Rarity rarity, GameObject go) {
+            SetupCharacter(rarity, go, null);
         }
 
         private void InstantiateModel(GameObject go, Player.TeamColor color) {

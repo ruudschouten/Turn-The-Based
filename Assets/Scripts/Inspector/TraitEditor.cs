@@ -32,8 +32,8 @@ public class TraitEditor : Editor {
         showToggles = EditorGUILayout.Foldout(showToggles, "Toggles");
         if (showToggles) {
             EditorGUI.indentLevel++;
-            traits.AllowDiagonal = EditorGUILayout.Toggle("Allow Diagonal Movement", traits.AllowDiagonal);
-            traits.DisallowStraight = EditorGUILayout.Toggle("Disallow Straight Movement", traits.DisallowStraight);
+            traits.DiagonalOnly = EditorGUILayout.Toggle("Allow only diagonal movement", traits.DiagonalOnly);
+            traits.RadialOnly = EditorGUILayout.Toggle("Grant radial movement", traits.RadialOnly);
             EditorGUI.indentLevel--;
         }
         showMultipliers = EditorGUILayout.Foldout(showMultipliers, "Multipliers");

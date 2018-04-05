@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Unit;
 using DefaultNamespace;
 using Tiles;
 using UnityEngine;
@@ -13,8 +14,8 @@ public class AreaGenerator : MonoBehaviour {
     public int GridSize;
     public int HillSize;
 
-    private List<GameObject> tiles = new List<GameObject>();
-    private List<GameObject> hills = new List<GameObject>();
+    private List<GameObject> _tiles = new List<GameObject>();
+    private List<GameObject> _hills = new List<GameObject>();
 
     private Dictionary<int, int> heightLevel = new Dictionary<int, int>();
 
@@ -31,11 +32,57 @@ public class AreaGenerator : MonoBehaviour {
         _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
     }
 
-    public GameObject GetTile(Vector3 position) {
+    public bool InRange(Tile origin, Tile target, int range, MovementType movementType) {
+        switch (movementType) {
+            case MovementType.Straight:
+                return ((target.X == origin.X && (target.Y - origin.Y) <= range) ||
+                        (target.Y == origin.Y && (target.X - origin.X) <= range));
+            case MovementType.Radial:
+                return ((Mathf.Sqrt(Mathf.Pow((target.X - origin.X), 2) + Mathf.Pow((target.Y - origin.Y), 2))) <= range);
+            case MovementType.Diagonal:
+                return ((Mathf.Abs(target.X - origin.X)) == (Mathf.Abs(target.Y - origin.Y)));
+            default:
+                return false;
+        }
+    }
+
+    public List<GameObject> GetTilesInRange(Tile origin, int range, MovementType moveType) {
+        var tiles = new List<GameObject>();
+
+        foreach (var tile in _tiles) {
+            var t = tile.GetComponent<Tile>();
+            if (InRange(origin, t, range, moveType)) {
+                tiles.Add(t.gameObject);
+            }
+        }
+
+        return tiles;
+    }
+
+    public Transform GetBase(Player.TeamColor color) {
+        switch (color) {
+            case Player.TeamColor.Red:
+                return redBase.transform;
+                break;
+            case Player.TeamColor.Blue:
+                return blueBase.transform;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException("color", color, null);
+        }
+    }
+
+    public GameObject GetTileObject(Vector3 position) {
         int z = (int) (position.z / widthBetween);
         int x = (int) (position.x / widthBetween);
         return GetTile(x, z);
     }
+
+//    public Tile GetTile(Vector3 position) {
+//        int z = (int) (position.z / widthBetween);
+//        int x = (int) (position.x / widthBetween);
+//        
+//    }
 
     public GameObject GetTile(int x, int z) {
         try {
@@ -50,19 +97,6 @@ public class AreaGenerator : MonoBehaviour {
         }
     }
     
-    public Transform GetBase(Player.TeamColor color) {
-        switch (color) {
-            case Player.TeamColor.Red:
-                return redBase.transform;
-                break;
-            case Player.TeamColor.Blue:
-                return blueBase.transform;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException("color", color, null);
-        }
-    }
-
     public void Generate() {
         ResetTiles();
         SpawnGrid();
@@ -72,12 +106,11 @@ public class AreaGenerator : MonoBehaviour {
     private void SpawnGrid() {
         float xoffset = 0;
         int index = 0;
-        for (int x = 0; x < GridSize; x++)
-        {
+        for (int x = 0; x < GridSize; x++) {
             float yoffset = 0;
             for (int y = 0; y < GridSize; y++) {
                 int modulo = (x + y) % 2;
-                
+
                 GameObject newTile = Instantiate(TilePrefabs[modulo]);
                 newTile.transform.SetParent(transform);
                 newTile.transform.localPosition = new Vector3(xoffset, 0, yoffset);
@@ -86,9 +119,10 @@ public class AreaGenerator : MonoBehaviour {
                 newTile.GetComponent<Tile>().Position = newTile.transform.localPosition;
                 newTile.GetComponent<Tile>().X = x;
                 newTile.GetComponent<Tile>().Y = y;
-                tiles.Add(newTile);
+                _tiles.Add(newTile);
                 yoffset += widthBetween;
             }
+
             xoffset += widthBetween;
         }
     }
@@ -99,27 +133,29 @@ public class AreaGenerator : MonoBehaviour {
         }
 
         heightLevel.Clear();
-        tiles.Clear();
-        hills.Clear();
+        _tiles.Clear();
+        _hills.Clear();
     }
 
     private void SetBase() {
-        Vector3 tilePos = tiles[GridSize + 1].transform.position;
+        var tile = _tiles[GridSize + 1].transform;
+        Vector3 tilePos = _tiles[GridSize + 1].transform.position;
         int height = 0;
 
         redBase = Instantiate(BaseTilePrefab, new Vector3(tilePos.x, height * heightBetween, tilePos.z),
-            new Quaternion(), transform);
+            new Quaternion(), tile);
         BasePanel redPanel = redBase.GetComponent<BasePanel>();
         redPanel.TurnManager = TurnManager;
         redPanel.UiManager = _uiManager;
         redPanel.Ownable = redBase.AddComponent<Ownable>();
         redPanel.Ownable.Initialize(TurnManager.Players[0]);
-
+        
+        tile = _tiles[(GridSize * GridSize) - GridSize].transform;
         tilePos = new Vector3((GridSize - 2) * widthBetween, 0, (GridSize - 2) * widthBetween);
         height = 0;
-        
+
         blueBase = Instantiate(BaseTilePrefab, new Vector3(tilePos.x, height * heightBetween, tilePos.z),
-            new Quaternion(), transform);
+            new Quaternion(), tile);
         BasePanel bluePanel = blueBase.GetComponent<BasePanel>();
         bluePanel.TurnManager = TurnManager;
         bluePanel.UiManager = _uiManager;

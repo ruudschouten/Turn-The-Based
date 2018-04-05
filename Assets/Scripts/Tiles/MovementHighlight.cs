@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 
 namespace Tiles {
-    public class Highlight : MonoBehaviour, IPointerClickHandler {
+    public class MovementHighlight : MonoBehaviour, IPointerClickHandler {
         public UIManager UiManager;
         
         public void OnPointerClick(PointerEventData eventData) {

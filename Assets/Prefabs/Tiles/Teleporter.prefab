@@ -359,7 +359,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c90915e2568476dabb12219a6b262db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Width: 4
-  Height: 2
   UiManager: {fileID: 0}
   TurnManager: {fileID: 0}
+  Ownable: {fileID: 0}
+  Width: 4
+  Height: 2
