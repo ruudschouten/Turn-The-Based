@@ -3,16 +3,18 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Tiles {
-    public class MovementHighlight : MonoBehaviour, IPointerClickHandler {
+    public class AttackHighlight : MonoBehaviour, IPointerClickHandler {
         public UIManager UiManager;
         
         public void OnPointerClick(PointerEventData eventData) {
             if (UiManager == null) UiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
             Transform parent = transform.parent;
             var unit = parent.GetComponentInChildren<Character>();
-            if(unit == null) UiManager.UnitUiManager.MoveToClick(parent);
+            if (unit == null) {
+                Debug.Log("No unit was on the tile");
+            }
             else {
-                Debug.Log("Another unit was already on the tile");
+                UiManager.UnitUiManager.AttackOnClick(parent);
             }
         }
     }

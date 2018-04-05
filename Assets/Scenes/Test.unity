@@ -525,6 +525,7 @@ MonoBehaviour:
   CurrentPlayer: {fileID: 0}
   CurrentPlayerText: {fileID: 1797272566}
   CurrentTeam: 0
+  Camera: {fileID: 0}
   Players: []
 --- !u!4 &1154292109
 Transform:
@@ -670,6 +671,12 @@ Prefab:
       propertyPath: MovementHighlightPrefab
       value: 
       objectReference: {fileID: 1237282854283240, guid: 9a5a4770ca2d10749894ebacdcecc86d,
+        type: 2}
+    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
+        type: 2}
+      propertyPath: AttackHighlightPrefab
+      value: 
+      objectReference: {fileID: 1297911760464612, guid: ec5e6c7c176c2c24dad7a1dc6d4228d5,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e68c10fd00d037448b45c1a09a11593b, type: 2}

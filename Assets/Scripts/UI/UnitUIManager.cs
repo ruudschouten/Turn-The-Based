@@ -14,6 +14,7 @@ public class UnitUIManager : MonoBehaviour {
     public GameObject ActionPanel;
 
     public GameObject MovementHighlightPrefab;
+    public GameObject AttackHighlightPrefab;
     public AreaGenerator AreaGen;
 
     private GameObject _newStatPanel;
@@ -21,6 +22,7 @@ public class UnitUIManager : MonoBehaviour {
     private GameObject _newActionPanel;
 
     private List<GameObject> _moveHighlights = new List<GameObject>();
+    private List<GameObject> _attackHighlights = new List<GameObject>();
 
     private Text _nameText;
     private Text _classText;
@@ -140,25 +142,42 @@ public class UnitUIManager : MonoBehaviour {
     private void ShowMovementRange(Character unit) {
         var userTile = unit.GetStartTile();
         foreach (var tile in AreaGen.GetTilesInRange(userTile, unit.Stats.Move, unit.MoveType)) {
-            SpawnHighlightTile(tile);
+            SpawnMovementTile(tile);
         }
         HideGUI();
     }
 
+    private void ShowAttackRange(Character unit) {
+        var userTile = unit.GetStartTile();
+        foreach (var tile in AreaGen.GetTilesInRange(userTile, 1, MovementType.Straight)) {
+            SpawnAttackTile(tile);
+        }
+        HideGUI();
+    }
+    
     public void MoveToClick(Transform tile) {
         currentUnit.transform.SetParent(tile, false);
         HideMovementRange();
     }
 
-    private void SpawnHighlightTile(GameObject tile) {
+    public void AttackOnClick(Transform tile) {
+        var unit = tile.GetComponentInChildren<Character>();
+        unit.Damage(currentUnit);
+        HideAttackRange();
+    }
+
+    private void SpawnMovementTile(GameObject tile) {
         if (tile == null) return;
         _moveHighlights.Add(tile);
         Instantiate(MovementHighlightPrefab, new Vector3(0, 0.125f, 0), new Quaternion()).transform
             .SetParent(tile.transform, false);
     }
-
-    private void ShowAttackRange(Character unit) {
-        //TODO: Implement
+    
+    private void SpawnAttackTile(GameObject tile) {
+        if (tile == null) return;
+        _attackHighlights.Add(tile);
+        Instantiate(AttackHighlightPrefab, new Vector3(0, 0.125f, 0), new Quaternion()).transform
+            .SetParent(tile.transform, false);
     }
 
     private void HideMovementRange() {
@@ -172,6 +191,19 @@ public class UnitUIManager : MonoBehaviour {
         }
 
         _moveHighlights.Clear();
+    }
+    
+    private void HideAttackRange() {
+        foreach (GameObject tile in _attackHighlights) {
+            foreach (Transform child in tile.transform) {
+                if (child.name.ToLower().Contains("move")) {
+                    Destroy(child.gameObject);
+                }
+                String s = "";
+            }
+        }
+
+        _attackHighlights.Clear();
     }
 
     private float GetPercentage(int current, int max) {

@@ -54,6 +54,10 @@ namespace Assets.Scripts.Unit {
             return _turnStartTile;
         }
 
+        public void Damage(Character other) {
+            string.Format("{0} was attacked by {1}", Name, other.Name);
+        }
+        
         public void OnPointerClick(PointerEventData eventData) {
             Debug.Log(string.Format("Clicked {0}-{1}", Type, Name));
             UnitUI.ShowUI(this);
