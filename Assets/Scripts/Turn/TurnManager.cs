@@ -13,12 +13,15 @@ public class TurnManager : MonoBehaviour {
     public Text CurrentPlayerText;
     public Player.TeamColor CurrentTeam;
     public Camera Camera;
+    public List<Player> Players;
+
+    public float SmoothCamera;
 
     private Queue<Player> _players;
     private int _amountOfPlayers = 2;
 
-    public List<Player> Players;
-    
+    private Quaternion targetRotation;
+
     // Use this for initialization
     void Start() {
         _players = new Queue<Player>();
@@ -39,6 +42,11 @@ public class TurnManager : MonoBehaviour {
         CurrentTeam = CurrentPlayer.Color;
         CurrentPlayerText.text = string.Format("[{0}] {1}", CurrentTeam, CurrentPlayer.Name);
         UiManager.ShowForPlayer(CurrentPlayer);
+        targetRotation = Camera.transform.rotation;
+    }
+
+    void Update() {
+        Camera.transform.rotation = Quaternion.RotateTowards(Camera.transform.rotation, targetRotation, SmoothCamera * Time.deltaTime);
     }
 
     public void NextTurn() {
@@ -50,15 +58,22 @@ public class TurnManager : MonoBehaviour {
         CurrentPlayerText.text = string.Format("[{0}] {1}", CurrentTeam, CurrentPlayer.Name);
         UiManager.Hide(true, true, true, true, false);
         UiManager.ShowForPlayer(CurrentPlayer);
+        RotateCamera();
     }
 
     private void RotateCamera() {
         switch (CurrentTeam) {
             case Player.TeamColor.Red:
-                Camera.transform.rotation = new Quaternion(60, 45, 0, 0);
+                targetRotation = Quaternion.Euler(60, 45, 0);
+                Camera.transform.localPosition = new Vector3(-2, 35, -2);
+//                targetRotation *= Quaternion.AngleAxis(0, Vector3.up);
+//                Camera.transform.localRotation = Quaternion.Euler(60, 45, 0);
                 break;
             case Player.TeamColor.Blue:
-                Camera.transform.rotation = new Quaternion(60, 225, 0, 0);
+                targetRotation = Quaternion.Euler(60, 225, 0);
+                Camera.transform.localPosition = new Vector3(30, 35, 30);
+                //                Camera.transform.localRotation = Quaternion.Euler(60, 225, 0);
+//                targetRotation *= Quaternion.AngleAxis(-180, Vector3.up);
                 break;
         }
     }

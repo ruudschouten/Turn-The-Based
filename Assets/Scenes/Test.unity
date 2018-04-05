@@ -525,8 +525,9 @@ MonoBehaviour:
   CurrentPlayer: {fileID: 0}
   CurrentPlayerText: {fileID: 1797272566}
   CurrentTeam: 0
-  Camera: {fileID: 0}
+  Camera: {fileID: 560330280}
   Players: []
+  SmoothCamera: 1500
 --- !u!4 &1154292109
 Transform:
   m_ObjectHideFlags: 0
