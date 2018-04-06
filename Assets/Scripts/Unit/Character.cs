@@ -3,6 +3,7 @@ using Assets.Scripts.Battle;
 using Assets.Scripts.Generators;
 using Assets.Scripts.Unit;
 using Tiles;
+using TreeEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,11 +13,6 @@ public class Character : MonoBehaviour, IPointerClickHandler {
     public Rarity Rarity;
     public CharacterType Type;
     public MovementType MoveType;
-
-    public bool IsAlive() {
-        return Stats.Health > 0;
-    }
-
     public List<Trait> Traits = new List<Trait>();
 
     //Attacks
@@ -52,6 +48,10 @@ public class Character : MonoBehaviour, IPointerClickHandler {
         return _turnStartTile;
     }
 
+    public bool IsAlive() {
+        return Stats.Health > 0;
+    }
+    
     public void Damage(Character other) {
         //Only attack enemies
         if (Ownable.GetOwner() == TurnManager.CurrentPlayer) return;
@@ -84,8 +84,10 @@ public class Character : MonoBehaviour, IPointerClickHandler {
         else {
             if (TurnManager.InAttackMode && !HasAttackedThisTurn) {
                 if (Ownable.GetOwner() != TurnManager.CurrentPlayer) {
-                    //Only attack enemies
-                    Damage(UnitUI.GetSelectedUnit());
+                    if (transform.parent.GetComponentsInChildren<AttackHighlight>() != null) {
+                        //Only attack enemies
+                        Damage(UnitUI.GetSelectedUnit());
+                    }
                 }
 
                 TurnManager.InAttackMode = false;
