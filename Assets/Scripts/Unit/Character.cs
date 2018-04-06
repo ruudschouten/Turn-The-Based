@@ -1,92 +1,126 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Battle;
 using Assets.Scripts.Generators;
+using Assets.Scripts.Unit;
 using Tiles;
-using TreeEditor;
-using UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Assets.Scripts.Unit {
-    [RequireComponent(typeof(Selectable))]
-    public class Character : MonoBehaviour, IPointerClickHandler {
-        public string Name;
-        public Stats Stats;
-        public Rarity Rarity;
-        public CharacterType Type;
-        public MovementType MoveType;
+public class Character : MonoBehaviour, IPointerClickHandler {
+    public string Name;
+    public Stats Stats;
+    public Rarity Rarity;
+    public CharacterType Type;
+    public MovementType MoveType;
 
-        public List<Trait> Traits = new List<Trait>();
+    public bool IsAlive() {
+        return Stats.Health > 0;
+    }
 
-        //Attacks
-        public Attack DefaultAttack;
+    public List<Trait> Traits = new List<Trait>();
 
-        public List<Skill> Skills = new List<Skill>();
+    //Attacks
+    public Attack Attack;
+    public bool HasAttackedThisTurn;
 
-        //Resource
-        public Resource Cost;
-        [HideInInspector] public Ownable Ownable;
-        [HideInInspector] public TurnManager TurnManager;
-//        [HideInInspector] public Vector3 TurnStartPos;
-        [HideInInspector] private Tile _turnStartTile;
+    public List<Skill> Skills = new List<Skill>();
 
-        //UI
-        public UnitUIManager UnitUI;
+    //Resource
+    public Resource Cost;
+    [HideInInspector] public Ownable Ownable;
+    [HideInInspector] public TurnManager TurnManager;
+    private Tile _turnStartTile;
 
-        public void Start() {
-            Ownable.TurnStartEvent.AddListener(SetStartTile);
-            SetStartTile();
+    //UI
+    public UnitUIManager UnitUI;
+
+    public void Start() {
+        Ownable.TurnStartEvent.AddListener(NewTurn);
+        NewTurn();
+    }
+
+    private void NewTurn() {
+        _turnStartTile = GetTile();
+        HasAttackedThisTurn = false;
+    }
+
+    public Tile GetStartTile() {
+        if (_turnStartTile == null) {
+            NewTurn();
         }
 
-//        private void SetStartPos() {
-//            TurnStartPos = GetTilePosition();
-//        }
+        return _turnStartTile;
+    }
 
-        private void SetStartTile() {
-            _turnStartTile = GetTile();
-        }
-
-        public Tile GetStartTile() {
-            if (_turnStartTile == null) {
-                SetStartTile();
+    public void Damage(Character other) {
+        //Only attack enemies
+        if (Ownable.GetOwner() == TurnManager.CurrentPlayer) return;
+        if (!other.HasAttackedThisTurn) {
+            if (other.Attack.Perform(other, this)) {
+                foreach (var traits in other.Traits) {
+                    traits.OnHit(TurnManager, other);
+                }
             }
 
-            return _turnStartTile;
-        }
+            if (!IsAlive()) {
+                foreach (var traits in other.Traits) {
+                    traits.OnKill(TurnManager, other);
+                }
 
-        public void Damage(Character other) {
-            string.Format("{0} was attacked by {1}", Name, other.Name);
+                Die();
+            }
+
+            other.HasAttackedThisTurn = true;
         }
-        
-        public void OnPointerClick(PointerEventData eventData) {
-            Debug.Log(string.Format("Clicked {0}-{1}", Type, Name));
+    }
+
+    public void OnPointerClick(PointerEventData eventData) {
+        if (!IsAlive()) return;
+//        Debug.Log(string.Format("Clicked {0}-{1}", Type, Name));
+        if (TurnManager.CurrentPlayer == Ownable.GetOwner()) {
             UnitUI.ShowUI(this);
-            if (TurnManager.CurrentPlayer == Ownable.GetOwner()) {
-                UnitUI.ShowUI(this);
-                UnitUI.ShowActionUI(this);
+            UnitUI.ShowActionUI(this);
+        }
+        else {
+            if (TurnManager.InAttackMode && !HasAttackedThisTurn) {
+                if (Ownable.GetOwner() != TurnManager.CurrentPlayer) {
+                    //Only attack enemies
+                    Damage(UnitUI.GetSelectedUnit());
+                }
+
+                TurnManager.InAttackMode = false;
+                UnitUI.Hide();
             }
             else {
+                UnitUI.ShowUI(this);
                 UnitUI.HideActionUI();
             }
         }
-
-        public Tile GetTile() {
-            var t = transform.GetComponentInParent<Tile>();
-            return t;
-        }
     }
 
-    public enum CharacterType {
-        Acolyte = 0, // Bird
-        Esquire = 1, // Goat
-        Brute = 2, // Roided Goat
-        Rogue = 3, // Ermine
-        Ruler = 4 // Wolf
+    public void Die() {
+        gameObject.SetActive(false);
     }
 
-    public enum MovementType {
-        Straight,
-        Radial,
-        Diagonal
+    public Tile GetTile() {
+        return transform.GetComponentInParent<Tile>();
     }
+
+    public void PrepareAttack() {
+        TurnManager.InAttackMode = true;
+    }
+}
+
+public enum CharacterType {
+    Acolyte = 0, // Bird
+    Esquire = 1, // Goat
+    Brute = 2, // Roided Goat
+    Rogue = 3, // Ermine
+    Ruler = 4 // Wolf
+}
+
+public enum MovementType {
+    Straight,
+    Radial,
+    Diagonal
 }

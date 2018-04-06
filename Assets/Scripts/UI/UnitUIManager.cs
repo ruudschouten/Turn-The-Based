@@ -51,6 +51,10 @@ public class UnitUIManager : MonoBehaviour {
     private int _traitWidth = 150;
     //2 is -75 | 3 = -145
 
+    public Character GetSelectedUnit() {
+        return currentUnit;
+    }
+    
     public void Awake() {
         _newActionPanel = Instantiate(ActionPanel, Parent.transform);
         _newActionPanel.SetActive(false);
@@ -78,29 +82,9 @@ public class UnitUIManager : MonoBehaviour {
         _newTraitPanel.SetActive(false);
     }
 
-    public void Hide() {
-        _newStatPanel.SetActive(false);
-        HideActionUI();
-        HideMovementRange();
-        Clear();
-    }
-
-    public void HideGUI() {
-        _newStatPanel.SetActive(false);
-        _newTraitPanel.SetActive(false);
-        HideActionUI();
-    }
-
-    public void ShowUI(Character unit) {
-        Clear();
-        currentUnit = unit;
-        unitTile = unit.GetStartTile().Position;
-        _newStatPanel.SetActive(true);
-        ShowStats(unit);
-        ShowTraits(unit);
-    }
-
     private void ShowStats(Character unit) {
+        HideMovementRange();
+        HideAttackRange();
         _nameText.text = unit.Name;
         _classText.text = unit.Type.ToString();
         _healthSlider.value = GetPercentage(unit.Stats.Health, unit.Stats.MaxHealth);
@@ -126,6 +110,29 @@ public class UnitUIManager : MonoBehaviour {
             _traitCount = 0;
         }
     }
+    
+    public void Hide() {
+        _newStatPanel.SetActive(false);
+        HideActionUI();
+        HideMovementRange();
+        HideAttackRange();
+        Clear();
+    }
+
+    public void HideGUI() {
+        _newStatPanel.SetActive(false);
+        _newTraitPanel.SetActive(false);
+        HideActionUI();
+    }
+
+    public void ShowUI(Character unit) {
+        Clear();
+        currentUnit = unit;
+        unitTile = unit.GetStartTile().Position;
+        _newStatPanel.SetActive(true);
+        ShowStats(unit);
+        ShowTraits(unit);
+    }
 
     public void ShowActionUI(Character unit) {
         _newActionPanel.SetActive(true);
@@ -140,27 +147,36 @@ public class UnitUIManager : MonoBehaviour {
     }
 
     private void ShowMovementRange(Character unit) {
-        var userTile = unit.GetStartTile();
-        foreach (var tile in AreaGen.GetTilesInRange(userTile, unit.Stats.Move, unit.MoveType)) {
+        HideAttackRange();
+        if (unit.HasAttackedThisTurn) {
+            Debug.Log("Unit already attacked, can't move anymore");
+            return;
+        }
+        foreach (var tile in AreaGen.GetTilesInRange(unit.GetStartTile(), unit.Stats.Move, unit.MoveType)) {
             SpawnMovementTile(tile);
         }
         HideGUI();
     }
 
     private void ShowAttackRange(Character unit) {
-        var userTile = unit.GetStartTile();
-        foreach (var tile in AreaGen.GetTilesInRange(userTile, 1, MovementType.Straight)) {
-            SpawnAttackTile(tile);
+        HideMovementRange();
+        if (!unit.HasAttackedThisTurn) {
+            unit.PrepareAttack();
+            foreach (var tile in AreaGen.GetTilesInRange(unit.GetTile(), 1.5f, MovementType.Radial, true)) {
+                SpawnAttackTile(tile);
+            }
+            HideGUI();
         }
-        HideGUI();
     }
     
     public void MoveToClick(Transform tile) {
+        HideAttackRange();
         currentUnit.transform.SetParent(tile, false);
         HideMovementRange();
     }
 
     public void AttackOnClick(Transform tile) {
+        HideMovementRange();
         var unit = tile.GetComponentInChildren<Character>();
         unit.Damage(currentUnit);
         HideAttackRange();
@@ -180,26 +196,24 @@ public class UnitUIManager : MonoBehaviour {
             .SetParent(tile.transform, false);
     }
 
-    private void HideMovementRange() {
+    public void HideMovementRange() {
         foreach (GameObject tile in _moveHighlights) {
             foreach (Transform child in tile.transform) {
                 if (child.name.ToLower().Contains("move")) {
                     Destroy(child.gameObject);
                 }
-                String s = "";
             }
         }
 
         _moveHighlights.Clear();
     }
     
-    private void HideAttackRange() {
+    public void HideAttackRange() {
         foreach (GameObject tile in _attackHighlights) {
             foreach (Transform child in tile.transform) {
-                if (child.name.ToLower().Contains("move")) {
+                if (child.name.ToLower().Contains("attack")) {
                     Destroy(child.gameObject);
                 }
-                String s = "";
             }
         }
 

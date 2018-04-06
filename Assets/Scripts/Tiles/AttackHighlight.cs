@@ -16,6 +16,7 @@ namespace Tiles {
             else {
                 UiManager.UnitUiManager.AttackOnClick(parent);
             }
+            UiManager.UnitUiManager.HideAttackRange();
         }
     }
 }

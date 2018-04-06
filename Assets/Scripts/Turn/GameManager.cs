@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Assets.Scripts.Generators;
 using Assets.Scripts.Unit;
 using UnityEngine;
@@ -8,26 +9,23 @@ public class GameManager : MonoBehaviour {
     public CharacterGenerator CharacterGenerator;
     public TurnManager TurnManager;
     public UIManager UiManager;
-
-    private Transform redBase;
-    private Transform blueBase;
+    public int NormalPrice;
+    public int MagicPrice;
+    public int RarePrice;
 
     public void Start() {
         StartCoroutine(LateStart(0.25f));
     }
- 
-    IEnumerator LateStart(float waitTime)
-    {
+
+    IEnumerator LateStart(float waitTime) {
         yield return new WaitForSeconds(waitTime);
-        
+
         StartPlaying();
     }
-    
+
     public void StartPlaying() {
         AreaGenerator.Generate();
         //Add Rulers
-        redBase = AreaGenerator.GetBase(Player.TeamColor.Red);
-        blueBase = AreaGenerator.GetBase(Player.TeamColor.Blue);
         CharacterGenerator.Generate(CharacterType.Ruler, Rarity.Normal, TurnManager.Players[0],
             AreaGenerator.GetTileObject(0, 0).transform);
         CharacterGenerator.Generate(CharacterType.Ruler, Rarity.Normal, TurnManager.Players[1],
@@ -37,6 +35,7 @@ public class GameManager : MonoBehaviour {
         UiManager.BasePanelUiManager.SetBuyNormal(() => BuyCharacter(Rarity.Normal));
         UiManager.BasePanelUiManager.SetBuyMagic(() => BuyCharacter(Rarity.Magic));
         UiManager.BasePanelUiManager.SetBuyRare(() => BuyCharacter(Rarity.Rare));
+        UiManager.BasePanelUiManager.SetButtonValues(NormalPrice, MagicPrice, RarePrice);
         UiManager.ResourceUiManager.SetupPanel(TurnManager.Players[0].Gold);
         foreach (var player in TurnManager.Players) {
             UiManager.ResourceUiManager.AddListener(player.Gold);
@@ -44,18 +43,32 @@ public class GameManager : MonoBehaviour {
     }
 
     public void BuyCharacter(Rarity rarity) {
-        int price = (int) (rarity + 1) * 50;
-        if (TurnManager.CurrentPlayer.Gold.Purchase(price)) {
-            GameObject character = CharacterGenerator.Generate(rarity, GetCurrentPlayersBase());
-            character.transform.parent = AreaGenerator.GetBase(TurnManager.CurrentTeam);
+        int price = 0;
+        switch (rarity) {
+            case Rarity.Normal:
+                price = NormalPrice;
+                break;
+            case Rarity.Magic:
+                price = MagicPrice;
+                break;
+            case Rarity.Rare:
+                price = RarePrice;
+                break;
         }
-        else {
-            Debug.Log("Player doesn't have enough dough");
+        Transform basePanel = AreaGenerator.GetBase(TurnManager.CurrentTeam);
+        if (basePanel.childCount < 2) {
+            if (TurnManager.CurrentPlayer.Gold.Purchase(price)) {
+                GameObject character = CharacterGenerator.Generate(rarity, basePanel);
+                character.transform.parent = basePanel;   
+            }
+            else {
+                Debug.Log("Player doesn't have enough money");
+            }
         }
-    }
 
-    private Transform GetCurrentPlayersBase() {
-        if (TurnManager.CurrentPlayer.Color == Player.TeamColor.Red) return redBase;
-        return blueBase;
+        else {
+            Debug.Log("Already a unit on teleporter");
+        }
+        UiManager.HideBasePanelUI();
     }
 }

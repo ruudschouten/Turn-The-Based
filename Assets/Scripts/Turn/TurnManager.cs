@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Unit;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -16,6 +17,8 @@ public class TurnManager : MonoBehaviour {
     public List<Player> Players;
 
     public float SmoothCamera;
+
+    public bool InAttackMode { get; set; }
 
     private Queue<Player> _players;
     private int _amountOfPlayers = 2;

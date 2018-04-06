@@ -11,6 +11,7 @@ public class TraitEditor : Editor {
     private bool showToggles;
     private bool showOnHit;
     private bool showOnKill;
+    private bool showAttack;
 
     private bool showMultipliers;
     private bool showMultiMove;
@@ -110,11 +111,21 @@ public class TraitEditor : Editor {
             EditorGUI.indentLevel--;
         }
 
+        showAttack = EditorGUILayout.Foldout(showAttack, "Attack");
+        if (showAttack) {
+            EditorGUI.indentLevel++;
+            traits.ElementOverride = (Element) EditorGUILayout.EnumPopup("Element override", traits.ElementOverride);
+            traits.DamageModifierAddition = EditorGUILayout.IntField("Damage Modifier Addition", traits.DamageModifierAddition);
+            traits.DamageModifierMultiplier = EditorGUILayout.FloatField("Damage Modifier Multiplier", traits.MagicOnHit);
+            EditorGUI.indentLevel--;
+        }
+        
         showOnHit = EditorGUILayout.Foldout(showOnHit, "On Hit");
         if (showOnHit) {
             EditorGUI.indentLevel++;
             traits.HealthOnHit = EditorGUILayout.IntField("Gain Health on Hit", traits.HealthOnHit);
             traits.MagicOnHit = EditorGUILayout.IntField("Gain Magic on Hit", traits.MagicOnHit);
+            traits.GoldOnHit = EditorGUILayout.IntField("Gain Gold on Hit", traits.GoldOnHit);
             EditorGUI.indentLevel--;
         }
 
@@ -123,6 +134,7 @@ public class TraitEditor : Editor {
             EditorGUI.indentLevel++;
             traits.HealthOnKill = EditorGUILayout.IntField("Gain Health on Kill", traits.HealthOnKill);
             traits.MagicOnKill = EditorGUILayout.IntField("Gain Magic on Kill", traits.MagicOnKill);
+            traits.GoldOnKill = EditorGUILayout.IntField("Gain Gold on Kill", traits.GoldOnKill);
             EditorGUI.indentLevel--;
         }
     }
@@ -137,12 +149,18 @@ public class TraitEditor : Editor {
         if (trait.MagicOnHit != 0) {
             EditorGUILayout.LabelField("Magic on Hit", trait.MagicOnHit.ToString());
         }
+        if (trait.GoldOnHit != 0) {
+            EditorGUILayout.LabelField("Gold on Hit", trait.GoldOnHit.ToString());
+        }
 
         if (trait.HealthOnKill != 0) {
             EditorGUILayout.LabelField("Health on Kill", trait.HealthOnKill.ToString());
         }
         if (trait.MagicOnKill != 0) {
             EditorGUILayout.LabelField("Magic on Kill", trait.MagicOnKill.ToString());
+        }
+        if (trait.GoldOnKill != 0) {
+            EditorGUILayout.LabelField("Gold on Kill", trait.GoldOnKill.ToString());
         }
 
         if (trait.MoveAddition != 0) {
@@ -223,6 +241,18 @@ public class TraitEditor : Editor {
         }
         if (Math.Abs(trait.WindAttunementMultiplier) > 0) {
             EditorGUILayout.LabelField("Has " + trait.WindAttunementMultiplier * 100 + "% Wind Attunement");
+        }
+        
+        if (trait.ElementOverride != Element.None) {
+            EditorGUILayout.LabelField("Deals " + trait.ElementOverride + " damage");
+        }
+
+        if (trait.DamageModifierAddition != 0) {
+            EditorGUILayout.LabelField("Adds " + trait.DamageModifierAddition + " Damage Modifier");
+        }
+
+        if (Math.Abs(trait.DamageModifierMultiplier) > 0) {
+            EditorGUILayout.LabelField("Has " + trait.DamageModifierMultiplier * 100 + "% Damage Modifier");
         }
     }
 }

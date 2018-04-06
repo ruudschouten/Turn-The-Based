@@ -58,16 +58,16 @@ namespace Assets.Scripts.Generators {
                     stats.Agility = 15;
                     break;
                 case CharacterType.Ruler:
-                    stats.Health = 160;
+                    stats.Health = 30;
                     stats.Magic = 20;
                     stats.Move = 1;
                     stats.Jump = 1.5f;
-                    stats.Strength = 10;
-                    stats.Defense = 6;
-                    stats.Intelligence = 10;
-                    stats.Resistance = 6;
-                    stats.Precision = 10;
-                    stats.Agility = 6;
+                    stats.Strength = 2;
+                    stats.Defense = 2;
+                    stats.Intelligence = 2;
+                    stats.Resistance = 2;
+                    stats.Precision = 2;
+                    stats.Agility = 2;
                     break;
             }
 
@@ -78,9 +78,15 @@ namespace Assets.Scripts.Generators {
 
         public Stats AlterWithTraits(Stats stats, Character character) {
             foreach (var trait in character.Traits) {
+                #region Movement
+
                 if (trait.RadialOnly) character.MoveType = MovementType.Radial;
                 if (trait.DiagonalOnly) character.MoveType = MovementType.Diagonal;
-                
+
+                #endregion
+
+                #region Additions
+
                 if (trait.MoveAddition != 0) stats.Move += trait.MoveAddition;
                 if (Math.Abs(trait.JumpAddition) > 0) stats.Jump += trait.JumpAddition;
                 if (trait.HealthAddition != 0) stats.Health += trait.HealthAddition;
@@ -94,6 +100,10 @@ namespace Assets.Scripts.Generators {
                 if (trait.FireAttunementAddition != 0) stats.FireAttunement += trait.FireAttunementAddition;
                 if (trait.IceAttunementAddition != 0) stats.IceAttunement += trait.IceAttunementAddition;
                 if (trait.WindAttunementAddition != 0) stats.WindAttunement += trait.WindAttunementAddition;
+
+                #endregion
+
+                #region Multipliers
 
                 if (Math.Abs(trait.MoveMultiplier) > 0) {
                     stats.Move = (int) (trait.MoveMultiplier * stats.Move);
@@ -146,6 +156,24 @@ namespace Assets.Scripts.Generators {
                 if (Math.Abs(trait.WindAttunementMultiplier) > 0) {
                     stats.WindAttunement = (int) (trait.WindAttunementMultiplier * stats.WindAttunement);
                 }
+
+                #endregion
+
+                #region  Attack
+
+                if (trait.ElementOverride != Element.None) {
+                    character.Attack.Element = trait.ElementOverride;
+                }
+
+                if (trait.DamageModifierAddition != 0) {
+                    character.Attack.DamageModifier += trait.DamageModifierAddition;
+                }
+
+                if (Math.Abs(trait.DamageModifierMultiplier) > 0) {
+                    character.Attack.DamageModifier *= trait.DamageModifierMultiplier;
+                }
+
+                #endregion
             }
 
             stats.MaxHealth = stats.Health;

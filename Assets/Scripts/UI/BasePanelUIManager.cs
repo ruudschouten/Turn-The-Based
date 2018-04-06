@@ -21,7 +21,7 @@ namespace UI {
 
             _btnClose.onClick.AddListener(Hide);
         }
-
+        
         public void ShowBaseUi() {
 //            _currentPlayer = turnManager.CurrentPlayer;
             BasePanel.SetActive(true);
@@ -41,6 +41,12 @@ namespace UI {
 
         public void SetBuyRare(UnityAction evt) {
             _btnBuyRare.onClick.AddListener(evt);
+        }
+        
+        public void SetButtonValues(int normal, int magic, int rare) {
+            _btnBuyNormal.transform.GetChild(0).GetComponent<Text>().text = string.Format("Normal ({0})", normal);
+            _btnBuyMagic.transform.GetChild(0).GetComponent<Text>().text = string.Format("Magic ({0})", magic);
+            _btnBuyRare.transform.GetChild(0).GetComponent<Text>().text = string.Format("Rare ({0})", rare);
         }
     }
 }

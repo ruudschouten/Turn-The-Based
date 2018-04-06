@@ -12,13 +12,19 @@ namespace Tiles {
         public Vector3 Position;
 
         public UIManager UiManager;
-        
+
+        public Character GetUnit() {
+            return GetComponentInChildren<Character>();
+        }
+
         public void OnPointerClick(PointerEventData eventData) {
             if (UiManager == null) UiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
             UiManager.Hide(true, true, true, true, false);
             if (transform.childCount > 1) {
-                Character unit = GetComponentInChildren<Character>();
-                unit.OnPointerClick(eventData);
+                Character unit = GetUnit();
+                if (unit != null) {
+                    unit.OnPointerClick(null);
+                }
             }
         }
     }

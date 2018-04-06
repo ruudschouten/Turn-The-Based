@@ -1,5 +1,7 @@
-﻿using Assets.Scripts.Unit;
+﻿using System;
+using Assets.Scripts.Unit;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.Generators {
     [RequireComponent(typeof(StatsGenerator))]
@@ -9,9 +11,10 @@ namespace Assets.Scripts.Generators {
     public class CharacterGenerator : MonoBehaviour {
         public TurnManager TurnManager;
         public UnitUIManager UnitUiManager;
-        public GameObject[] RedCharaPrefabs;
-        public GameObject[] BlueCharaPrefabs;
-        public GameObject[] BasePrefabs;
+        public GameObject[] RedCharaPrefabs; //0 Acolyte || 1 Esquire || 2 Brute || 3 Rogue || 4 Ruler
+        public GameObject[] BlueCharaPrefabs; //0 Acolyte || 1 Esquire || 2 Brute || 3 Rogue || 4 Ruler
+        public GameObject[] BasePrefabs; //0 Normal || 1 Magic || 2 Rare
+        public GameObject[] AttackPrefabs; //0 STR || 1 INT || 2 PRC
 
         private NameGenerator nameGen;
         private TraitGenerator traitGen;
@@ -32,14 +35,16 @@ namespace Assets.Scripts.Generators {
             go.transform.SetParent(parent, false);
             go.AddComponent<Character>();
             SetupCharacter(rarity, go);
-            
-            Instantiate(BasePrefabs[(int)character.Rarity], go.transform);
+
+            Instantiate(BasePrefabs[(int) character.Rarity], go.transform);
             for (int i = 0; i < (int) character.Rarity; i++) {
                 character.Traits.Add(traitGen.GetTrait(go.transform));
             }
+
             InstantiateModel(go, TurnManager.CurrentTeam);
+            AddAttack(go);
             character.Stats = statsGen.AlterWithTraits(statsGen.GetStats(character.Type), character);
-            go.name = string.Format("[{0}] {1} {2}",character.Rarity, character.Name, character.Type);
+            go.name = string.Format("[{0}] {1} {2}", character.Rarity, character.Name, character.Type);
             return go;
         }
 
@@ -48,17 +53,19 @@ namespace Assets.Scripts.Generators {
             go.transform.SetParent(parent, false);
             go.AddComponent<Character>();
             SetupCharacter(rarity, go, owner);
-            
-            Instantiate(BasePrefabs[(int)character.Rarity], go.transform);
+
+            Instantiate(BasePrefabs[(int) character.Rarity], go.transform);
             for (int i = 0; i < (int) character.Rarity; i++) {
                 character.Traits.Add(traitGen.GetTrait(go.transform));
             }
+
             InstantiateModel(go, owner.Color, type);
+            AddAttack(go);
             character.Stats = statsGen.AlterWithTraits(statsGen.GetStats(character.Type), character);
-            go.name = string.Format("[{0}] {1} {2}",character.Rarity, character.Name, character.Type);
+            go.name = string.Format("[{0}] {1} {2}", character.Rarity, character.Name, character.Type);
             return go;
         }
-        
+
         private void SetupCharacter(Rarity rarity, GameObject go, Player owner) {
             character = go.GetComponent<Character>();
             character.Name = nameGen.GetName();
@@ -81,31 +88,50 @@ namespace Assets.Scripts.Generators {
         }
 
         private void InstantiateModel(GameObject go, Player.TeamColor color) {
+            int charaRoll = Random.Range(0, RedCharaPrefabs.Length - 1);
+            character.Type = (CharacterType) charaRoll;
+            character.Skills = skillGen.GetSkills(character.Type);
             if (color == Player.TeamColor.Red) {
-                int charaRoll = Random.Range(0, RedCharaPrefabs.Length - 1);
-                character.Type = (CharacterType) charaRoll;
-                character.Skills = skillGen.GetSkills(character.Type);
                 Instantiate(RedCharaPrefabs[charaRoll], go.transform);
             }
             else if (color == Player.TeamColor.Blue) {
-                int charaRoll = Random.Range(0, BlueCharaPrefabs.Length - 1);
-                character.Type = (CharacterType) charaRoll;
-                character.Skills = skillGen.GetSkills(character.Type);
                 Instantiate(BlueCharaPrefabs[charaRoll], go.transform);
             }
         }
-        
+
         private void InstantiateModel(GameObject go, Player.TeamColor color, CharacterType type) {
+            character.Type = type;
+            character.Skills = skillGen.GetSkills(character.Type);
             if (color == Player.TeamColor.Red) {
-                character.Type = type;
-                character.Skills = skillGen.GetSkills(character.Type);
                 Instantiate(RedCharaPrefabs[(int) type], go.transform);
             }
             else if (color == Player.TeamColor.Blue) {
-                character.Type = type;
-                character.Skills = skillGen.GetSkills(character.Type);
                 Instantiate(BlueCharaPrefabs[(int) type], go.transform);
             }
+        }
+
+        private void AddAttack(GameObject go) {
+            GameObject attack = null;
+            switch (character.Type) {
+                case CharacterType.Acolyte:
+                    attack = Instantiate(AttackPrefabs[1]);
+                    break;
+                case CharacterType.Esquire:
+                    attack = Instantiate(AttackPrefabs[0]);
+                    break;
+                case CharacterType.Brute:
+                    attack = Instantiate(AttackPrefabs[0]);
+                    break;
+                case CharacterType.Rogue:
+                    attack = Instantiate(AttackPrefabs[2]);
+                    break;
+                case CharacterType.Ruler:
+                    attack = Instantiate(AttackPrefabs[0]);
+                    break;
+            }
+            if(attack == null) throw new Exception("Failed to generate attack");
+            attack.transform.SetParent(go.transform, false);
+            character.Attack = attack.GetComponent<Attack>();
         }
     }
 }

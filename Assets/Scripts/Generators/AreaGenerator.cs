@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Assets.Scripts.Unit;
 using DefaultNamespace;
 using Tiles;
@@ -15,12 +16,12 @@ public class AreaGenerator : MonoBehaviour {
     public int HillSize;
 
     private List<GameObject> _tiles = new List<GameObject>();
-    private List<GameObject> _hills = new List<GameObject>();
+//    private List<GameObject> _hills = new List<GameObject>();
+//
+//    private Dictionary<int, int> _heightLevel = new Dictionary<int, int>();
 
-    private Dictionary<int, int> heightLevel = new Dictionary<int, int>();
-
-    private GameObject redBase;
-    private GameObject blueBase;
+    private GameObject _redBase;
+    private GameObject _blueBase;
     float heightBetween = 1f;
 
     float widthBetween = 4f;
@@ -32,7 +33,7 @@ public class AreaGenerator : MonoBehaviour {
         _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
     }
 
-    public bool InRange(Tile origin, Tile target, int range, MovementType movementType) {
+    public bool InRange(Tile origin, Tile target, float range, MovementType movementType) {
         switch (movementType) {
             case MovementType.Straight:
                 return ((target.X == origin.X && Mathf.Abs(target.Y - origin.Y) <= range) ||
@@ -49,13 +50,20 @@ public class AreaGenerator : MonoBehaviour {
         }
     }
 
-    public List<GameObject> GetTilesInRange(Tile origin, int range, MovementType moveType) {
+    public List<GameObject> GetTilesInRange(Tile origin, float range, MovementType moveType, bool addUnitTiles = false) {
         var tiles = new List<GameObject>();
 
         foreach (var tile in _tiles) {
             var t = tile.GetComponent<Tile>();
             if (InRange(origin, t, range, moveType)) {
-                tiles.Add(t.gameObject);
+                if (addUnitTiles) {
+                    tiles.Add(t.gameObject);                    
+                }
+                else {
+                    if (t.GetUnit() == null) {
+                        tiles.Add(t.gameObject);
+                    }
+                }
             }
         }
 
@@ -65,20 +73,12 @@ public class AreaGenerator : MonoBehaviour {
     public Transform GetBase(Player.TeamColor color) {
         switch (color) {
             case Player.TeamColor.Red:
-                return redBase.transform;
-                break;
+                return _redBase.transform;
             case Player.TeamColor.Blue:
-                return blueBase.transform;
-                break;
+                return _blueBase.transform;
             default:
                 throw new ArgumentOutOfRangeException("color", color, null);
         }
-    }
-
-    public GameObject GetTileObject(Vector3 position) {
-        int z = (int) (position.z / widthBetween);
-        int x = (int) (position.x / widthBetween);
-        return GetTileObject(x, z);
     }
 
     public GameObject GetTileObject(int x, int z) {
@@ -133,32 +133,32 @@ public class AreaGenerator : MonoBehaviour {
             Destroy(child.gameObject);
         }
 
-        heightLevel.Clear();
         _tiles.Clear();
-        _hills.Clear();
+//        _heightLevel.Clear();
+//        _hills.Clear();
     }
 
     private void SetBase() {
         var tile = GetTile(1, 1);
         int height = 0;
 
-        redBase = Instantiate(BaseTilePrefab, new Vector3(0, height * heightBetween, 0), new Quaternion());
-        redBase.transform.SetParent(tile.transform, false);
-        BasePanel redPanel = redBase.GetComponent<BasePanel>();
+        _redBase = Instantiate(BaseTilePrefab, new Vector3(0, height * heightBetween, 0), new Quaternion());
+        _redBase.transform.SetParent(tile.transform, false);
+        BasePanel redPanel = _redBase.GetComponent<BasePanel>();
         redPanel.TurnManager = TurnManager;
         redPanel.UiManager = _uiManager;
-        redPanel.Ownable = redBase.AddComponent<Ownable>();
+        redPanel.Ownable = _redBase.AddComponent<Ownable>();
         redPanel.Ownable.Initialize(TurnManager.Players[0]);
 
         tile = GetTile(GridSize - 2, GridSize - 2);
         height = 0;
 
-        blueBase = Instantiate(BaseTilePrefab, new Vector3(0, height * heightBetween, 0), new Quaternion());
-        blueBase.transform.SetParent(tile.transform, false);
-        BasePanel bluePanel = blueBase.GetComponent<BasePanel>();
+        _blueBase = Instantiate(BaseTilePrefab, new Vector3(0, height * heightBetween, 0), new Quaternion());
+        _blueBase.transform.SetParent(tile.transform, false);
+        BasePanel bluePanel = _blueBase.GetComponent<BasePanel>();
         bluePanel.TurnManager = TurnManager;
         bluePanel.UiManager = _uiManager;
-        bluePanel.Ownable = blueBase.AddComponent<Ownable>();
+        bluePanel.Ownable = _blueBase.AddComponent<Ownable>();
         bluePanel.Ownable.Initialize(TurnManager.Players[1]);
     }
 }
