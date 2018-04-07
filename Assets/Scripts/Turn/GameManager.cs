@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour {
         }
 
         else {
-            Debug.Log("Already a unit on teleporter");
+            Debug.Log("Already a unit on base panel");
         }
         UiManager.HideBasePanelUI();
     }

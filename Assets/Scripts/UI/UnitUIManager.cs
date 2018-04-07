@@ -209,6 +209,7 @@ public class UnitUIManager : MonoBehaviour {
     }
     
     public void HideAttackRange() {
+        if(currentUnit != null) currentUnit.TurnManager.InAttackMode = false;
         foreach (GameObject tile in _attackHighlights) {
             foreach (Transform child in tile.transform) {
                 if (child.name.ToLower().Contains("attack")) {

@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour {
     public SkillUIManager SkillUiManager;
     public TurnManagerUIManager TurnManagerUiManager;
     public UnitUIManager UnitUiManager;
+    public GameOverUIManager GameOverUiManager;
 
     public void ShowForPlayer(Player player) {
         ResourceUiManager.ChangeValues(player.Gold);
@@ -46,5 +47,9 @@ public class UIManager : MonoBehaviour {
 
     public void HideTurnManagerUI() {
         if (TurnManagerUiManager != null) TurnManagerUiManager.Hide();
+    }
+
+    public void HideGameOverPanelUI() {
+        if (GameOverUiManager != null) GameOverUiManager.Hide();
     }
 }

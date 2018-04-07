@@ -748,6 +748,8 @@ MonoBehaviour:
   CurrentTeam: 0
   Camera: {fileID: 560330280}
   Players: []
+  Winner: {fileID: 0}
+  Loser: {fileID: 0}
   SmoothCamera: 1500
 --- !u!4 &1154292109
 Transform:
@@ -932,6 +934,7 @@ Transform:
   - {fileID: 450254100}
   - {fileID: 1408315315}
   - {fileID: 1561827870}
+  - {fileID: 1979882098}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -949,6 +952,7 @@ MonoBehaviour:
   BasePanelUiManager: {fileID: 1561827871}
   ResourceUiManager: {fileID: 1921879781}
   UnitUiManager: {fileID: 1408315316}
+  GameOverUiManager: {fileID: 1979882099}
 --- !u!1 &1340788880
 GameObject:
   m_ObjectHideFlags: 0
@@ -1688,6 +1692,48 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 450254099}
   m_Script: {fileID: 11500000, guid: 1a41fa53e3ff4e3096ea543d47885e88, type: 3}
+--- !u!1 &1979882097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1979882098}
+  - component: {fileID: 1979882099}
+  m_Layer: 0
+  m_Name: GameOverUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1979882098
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1979882097}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1198437205}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1979882099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1979882097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9945b23e37ee254698bef91b54554bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameOverPanel: {fileID: 633157631}
+  TurnManager: {fileID: 1154292108}
 --- !u!1 &1990057740
 GameObject:
   m_ObjectHideFlags: 0

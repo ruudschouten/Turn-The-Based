@@ -51,10 +51,12 @@ public class Character : MonoBehaviour, IPointerClickHandler {
     public bool IsAlive() {
         return Stats.Health > 0;
     }
-    
+
     public void Damage(Character other) {
         //Only attack enemies
         if (Ownable.GetOwner() == TurnManager.CurrentPlayer) return;
+
+        TurnManager.InAttackMode = false;
         if (!other.HasAttackedThisTurn) {
             if (other.Attack.Perform(other, this)) {
                 foreach (var traits in other.Traits) {
@@ -101,6 +103,10 @@ public class Character : MonoBehaviour, IPointerClickHandler {
     }
 
     public void Die() {
+        if (Type == CharacterType.Ruler) {
+            TurnManager.SetLoser(Ownable.GetOwner());
+        }
+
         gameObject.SetActive(false);
     }
 
@@ -109,6 +115,7 @@ public class Character : MonoBehaviour, IPointerClickHandler {
     }
 
     public void PrepareAttack() {
+        Debug.Log("Preparing for attack");
         TurnManager.InAttackMode = true;
     }
 }

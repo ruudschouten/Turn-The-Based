@@ -16,6 +16,9 @@ public class TurnManager : MonoBehaviour {
     public Camera Camera;
     public List<Player> Players;
 
+    public Player Winner;
+    public Player Loser;
+
     public float SmoothCamera;
 
     public bool InAttackMode { get; set; }
@@ -62,6 +65,16 @@ public class TurnManager : MonoBehaviour {
         UiManager.Hide(true, true, true, true, false);
         UiManager.ShowForPlayer(CurrentPlayer);
         RotateCamera();
+    }
+
+    public void SetLoser(Player loser) {
+        foreach (var player in Players) {
+            if (player != loser) {
+                Winner = player;
+            }
+        }
+        Loser = loser;
+        UiManager.GameOverUiManager.Show();
     }
 
     private void RotateCamera() {
