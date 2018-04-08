@@ -1,9 +1,4 @@
 ﻿using System.Collections.Generic;
-using Assets.Scripts.Battle;
-using Assets.Scripts.Generators;
-using Assets.Scripts.Unit;
-using Tiles;
-using TreeEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

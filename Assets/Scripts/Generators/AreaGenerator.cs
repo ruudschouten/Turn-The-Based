@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using Assets.Scripts.Unit;
-using DefaultNamespace;
-using Tiles;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class AreaGenerator : MonoBehaviour {
     public TurnManager TurnManager;
@@ -22,9 +16,8 @@ public class AreaGenerator : MonoBehaviour {
 
     private GameObject _redBase;
     private GameObject _blueBase;
-    float heightBetween = 1f;
-
-    float widthBetween = 4f;
+    private const float HeightBetween = 1f;
+    private const float WidthBetween = 4f;
 
     //UI
     private UIManager _uiManager;
@@ -121,10 +114,10 @@ public class AreaGenerator : MonoBehaviour {
                 newTile.GetComponent<Tile>().X = x;
                 newTile.GetComponent<Tile>().Y = y;
                 _tiles.Add(newTile);
-                yoffset += widthBetween;
+                yoffset += WidthBetween;
             }
 
-            xoffset += widthBetween;
+            xoffset += WidthBetween;
         }
     }
 
@@ -142,7 +135,7 @@ public class AreaGenerator : MonoBehaviour {
         var tile = GetTile(1, 1);
         int height = 0;
 
-        _redBase = Instantiate(BaseTilePrefab, new Vector3(0, height * heightBetween, 0), new Quaternion());
+        _redBase = Instantiate(BaseTilePrefab, new Vector3(0, height * HeightBetween, 0), new Quaternion());
         _redBase.transform.SetParent(tile.transform, false);
         BasePanel redPanel = _redBase.GetComponent<BasePanel>();
         redPanel.TurnManager = TurnManager;
@@ -153,7 +146,7 @@ public class AreaGenerator : MonoBehaviour {
         tile = GetTile(GridSize - 2, GridSize - 2);
         height = 0;
 
-        _blueBase = Instantiate(BaseTilePrefab, new Vector3(0, height * heightBetween, 0), new Quaternion());
+        _blueBase = Instantiate(BaseTilePrefab, new Vector3(0, height * HeightBetween, 0), new Quaternion());
         _blueBase.transform.SetParent(tile.transform, false);
         BasePanel bluePanel = _blueBase.GetComponent<BasePanel>();
         bluePanel.TurnManager = TurnManager;

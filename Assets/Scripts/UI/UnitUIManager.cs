@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Assets.Scripts.Generators;
-using Assets.Scripts.Unit;
-using Tiles;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -41,8 +37,8 @@ public class UnitUIManager : MonoBehaviour {
     private Button _btnAttack;
     private Button _btnCancel;
 
-    private Character currentUnit;
-    private Vector3 unitTile;
+    private Character _currentUnit;
+    private Vector3 _unitTile;
 
     private int _traitCount = 0;
     private Vector3 _traitPos = new Vector3(0, -5, 0);
@@ -52,7 +48,7 @@ public class UnitUIManager : MonoBehaviour {
     //2 is -75 | 3 = -145
 
     public Character GetSelectedUnit() {
-        return currentUnit;
+        return _currentUnit;
     }
     
     public void Awake() {
@@ -127,8 +123,8 @@ public class UnitUIManager : MonoBehaviour {
 
     public void ShowUI(Character unit) {
         Clear();
-        currentUnit = unit;
-        unitTile = unit.GetStartTile().Position;
+        _currentUnit = unit;
+        _unitTile = unit.GetStartTile().Position;
         _newStatPanel.SetActive(true);
         ShowStats(unit);
         ShowTraits(unit);
@@ -171,14 +167,14 @@ public class UnitUIManager : MonoBehaviour {
     
     public void MoveToClick(Transform tile) {
         HideAttackRange();
-        currentUnit.transform.SetParent(tile, false);
+        _currentUnit.transform.SetParent(tile, false);
         HideMovementRange();
     }
 
     public void AttackOnClick(Transform tile) {
         HideMovementRange();
         var unit = tile.GetComponentInChildren<Character>();
-        unit.Damage(currentUnit);
+        unit.Damage(_currentUnit);
         HideAttackRange();
     }
 
@@ -209,7 +205,7 @@ public class UnitUIManager : MonoBehaviour {
     }
     
     public void HideAttackRange() {
-        if(currentUnit != null) currentUnit.TurnManager.InAttackMode = false;
+        if(_currentUnit != null) _currentUnit.TurnManager.InAttackMode = false;
         foreach (GameObject tile in _attackHighlights) {
             foreach (Transform child in tile.transform) {
                 if (child.name.ToLower().Contains("attack")) {

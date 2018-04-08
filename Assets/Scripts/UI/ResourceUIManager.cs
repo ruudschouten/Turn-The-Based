@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -10,7 +9,7 @@ public class ResourceUIManager : MonoBehaviour {
 
     public bool ShowButtons;
 
-    private GameObject newPanel;
+    private GameObject _newPanel;
 
     private int _panelTotalHeight = 150;
 
@@ -25,28 +24,28 @@ public class ResourceUIManager : MonoBehaviour {
     }
 
     private void CreateResourcePanel(Resource resource) {
-        newPanel = Instantiate(ResourcePanel, PanelParent.transform);
-        newPanel.name = string.Format("{0} UI Element", resource.Name);
-        newPanel.transform.GetChild(0).GetComponent<Text>().text = resource.Name;
-        newPanel.transform.GetChild(1).GetComponent<Text>().text = resource.Amount.ToString();
+        _newPanel = Instantiate(ResourcePanel, PanelParent.transform);
+        _newPanel.name = string.Format("{0} UI Element", resource.Name);
+        _newPanel.transform.GetChild(0).GetComponent<Text>().text = resource.Name;
+        _newPanel.transform.GetChild(1).GetComponent<Text>().text = resource.Amount.ToString();
         if (ShowButtons) {
-            newPanel.transform.GetChild(2).GetComponent<Button>().onClick
+            _newPanel.transform.GetChild(2).GetComponent<Button>().onClick
                 .AddListener(() => resource.ChangeAmount(5));
-            newPanel.transform.GetChild(3).GetComponent<Button>().onClick
+            _newPanel.transform.GetChild(3).GetComponent<Button>().onClick
                 .AddListener(() => resource.ChangeAmount(-5));
         }
         else {
-            newPanel.transform.GetChild(2).gameObject.SetActive(false);
-            newPanel.transform.GetChild(3).gameObject.SetActive(false);
+            _newPanel.transform.GetChild(2).gameObject.SetActive(false);
+            _newPanel.transform.GetChild(3).gameObject.SetActive(false);
         }
 
-        newPanel.transform.localPosition = new Vector3(0, 0, 0);
+        _newPanel.transform.localPosition = new Vector3(0, 0, 0);
     }
 
     public void ChangeValues(Resource resource) {
-        if (newPanel == null) return;
-        newPanel.transform.GetChild(0).GetComponent<Text>().text = resource.Name;
-        newPanel.transform.GetChild(1).GetComponent<Text>().text = resource.Amount.ToString();
+        if (_newPanel == null) return;
+        _newPanel.transform.GetChild(0).GetComponent<Text>().text = resource.Name;
+        _newPanel.transform.GetChild(1).GetComponent<Text>().text = resource.Amount.ToString();
     }
 
 
@@ -57,6 +56,6 @@ public class ResourceUIManager : MonoBehaviour {
     }
 
     public void Hide() {
-        newPanel.SetActive(false);
+        _newPanel.SetActive(false);
     }
 }

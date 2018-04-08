@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using Assets.Scripts.Generators;
-using Assets.Scripts.Unit;
+﻿using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {

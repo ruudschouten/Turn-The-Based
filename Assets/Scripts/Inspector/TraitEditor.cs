@@ -1,54 +1,49 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Assets.Scripts;
-using Assets.Scripts.Unit;
 using UnityEditor;
-using UnityEngine;
 
 [CustomEditor(typeof(Trait))]
 public class TraitEditor : Editor {
-    private bool showToggles;
-    private bool showOnHit;
-    private bool showOnKill;
-    private bool showAttack;
+    private bool _showToggles;
+    private bool _showOnHit;
+    private bool _showOnKill;
+    private bool _showAttack;
 
-    private bool showMultipliers;
-    private bool showMultiMove;
-    private bool showMultiBase;
-    private bool showMultiAff;
-    
-    private bool showAddition;
-    private bool showAddiMove;
-    private bool showAddiBase;
-    private bool showAddiAff;
+    private bool _showMultipliers;
+    private bool _showMultiMove;
+    private bool _showMultiBase;
+    private bool _showMultiAff;
 
-    //TODO: Refactor this into methods
-    //TODO: Add Attack Additions and Modifiers
+    private bool _showAddition;
+    private bool _showAddiMove;
+    private bool _showAddiBase;
+    private bool _showAddiAff;
+
     public override void OnInspectorGUI() {
         Trait traits = (Trait) target;
         traits.Name = EditorGUILayout.TextField("Name", traits.Name);
         EditorGUILayout.LabelField("Description");
         traits.Description = EditorGUILayout.TextArea(traits.Description);
-        showToggles = EditorGUILayout.Foldout(showToggles, "Toggles");
-        if (showToggles) {
+        _showToggles = EditorGUILayout.Foldout(_showToggles, "Toggles");
+        if (_showToggles) {
             EditorGUI.indentLevel++;
             traits.DiagonalOnly = EditorGUILayout.Toggle("Allow only diagonal movement", traits.DiagonalOnly);
             traits.RadialOnly = EditorGUILayout.Toggle("Grant radial movement", traits.RadialOnly);
             EditorGUI.indentLevel--;
         }
-        showMultipliers = EditorGUILayout.Foldout(showMultipliers, "Multipliers");
-        if (showMultipliers) {
+
+        _showMultipliers = EditorGUILayout.Foldout(_showMultipliers, "Multipliers");
+        if (_showMultipliers) {
             EditorGUI.indentLevel++;
-            showMultiMove = EditorGUILayout.Foldout(showMultiMove, "Movement Related");
-            if (showMultiMove) {
+            _showMultiMove = EditorGUILayout.Foldout(_showMultiMove, "Movement Related");
+            if (_showMultiMove) {
                 EditorGUI.indentLevel++;
                 traits.MoveMultiplier = EditorGUILayout.FloatField("Move", traits.MoveMultiplier);
                 traits.JumpMultiplier = EditorGUILayout.FloatField("Jump", traits.JumpMultiplier);
                 EditorGUI.indentLevel--;
             }
-            showMultiBase = EditorGUILayout.Foldout(showMultiBase, "Base Stats");
-            if (showMultiBase) {
+
+            _showMultiBase = EditorGUILayout.Foldout(_showMultiBase, "Base Stats");
+            if (_showMultiBase) {
                 EditorGUI.indentLevel++;
                 traits.HealthMultiplier =
                     EditorGUILayout.FloatField("Health", traits.HealthMultiplier);
@@ -63,29 +58,32 @@ public class TraitEditor : Editor {
                 traits.AgilityMultiplier = EditorGUILayout.FloatField("Agility", traits.AgilityMultiplier);
                 EditorGUI.indentLevel--;
             }
-            showMultiAff = EditorGUILayout.Foldout(showMultiAff, "Attunement");
-            if (showMultiAff) {
+
+            _showMultiAff = EditorGUILayout.Foldout(_showMultiAff, "Attunement");
+            if (_showMultiAff) {
                 EditorGUI.indentLevel++;
                 traits.FireAttunementMultiplier = EditorGUILayout.FloatField("Fire", traits.FireAttunementMultiplier);
                 traits.IceAttunementMultiplier = EditorGUILayout.FloatField("Ice", traits.IceAttunementMultiplier);
                 traits.WindAttunementMultiplier = EditorGUILayout.FloatField("Wind", traits.WindAttunementMultiplier);
                 EditorGUI.indentLevel--;
             }
+
             EditorGUI.indentLevel--;
         }
 
-        showAddition = EditorGUILayout.Foldout(showAddition, "Additions");
-        if (showAddition) {
+        _showAddition = EditorGUILayout.Foldout(_showAddition, "Additions");
+        if (_showAddition) {
             EditorGUI.indentLevel++;
-            showAddiMove = EditorGUILayout.Foldout(showAddiMove, "Movement Related");
-            if (showAddiMove) {
+            _showAddiMove = EditorGUILayout.Foldout(_showAddiMove, "Movement Related");
+            if (_showAddiMove) {
                 EditorGUI.indentLevel++;
                 traits.MoveAddition = EditorGUILayout.IntField("Move", traits.MoveAddition);
                 traits.JumpAddition = EditorGUILayout.FloatField("Jump", traits.JumpAddition);
                 EditorGUI.indentLevel--;
             }
-            showAddiBase = EditorGUILayout.Foldout(showAddiBase, "Base Stats");
-            if (showAddiBase) {
+
+            _showAddiBase = EditorGUILayout.Foldout(_showAddiBase, "Base Stats");
+            if (_showAddiBase) {
                 EditorGUI.indentLevel++;
                 traits.HealthAddition =
                     EditorGUILayout.IntField("Health ", traits.HealthAddition);
@@ -100,28 +98,32 @@ public class TraitEditor : Editor {
                 traits.AgilityAddition = EditorGUILayout.IntField("Agility", traits.AgilityAddition);
                 EditorGUI.indentLevel--;
             }
-            showAddiAff = EditorGUILayout.Foldout(showAddiAff, "Attunement");
-            if (showAddiAff) {
+
+            _showAddiAff = EditorGUILayout.Foldout(_showAddiAff, "Attunement");
+            if (_showAddiAff) {
                 EditorGUI.indentLevel++;
                 traits.FireAttunementAddition = EditorGUILayout.IntField("Fire", traits.FireAttunementAddition);
                 traits.IceAttunementAddition = EditorGUILayout.IntField("Ice", traits.IceAttunementAddition);
                 traits.WindAttunementAddition = EditorGUILayout.IntField("Wind", traits.WindAttunementAddition);
                 EditorGUI.indentLevel--;
             }
+
             EditorGUI.indentLevel--;
         }
 
-        showAttack = EditorGUILayout.Foldout(showAttack, "Attack");
-        if (showAttack) {
+        _showAttack = EditorGUILayout.Foldout(_showAttack, "Attack");
+        if (_showAttack) {
             EditorGUI.indentLevel++;
             traits.ElementOverride = (Element) EditorGUILayout.EnumPopup("Element override", traits.ElementOverride);
-            traits.DamageModifierAddition = EditorGUILayout.IntField("Damage Modifier Addition", traits.DamageModifierAddition);
-            traits.DamageModifierMultiplier = EditorGUILayout.FloatField("Damage Modifier Multiplier", traits.MagicOnHit);
+            traits.DamageModifierAddition =
+                EditorGUILayout.IntField("Damage Modifier Addition", traits.DamageModifierAddition);
+            traits.DamageModifierMultiplier =
+                EditorGUILayout.FloatField("Damage Modifier Multiplier", traits.MagicOnHit);
             EditorGUI.indentLevel--;
         }
-        
-        showOnHit = EditorGUILayout.Foldout(showOnHit, "On Hit");
-        if (showOnHit) {
+
+        _showOnHit = EditorGUILayout.Foldout(_showOnHit, "On Hit");
+        if (_showOnHit) {
             EditorGUI.indentLevel++;
             traits.HealthOnHit = EditorGUILayout.IntField("Gain Health on Hit", traits.HealthOnHit);
             traits.MagicOnHit = EditorGUILayout.IntField("Gain Magic on Hit", traits.MagicOnHit);
@@ -129,8 +131,8 @@ public class TraitEditor : Editor {
             EditorGUI.indentLevel--;
         }
 
-        showOnKill = EditorGUILayout.Foldout(showOnKill, "On Kill");
-        if (showOnKill) {
+        _showOnKill = EditorGUILayout.Foldout(_showOnKill, "On Kill");
+        if (_showOnKill) {
             EditorGUI.indentLevel++;
             traits.HealthOnKill = EditorGUILayout.IntField("Gain Health on Kill", traits.HealthOnKill);
             traits.MagicOnKill = EditorGUILayout.IntField("Gain Magic on Kill", traits.MagicOnKill);
@@ -142,13 +144,15 @@ public class TraitEditor : Editor {
     public void PrintTraitLabel(Trait trait) {
         EditorGUILayout.LabelField(trait.Name);
         EditorGUILayout.LabelField(trait.Description);
-        
+
         if (trait.HealthOnHit != 0) {
             EditorGUILayout.LabelField("Health on Hit", trait.HealthOnHit.ToString());
         }
+
         if (trait.MagicOnHit != 0) {
             EditorGUILayout.LabelField("Magic on Hit", trait.MagicOnHit.ToString());
         }
+
         if (trait.GoldOnHit != 0) {
             EditorGUILayout.LabelField("Gold on Hit", trait.GoldOnHit.ToString());
         }
@@ -156,9 +160,11 @@ public class TraitEditor : Editor {
         if (trait.HealthOnKill != 0) {
             EditorGUILayout.LabelField("Health on Kill", trait.HealthOnKill.ToString());
         }
+
         if (trait.MagicOnKill != 0) {
             EditorGUILayout.LabelField("Magic on Kill", trait.MagicOnKill.ToString());
         }
+
         if (trait.GoldOnKill != 0) {
             EditorGUILayout.LabelField("Gold on Kill", trait.GoldOnKill.ToString());
         }
@@ -166,39 +172,51 @@ public class TraitEditor : Editor {
         if (trait.MoveAddition != 0) {
             EditorGUILayout.LabelField("Adds " + trait.MoveAddition + " Move");
         }
+
         if (Math.Abs(trait.JumpAddition) > 0) {
             EditorGUILayout.LabelField("Adds " + trait.JumpAddition + " Jump");
         }
+
         if (trait.HealthAddition != 0) {
             EditorGUILayout.LabelField("Adds " + trait.HealthAddition + " Health");
         }
+
         if (trait.MagicAddition != 0) {
             EditorGUILayout.LabelField("Adds " + trait.MagicAddition + " Magic");
         }
+
         if (trait.StrengthAddition != 0) {
             EditorGUILayout.LabelField("Adds " + trait.StrengthAddition + " Strength");
         }
+
         if (trait.DefenseAddition != 0) {
             EditorGUILayout.LabelField("Adds " + trait.DefenseAddition + " Defense");
         }
+
         if (trait.IntelligenceAddition != 0) {
             EditorGUILayout.LabelField("Adds " + trait.IntelligenceAddition + " Intelligence");
         }
+
         if (trait.ResistanceAddition != 0) {
             EditorGUILayout.LabelField("Adds " + trait.ResistanceAddition + " Resistance");
         }
+
         if (trait.PrecisionAddition != 0) {
             EditorGUILayout.LabelField("Adds " + trait.PrecisionAddition + " Precision");
         }
+
         if (trait.AgilityAddition != 0) {
             EditorGUILayout.LabelField("Adds " + trait.AgilityAddition + " Agility");
         }
+
         if (trait.FireAttunementAddition != 0) {
             EditorGUILayout.LabelField("Adds " + trait.FireAttunementAddition + " Fire Attunement");
         }
+
         if (trait.IceAttunementAddition != 0) {
             EditorGUILayout.LabelField("Adds " + trait.IceAttunementAddition + " Ice Attunement");
         }
+
         if (trait.WindAttunementAddition != 0) {
             EditorGUILayout.LabelField("Adds " + trait.WindAttunementAddition + " Wind Attunement");
         }
@@ -206,43 +224,55 @@ public class TraitEditor : Editor {
         if (Math.Abs(trait.MoveMultiplier) > 0) {
             EditorGUILayout.LabelField("Has " + trait.MoveMultiplier * 100 + "% Move");
         }
+
         if (Math.Abs(trait.JumpMultiplier) > 0) {
             EditorGUILayout.LabelField("Has " + trait.JumpMultiplier * 100 + "% Jump");
         }
+
         if (Math.Abs(trait.HealthMultiplier) > 0) {
             EditorGUILayout.LabelField("Has " + trait.HealthMultiplier * 100 + "% Health");
         }
+
         if (Math.Abs(trait.MagicMultiplier) > 0) {
             EditorGUILayout.LabelField("Has " + trait.MagicMultiplier * 100 + "% Magic");
         }
+
         if (Math.Abs(trait.StrengthMultiplier) > 0) {
             EditorGUILayout.LabelField("Has " + trait.StrengthMultiplier * 100 + "% Strength");
         }
+
         if (Math.Abs(trait.DefenseMultiplier) > 0) {
             EditorGUILayout.LabelField("Has " + trait.DefenseMultiplier * 100 + "% Defense");
         }
+
         if (Math.Abs(trait.IntelligenceMultiplier) > 0) {
             EditorGUILayout.LabelField("Has " + trait.IntelligenceMultiplier * 100 + "% Intelligence");
         }
+
         if (Math.Abs(trait.ResistanceMultiplier) > 0) {
             EditorGUILayout.LabelField("Has " + trait.ResistanceMultiplier * 100 + "% Resistance");
         }
+
         if (Math.Abs(trait.PrecisionMultiplier) > 0) {
             EditorGUILayout.LabelField("Has " + trait.PrecisionMultiplier * 100 + "% Precision");
         }
+
         if (Math.Abs(trait.AgilityMultiplier) > 0) {
             EditorGUILayout.LabelField("Has " + trait.AgilityMultiplier * 100 + "% Agility");
         }
+
         if (Math.Abs(trait.FireAttunementMultiplier) > 0) {
             EditorGUILayout.LabelField("Has " + trait.FireAttunementMultiplier * 100 + "% Fire Attunement");
         }
+
         if (Math.Abs(trait.IceAttunementMultiplier) > 0) {
             EditorGUILayout.LabelField("Has " + trait.IceAttunementMultiplier * 100 + "% Ice Attunement");
         }
+
         if (Math.Abs(trait.WindAttunementMultiplier) > 0) {
             EditorGUILayout.LabelField("Has " + trait.WindAttunementMultiplier * 100 + "% Wind Attunement");
         }
-        
+
         if (trait.ElementOverride != Element.None) {
             EditorGUILayout.LabelField("Deals " + trait.ElementOverride + " damage");
         }

@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using Assets.Scripts.Unit;
-using Tiles;
 using UnityEngine;
 using UnityEngine.Events;
 
