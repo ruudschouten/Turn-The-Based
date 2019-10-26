@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UI;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -6,18 +7,13 @@ using UnityEngine.UI;
 public class BasePanelUIManager : MonoBehaviour {
     public GameObject BasePanel;
 
-    private Button _btnBuyNormal;
-    private Button _btnBuyMagic;
-    private Button _btnBuyRare;
-    private Button _btnClose;
+    [SerializeField] private CustomButton btnBuyNormal;
+    [SerializeField] private CustomButton btnBuyMagic;
+    [SerializeField] private CustomButton btnBuyRare;
+    [SerializeField] private CustomButton btnClose;
 
     void Awake() {
-        _btnBuyNormal = BasePanel.transform.GetChild(0).GetComponent<Button>();
-        _btnBuyMagic = BasePanel.transform.GetChild(1).GetComponent<Button>();
-        _btnBuyRare = BasePanel.transform.GetChild(2).GetComponent<Button>();
-        _btnClose = BasePanel.transform.GetChild(3).GetComponent<Button>();
-
-        _btnClose.onClick.AddListener(Hide);
+        btnClose.OnClickEvent.AddListener(Hide);
     }
 
     public void ShowBaseUi() {
@@ -29,20 +25,20 @@ public class BasePanelUIManager : MonoBehaviour {
     }
 
     public void SetBuyNormal(UnityAction evt) {
-        _btnBuyNormal.onClick.AddListener(evt);
+        btnBuyNormal.OnClickEvent.AddListener(evt);
     }
 
     public void SetBuyMagic(UnityAction evt) {
-        _btnBuyMagic.onClick.AddListener(evt);
+        btnBuyMagic.OnClickEvent.AddListener(evt);
     }
 
     public void SetBuyRare(UnityAction evt) {
-        _btnBuyRare.onClick.AddListener(evt);
+        btnBuyRare.OnClickEvent.AddListener(evt);
     }
 
     public void SetButtonValues(int normal, int magic, int rare) {
-        _btnBuyNormal.transform.GetChild(0).GetComponent<Text>().text = string.Format("Normal ({0})", normal);
-        _btnBuyMagic.transform.GetChild(0).GetComponent<Text>().text = string.Format("Magic ({0})", magic);
-        _btnBuyRare.transform.GetChild(0).GetComponent<Text>().text = string.Format("Rare ({0})", rare);
+        btnBuyNormal.transform.GetChild(0).GetComponent<Text>().text = string.Format("Normal ({0})", normal);
+        btnBuyMagic.transform.GetChild(0).GetComponent<Text>().text = string.Format("Magic ({0})", magic);
+        btnBuyRare.transform.GetChild(0).GetComponent<Text>().text = string.Format("Rare ({0})", rare);
     }
 }

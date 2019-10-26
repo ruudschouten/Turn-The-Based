@@ -4,27 +4,18 @@ using UnityEngine;
 
 public class AreaGenerator : MonoBehaviour {
     public TurnManager TurnManager;
-    public GameObject[] TilePrefabs;
+    public Tile[] TilePrefabs;
     public GameObject BaseTilePrefab;
     public int GridSize;
-    public int HillSize;
-
-    private List<GameObject> _tiles = new List<GameObject>();
-//    private List<GameObject> _hills = new List<GameObject>();
-//
-//    private Dictionary<int, int> _heightLevel = new Dictionary<int, int>();
+    
+    [SerializeField] private UIManager uiManager;
+    
+    private List<Tile> _tiles = new List<Tile>();
 
     private GameObject _redBase;
     private GameObject _blueBase;
     private const float HeightBetween = 1f;
     private const float WidthBetween = 4f;
-
-    //UI
-    private UIManager _uiManager;
-
-    void Start() {
-        _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
-    }
 
     public bool InRange(Tile origin, Tile target, float range, MovementType movementType) {
         switch (movementType) {
@@ -83,6 +74,7 @@ public class AreaGenerator : MonoBehaviour {
             return tileTransform.gameObject;
         }
         catch (UnityException ex) {
+            Debug.LogError(ex);
             return null;
         }
     }
@@ -105,14 +97,15 @@ public class AreaGenerator : MonoBehaviour {
             for (int y = 0; y < GridSize; y++) {
                 int modulo = (x + y) % 2;
 
-                GameObject newTile = Instantiate(TilePrefabs[modulo]);
-                newTile.transform.SetParent(transform);
+                var newTile = Instantiate(TilePrefabs[modulo], transform);
                 newTile.transform.localPosition = new Vector3(xoffset, 0, yoffset);
                 newTile.name = string.Format("Tile {0}x{1} [{2}]", x, y, index++);
 
-                newTile.GetComponent<Tile>().Position = newTile.transform.localPosition;
-                newTile.GetComponent<Tile>().X = x;
-                newTile.GetComponent<Tile>().Y = y;
+                var tile = newTile.GetComponent<Tile>();
+                tile.Position = newTile.transform.localPosition;
+                tile.X = x;
+                tile.Y = y;
+                tile.UiManager = uiManager;
                 _tiles.Add(newTile);
                 yoffset += WidthBetween;
             }
@@ -127,8 +120,6 @@ public class AreaGenerator : MonoBehaviour {
         }
 
         _tiles.Clear();
-//        _heightLevel.Clear();
-//        _hills.Clear();
     }
 
     private void SetBase() {
@@ -139,8 +130,8 @@ public class AreaGenerator : MonoBehaviour {
         _redBase.transform.SetParent(tile.transform, false);
         BasePanel redPanel = _redBase.GetComponent<BasePanel>();
         redPanel.TurnManager = TurnManager;
-        redPanel.UiManager = _uiManager;
-        redPanel.Ownable = _redBase.AddComponent<Ownable>();
+        redPanel.UiManager = uiManager;
+        redPanel.Ownable = _redBase.gameObject.AddComponent<Ownable>();
         redPanel.Ownable.Initialize(TurnManager.Players[0]);
 
         tile = GetTile(GridSize - 2, GridSize - 2);
@@ -150,8 +141,8 @@ public class AreaGenerator : MonoBehaviour {
         _blueBase.transform.SetParent(tile.transform, false);
         BasePanel bluePanel = _blueBase.GetComponent<BasePanel>();
         bluePanel.TurnManager = TurnManager;
-        bluePanel.UiManager = _uiManager;
-        bluePanel.Ownable = _blueBase.AddComponent<Ownable>();
+        bluePanel.UiManager = uiManager;
+        bluePanel.Ownable = _blueBase.gameObject.AddComponent<Ownable>();
         bluePanel.Ownable.Initialize(TurnManager.Players[1]);
     }
 }

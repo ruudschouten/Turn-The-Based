@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,9 +34,9 @@ public class UnitUIManager : MonoBehaviour {
     private Text _iceValue;
     private Text _ownerValue;
 
-    private Button _btnMove;
-    private Button _btnAttack;
-    private Button _btnCancel;
+    private CustomButton _btnMove;
+    private CustomButton _btnAttack;
+    private CustomButton _btnCancel;
 
     private Character _currentUnit;
     private Vector3 _unitTile;
@@ -54,10 +55,10 @@ public class UnitUIManager : MonoBehaviour {
     public void Awake() {
         _newActionPanel = Instantiate(ActionPanel, Parent.transform);
         _newActionPanel.SetActive(false);
-        _btnMove = _newActionPanel.transform.GetChild(0).GetComponent<Button>();
-        _btnAttack = _newActionPanel.transform.GetChild(1).GetComponent<Button>();
-        _btnCancel = _newActionPanel.transform.GetChild(2).GetComponent<Button>();
-        _btnCancel.onClick.AddListener(HideActionUI);
+        _btnMove = _newActionPanel.transform.GetChild(0).GetComponent<CustomButton>();
+        _btnAttack = _newActionPanel.transform.GetChild(1).GetComponent<CustomButton>();
+        _btnCancel = _newActionPanel.transform.GetChild(2).GetComponent<CustomButton>();
+        _btnCancel.OnClickEvent.AddListener(HideActionUI);
 
         _newStatPanel = Instantiate(StatPanel, Parent.transform);
         _nameText = _newStatPanel.transform.GetChild(2).GetComponent<Text>();
@@ -132,14 +133,14 @@ public class UnitUIManager : MonoBehaviour {
 
     public void ShowActionUI(Character unit) {
         _newActionPanel.SetActive(true);
-        _btnMove.onClick.AddListener(() => ShowMovementRange(unit));
-        _btnAttack.onClick.AddListener(() => ShowAttackRange(unit));
+        _btnMove.OnClickEvent.AddListener(() => ShowMovementRange(unit));
+        _btnAttack.OnClickEvent.AddListener(() => ShowAttackRange(unit));
     }
 
     public void HideActionUI() {
         _newActionPanel.SetActive(false);
-        _btnMove.onClick.RemoveAllListeners();
-        _btnAttack.onClick.RemoveAllListeners();
+        _btnMove.OnClickEvent.RemoveAllListeners();
+        _btnAttack.OnClickEvent.RemoveAllListeners();
     }
 
     private void ShowMovementRange(Character unit) {

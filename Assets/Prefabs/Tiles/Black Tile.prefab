@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4931866749954062}
   - component: {fileID: 114352913947387044}
+  - component: {fileID: 2190626568441447954}
   m_Layer: 0
   m_Name: Black Tile
   m_TagString: Untagged
@@ -50,19 +51,19 @@ MonoBehaviour:
   Y: 0
   Position: {x: 0, y: 0, z: 0}
   UiManager: {fileID: 0}
---- !u!65 &569477946875953192
+--- !u!65 &2190626568441447954
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7882748669703988358}
+  m_GameObject: {fileID: 1035452277340222}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.04, y: 0.010000002, z: 0.04}
-  m_Center: {x: 0, y: 6.9849193e-10, z: 0}
+  m_Size: {x: 4, y: 1, z: 4}
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!1001 &2181091530489265551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -137,12 +138,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6e42b7148b1bbc346a2badda11275145, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af47ff1e6429a2844848ae57006020c0, type: 3}
---- !u!1 &7882748669703988358 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: af47ff1e6429a2844848ae57006020c0,
-    type: 3}
-  m_PrefabInstance: {fileID: 2181091530489265551}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6574833236666832533 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: af47ff1e6429a2844848ae57006020c0,
