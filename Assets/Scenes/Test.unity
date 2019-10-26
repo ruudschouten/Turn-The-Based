@@ -276,59 +276,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 450254099}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &498218508
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 498218509}
-  - component: {fileID: 498218510}
-  m_Layer: 0
-  m_Name: PlayerProto
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &498218509
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 498218508}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1072010156}
-  m_Father: {fileID: 1154292109}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &498218510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 498218508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1b54ab6469a0949b139771ff765d05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: 
-  Color: 0
-  Gold: {fileID: 1072010157}
-  OnTurnStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnTurnEnd:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1001 &560249961
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -742,55 +689,6 @@ MonoBehaviour:
   onClickEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &1072010155
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1072010156}
-  - component: {fileID: 1072010157}
-  m_Layer: 0
-  m_Name: Gold
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1072010156
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072010155}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 498218509}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1072010157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072010155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d30db9df1784630b7027af9f9c7f1f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Gold
-  Amount: 0
-  InitialAmount: 500
-  OnValueChanged:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1154292107
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,7 +719,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UiManager: {fileID: 1198437206}
-  Prototype: {fileID: 498218510}
+  Prototype: {fileID: 5666133742036754357, guid: 02f91ddd7627c7946bd76d33b03d45c8,
+    type: 3}
   CurrentPlayer: {fileID: 0}
   CurrentPlayerText: {fileID: 1797272566}
   CurrentTeam: 0
@@ -830,6 +729,7 @@ MonoBehaviour:
   Winner: {fileID: 0}
   Loser: {fileID: 0}
   SmoothCamera: 1500
+  InAttackMode: 0
 --- !u!4 &1154292109
 Transform:
   m_ObjectHideFlags: 0
@@ -840,8 +740,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 498218509}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1447,7 +1346,7 @@ MonoBehaviour:
   - {fileID: 114008552220948234, guid: 4887e1da2b3936a47802d0a028bd93c1, type: 3}
   BaseTilePrefab: {fileID: 1714974028365014, guid: 89ab8d727b6f90d43b8778b3be6eb7e3,
     type: 3}
-  GridSize: 8
+  GridSize: 5
   uiManager: {fileID: 1198437206}
 --- !u!4 &1712668718
 Transform:
@@ -1671,6 +1570,7 @@ MonoBehaviour:
   - {fileID: 1880382069613182, guid: ff48066825053b04394505fc004b2fc2, type: 3}
   - {fileID: 1880382069613182, guid: 44f4f58000b6ed94680c4572e17533f4, type: 3}
   - {fileID: 1880382069613182, guid: af24eeb6f148bb94e84370f9ddd0cb38, type: 3}
+  cam: {fileID: 560330280}
 --- !u!4 &1793270385
 Transform:
   m_ObjectHideFlags: 0

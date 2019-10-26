@@ -1,4 +1,5 @@
 ﻿using System;
+using UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,6 +16,8 @@ public class CharacterGenerator : MonoBehaviour {
     public GameObject[] BasePrefabs; //0 Normal || 1 Magic || 2 Rare
     public GameObject[] AttackPrefabs; //0 STR || 1 INT || 2 PRC
 
+    [SerializeField] private Camera cam;
+    
     private NameGenerator _nameGen;
     private TraitGenerator _traitGen;
     private StatsGenerator _statsGen;
@@ -87,26 +90,23 @@ public class CharacterGenerator : MonoBehaviour {
     }
 
     private void InstantiateModel(GameObject go, Player.TeamColor color) {
-        int charaRoll = Random.Range(0, RedCharaPrefabs.Length - 1);
-        _character.Type = (CharacterType) charaRoll;
+        var charaRoll = (CharacterType) Random.Range(0, RedCharaPrefabs.Length - 1);
+        InstantiateModel(go, color, charaRoll);
         _character.Skills = _skillGen.GetSkills(_character.Type);
-        if (color == Player.TeamColor.Red) {
-            Instantiate(RedCharaPrefabs[charaRoll], go.transform);
-        }
-        else if (color == Player.TeamColor.Blue) {
-            Instantiate(BlueCharaPrefabs[charaRoll], go.transform);
-        }
     }
 
     private void InstantiateModel(GameObject go, Player.TeamColor color, CharacterType type) {
         _character.Type = type;
         _character.Skills = _skillGen.GetSkills(_character.Type);
+        GameObject model;
         if (color == Player.TeamColor.Red) {
-            Instantiate(RedCharaPrefabs[(int) type], go.transform);
+            model = Instantiate(RedCharaPrefabs[(int) type], go.transform);
         }
-        else if (color == Player.TeamColor.Blue) {
-            Instantiate(BlueCharaPrefabs[(int) type], go.transform);
+        else {
+            model = Instantiate(BlueCharaPrefabs[(int) type], go.transform);
         }
+        _character.DamageUI = model.GetComponentInChildren<DamageUI>();
+        _character.DamageUI.Camera = cam;
     }
 
     private void AddAttack(GameObject go) {

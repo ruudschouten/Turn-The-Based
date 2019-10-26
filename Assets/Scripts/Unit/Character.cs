@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -24,6 +25,7 @@ public class Character : MonoBehaviour, IPointerClickHandler {
 
     //UI
     public UnitUIManager UnitUI;
+    public DamageUI DamageUI;
 
     public void Start() {
         Ownable.TurnStartEvent.AddListener(NewTurn);
@@ -73,26 +75,30 @@ public class Character : MonoBehaviour, IPointerClickHandler {
 
     public void OnPointerClick(PointerEventData eventData) {
         if (!IsAlive()) return;
-//        Debug.Log(string.Format("Clicked {0}-{1}", Type, Name));
-        if (TurnManager.CurrentPlayer == Ownable.GetOwner()) {
-            UnitUI.ShowUI(this);
-            UnitUI.ShowActionUI(this);
-        }
-        else {
-            if (TurnManager.InAttackMode && !HasAttackedThisTurn) {
-                if (Ownable.GetOwner() != TurnManager.CurrentPlayer) {
-                    if (transform.parent.GetComponentsInChildren<AttackHighlight>() != null) {
-                        //Only attack enemies
-                        Damage(UnitUI.GetSelectedUnit());
-                    }
+        if (TurnManager.InAttackMode)
+        {
+            var other = UnitUI.GetSelectedUnit();
+            if (!other.HasAttackedThisTurn)
+            {
+                if (transform.parent.GetComponentsInChildren<AttackHighlight>() != null)
+                {
+                    Damage(other);
                 }
-
-                TurnManager.InAttackMode = false;
-                UnitUI.Hide();
             }
-            else {
-                UnitUI.ShowUI(this);
-                UnitUI.HideActionUI();
+
+            TurnManager.InAttackMode = false;
+            UnitUI.Hide();
+        }
+        else
+        {
+            UnitUI.ShowUI(this);
+            if (TurnManager.CurrentPlayer == Ownable.GetOwner()) 
+            {
+                UnitUI.ShowActionUI(this);
+            }
+            else
+            {
+                UnitUI.HideActionUI();   
             }
         }
     }
@@ -110,7 +116,6 @@ public class Character : MonoBehaviour, IPointerClickHandler {
     }
 
     public void PrepareAttack() {
-        Debug.Log("Preparing for attack");
         TurnManager.InAttackMode = true;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -36,7 +37,6 @@ public class Attack : MonoBehaviour {
         }
 
         damage = BaseDamage + (attack - defense);
-        Debug.Log(string.Format("Damage is {0} ({1} + [{2} - {3}])", damage, BaseDamage, attack, defense));
 
         switch (Element) {
             case Element.None:
@@ -53,9 +53,7 @@ public class Attack : MonoBehaviour {
         }
 
         damage *= 1 + (element / 100);
-
-        Debug.Log(string.Format("Damage is {0} ({1})", damage, 1 + (element / 100)));
-
+        
         return Convert.ToInt32(damage);
     }
 
@@ -68,16 +66,14 @@ public class Attack : MonoBehaviour {
         float cth = GetChanceToHit(attacker, defender);
         int random = Random.Range(0, 100);
         if ((cth * 100) >= random) {
-            Debug.Log(string.Format("Attack hit [{0} > {1}]", cth * 100, random));
             int damage = GetDamage(attacker, defender);
             if (damage < 1) damage = 1;
-            Debug.Log(string.Format("{0} was attacked by {1} with {2} points", attacker.Name, defender.Name, damage));
             defender.Stats.Health -= damage;
-            //TODO: Show UI thing
+            defender.DamageUI.ShowHealthDegrade(defender.Stats.MaxHealth, defender.Stats.Health);
             return true;
         }
 
-        Debug.Log(string.Format("Attack missed [{0} < {1}]", cth * 100, random));
+        defender.DamageUI.ShowText("Dodged");
         return false;
     }
 }

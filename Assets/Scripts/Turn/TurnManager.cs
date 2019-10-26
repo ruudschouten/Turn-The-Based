@@ -17,7 +17,7 @@ public class TurnManager : MonoBehaviour {
 
     public float SmoothCamera;
 
-    public bool InAttackMode { get; set; }
+    public bool InAttackMode;
 
     private Queue<Player> _players;
     private int _amountOfPlayers = 2;
