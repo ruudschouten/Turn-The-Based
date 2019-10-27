@@ -48,6 +48,34 @@ namespace Unit.Statistics
             get => agility;
             set => agility = value;
         }
+
+        public void Apply(Attributes other)
+        {
+            if (Math.Abs(other.Strength) > 0)
+            {
+                Strength += other.Strength;
+            }
+            if (Math.Abs(other.Defense) > 0)
+            {
+                Defense += other.Defense;
+            }
+            if (Math.Abs(other.Intelligence) > 0)
+            {
+                Intelligence += other.Intelligence;
+            }
+            if (Math.Abs(other.Resistance) > 0)
+            {
+                Resistance += other.Resistance;
+            }
+            if (Math.Abs(other.Precision) > 0)
+            {
+                Precision += other.Precision;
+            }
+            if (Math.Abs(other.Agility) > 0)
+            {
+                Agility += other.Agility;
+            }
+        }
         
         public override string ToString() {
             return $"STR:\t\t\t{strength}\n" +

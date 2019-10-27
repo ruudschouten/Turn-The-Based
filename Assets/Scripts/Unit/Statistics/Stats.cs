@@ -15,7 +15,12 @@ namespace Unit.Statistics
         public Resources Resources => resources;
         public Movement Movement => movement;
         public Combat Combat => combat;
-        public Attributes Attributes => attributes;
+        public Attributes Attributes
+        {
+            get => attributes;
+            set => attributes = value;
+        }
+
         public Attunement Attunement => attunement;
     }
 }

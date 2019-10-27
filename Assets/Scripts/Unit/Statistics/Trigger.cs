@@ -8,13 +8,15 @@ namespace Unit.Statistics
     {
         [SerializeField] private int gold;
         [SerializeField] private Resources resources;
+        [SerializeField] private Attributes attributes;
 
         public int Gold => gold;
         public Resources Resources => resources;
+        public Attributes Attributes => attributes;
 
         public void Activate(Stats stats, TurnManager manager)
         {
-            if (Resources.Health != 0)
+            if (Math.Abs(Resources.Health) > 0)
             {
                 stats.Resources.Health += Resources.Health;
                 if (stats.Resources.Health > stats.Resources.MaxHealth)
@@ -23,7 +25,7 @@ namespace Unit.Statistics
                 }
             }
 
-            if (Resources.Magic != 0)
+            if (Math.Abs(Resources.Magic) > 0)
             {
                 stats.Resources.Magic += Resources.Magic;
                 if (stats.Resources.Magic > stats.Resources.MaxMagic)
@@ -36,6 +38,8 @@ namespace Unit.Statistics
             {
                 manager.CurrentPlayer.Gold.ChangeAmount(Gold);
             }
+
+            stats.Attributes.Apply(attributes);
         }
     }
 }
