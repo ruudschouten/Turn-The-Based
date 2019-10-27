@@ -1,14 +1,15 @@
 ﻿using System;
 using UI;
+using Unit;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 
 [RequireComponent(typeof(StatsGenerator))]
 [RequireComponent(typeof(TraitGenerator))]
-[RequireComponent(typeof(SkillGenerator))]
 [RequireComponent(typeof(NameGenerator))]
-public class CharacterGenerator : MonoBehaviour {
+public class CharacterGenerator : MonoBehaviour
+{
     public TurnManager TurnManager;
     public UnitUIManager UnitUiManager;
     public GameObject[] RedCharaPrefabs; //0 Acolyte || 1 Esquire || 2 Brute || 3 Rogue || 4 Ruler
@@ -17,67 +18,66 @@ public class CharacterGenerator : MonoBehaviour {
     public GameObject[] AttackPrefabs; //0 STR || 1 INT || 2 PRC
 
     [SerializeField] private Camera cam;
-    
-    private NameGenerator _nameGen;
-    private TraitGenerator _traitGen;
-    private StatsGenerator _statsGen;
-    private SkillGenerator _skillGen;
+
+    [SerializeField] private NameGenerator nameGen;
+    [SerializeField] private TraitGenerator traitGen;
+    [SerializeField] private StatsGenerator statsGen;
 
     private Character _character;
 
-    public void Start() {
-        _nameGen = GetComponent<NameGenerator>();
-        _traitGen = GetComponent<TraitGenerator>();
-        _statsGen = GetComponent<StatsGenerator>();
-        _skillGen = GetComponent<SkillGenerator>();
-    }
-
-    public GameObject Generate(Rarity rarity, Transform parent) {
+    public GameObject Generate(Rarity rarity, Transform parent)
+    {
         GameObject go = new GameObject();
         go.transform.SetParent(parent, false);
         go.AddComponent<Character>();
         SetupCharacter(rarity, go);
 
         Instantiate(BasePrefabs[(int) _character.Rarity], go.transform);
-        for (int i = 0; i < (int) _character.Rarity; i++) {
-            _character.Traits.Add(_traitGen.GetTrait(go.transform));
+        for (int i = 0; i < (int) _character.Rarity; i++)
+        {
+            _character.Traits.Add(traitGen.GetTrait(go.transform));
         }
 
         InstantiateModel(go, TurnManager.CurrentTeam);
         AddAttack(go);
-        _character.Stats = _statsGen.AlterWithTraits(_statsGen.GetStats(_character.Type), _character);
-        go.name = string.Format("[{0}] {1} {2}", _character.Rarity, _character.Name, _character.Type);
+        _character.Stats = statsGen.AlterWithTraits(statsGen.GetStats(_character.Type), _character);
+        go.name = $"[{_character.Rarity}] {_character.Name} {_character.Type}";
         return go;
     }
 
-    public GameObject Generate(CharacterType type, Rarity rarity, Player owner, Transform parent) {
+    public GameObject Generate(CharacterType type, Rarity rarity, Player owner, Transform parent)
+    {
         GameObject go = new GameObject();
         go.transform.SetParent(parent, false);
         go.AddComponent<Character>();
         SetupCharacter(rarity, go, owner);
 
         Instantiate(BasePrefabs[(int) _character.Rarity], go.transform);
-        for (int i = 0; i < (int) _character.Rarity; i++) {
-            _character.Traits.Add(_traitGen.GetTrait(go.transform));
+        for (int i = 0; i < (int) _character.Rarity; i++)
+        {
+            _character.Traits.Add(traitGen.GetTrait(go.transform));
         }
 
         InstantiateModel(go, owner.Color, type);
         AddAttack(go);
-        _character.Stats = _statsGen.AlterWithTraits(_statsGen.GetStats(_character.Type), _character);
+        _character.Stats = statsGen.AlterWithTraits(statsGen.GetStats(_character.Type), _character);
         go.name = string.Format("[{0}] {1} {2}", _character.Rarity, _character.Name, _character.Type);
         return go;
     }
 
-    private void SetupCharacter(Rarity rarity, GameObject go, Player owner) {
+    private void SetupCharacter(Rarity rarity, GameObject go, Player owner)
+    {
         _character = go.GetComponent<Character>();
-        _character.Name = _nameGen.GetName();
+        _character.Name = nameGen.GetName();
         _character.Rarity = rarity;
         _character.MoveType = MovementType.Straight;
         _character.Ownable = go.AddComponent<Ownable>();
-        if (owner == null) {
+        if (owner == null)
+        {
             _character.Ownable.Initialize(TurnManager.CurrentPlayer);
         }
-        else {
+        else
+        {
             _character.Ownable.Initialize(owner);
         }
 
@@ -85,33 +85,41 @@ public class CharacterGenerator : MonoBehaviour {
         _character.TurnManager = TurnManager;
     }
 
-    private void SetupCharacter(Rarity rarity, GameObject go) {
+    private void SetupCharacter(Rarity rarity, GameObject go)
+    {
         SetupCharacter(rarity, go, null);
     }
 
-    private void InstantiateModel(GameObject go, Player.TeamColor color) {
+    private void InstantiateModel(GameObject go, Player.TeamColor color)
+    {
         var charaRoll = (CharacterType) Random.Range(0, RedCharaPrefabs.Length - 1);
         InstantiateModel(go, color, charaRoll);
-        _character.Skills = _skillGen.GetSkills(_character.Type);
+//        _character.Skills = _skillGen.GetSkills(_character.Type);
     }
 
-    private void InstantiateModel(GameObject go, Player.TeamColor color, CharacterType type) {
+    private void InstantiateModel(GameObject go, Player.TeamColor color, CharacterType type)
+    {
         _character.Type = type;
-        _character.Skills = _skillGen.GetSkills(_character.Type);
+//        _character.Skills = _skillGen.GetSkills(_character.Type);
         GameObject model;
-        if (color == Player.TeamColor.Red) {
+        if (color == Player.TeamColor.Red)
+        {
             model = Instantiate(RedCharaPrefabs[(int) type], go.transform);
         }
-        else {
+        else
+        {
             model = Instantiate(BlueCharaPrefabs[(int) type], go.transform);
         }
+
         _character.DamageUI = model.GetComponentInChildren<DamageUI>();
         _character.DamageUI.Camera = cam;
     }
 
-    private void AddAttack(GameObject go) {
+    private void AddAttack(GameObject go)
+    {
         GameObject attack = null;
-        switch (_character.Type) {
+        switch (_character.Type)
+        {
             case CharacterType.Acolyte:
                 attack = Instantiate(AttackPrefabs[1]);
                 break;

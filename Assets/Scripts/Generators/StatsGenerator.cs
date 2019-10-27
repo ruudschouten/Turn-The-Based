@@ -1,81 +1,87 @@
 ﻿using System;
+using Unit;
+using Unit.Statistics;
 using UnityEngine;
 
-
-public class StatsGenerator : MonoBehaviour {
-    public Stats GetStats(CharacterType type) {
-        Stats stats = new Stats();
+public class StatsGenerator : MonoBehaviour
+{
+    public Stats GetStats(CharacterType type)
+    {
+        var stats = new Stats();
         //35 points in total.
-        switch (type) {
+        switch (type)
+        {
             case CharacterType.Acolyte:
-                stats.Health = 40;
-                stats.Magic = 60;
-                stats.Move = 2;
-                stats.Jump = 1.5f;
-                stats.Strength = 5;
-                stats.Defense = 8;
-                stats.Intelligence = 14;
-                stats.Resistance = 14;
-                stats.Precision = 10;
-                stats.Agility = 8;
+                stats.Resources.Health = 40;
+                stats.Resources.Magic = 60;
+                stats.Movement.Move = 2;
+                stats.Movement.Jump = 2;
+                stats.Attributes.Strength = 5;
+                stats.Attributes.Defense = 8;
+                stats.Attributes.Intelligence = 14;
+                stats.Attributes.Resistance = 14;
+                stats.Attributes.Precision = 10;
+                stats.Attributes.Agility = 8;
                 break;
             case CharacterType.Esquire:
-                stats.Health = 60;
-                stats.Magic = 30;
-                stats.Move = 2;
-                stats.Jump = 2f;
-                stats.Strength = 12;
-                stats.Defense = 12;
-                stats.Intelligence = 7;
-                stats.Resistance = 11;
-                stats.Precision = 10;
-                stats.Agility = 7;
+                stats.Resources.Health = 60;
+                stats.Resources.Magic = 30;
+                stats.Movement.Move = 2;
+                stats.Movement.Jump = 2;
+                stats.Attributes.Strength = 12;
+                stats.Attributes.Defense = 12;
+                stats.Attributes.Intelligence = 7;
+                stats.Attributes.Resistance = 11;
+                stats.Attributes.Precision = 10;
+                stats.Attributes.Agility = 7;
                 break;
             case CharacterType.Brute:
-                stats.Health = 80;
-                stats.Magic = 20;
-                stats.Move = 2;
-                stats.Jump = 1.5f;
-                stats.Strength = 18;
-                stats.Defense = 12;
-                stats.Intelligence = 7;
-                stats.Resistance = 10;
-                stats.Precision = 8;
-                stats.Agility = 4;
+                stats.Resources.Health = 80;
+                stats.Resources.Magic = 20;
+                stats.Movement.Move = 2;
+                stats.Movement.Jump = 2;
+                stats.Attributes.Strength = 18;
+                stats.Attributes.Defense = 12;
+                stats.Attributes.Intelligence = 7;
+                stats.Attributes.Resistance = 10;
+                stats.Attributes.Precision = 8;
+                stats.Attributes.Agility = 4;
                 break;
             case CharacterType.Rogue:
-                stats.Health = 50;
-                stats.Magic = 30;
-                stats.Move = 3;
-                stats.Jump = 3f;
-                stats.Strength = 8;
-                stats.Defense = 6;
-                stats.Intelligence = 8;
-                stats.Resistance = 6;
-                stats.Precision = 16;
-                stats.Agility = 15;
+                stats.Resources.Health = 50;
+                stats.Resources.Magic = 30;
+                stats.Movement.Move = 3;
+                stats.Movement.Jump = 3;
+                stats.Attributes.Strength = 8;
+                stats.Attributes.Defense = 6;
+                stats.Attributes.Intelligence = 8;
+                stats.Attributes.Resistance = 6;
+                stats.Attributes.Precision = 16;
+                stats.Attributes.Agility = 15;
                 break;
             case CharacterType.Ruler:
-                stats.Health = 30;
-                stats.Magic = 20;
-                stats.Move = 1;
-                stats.Jump = 1.5f;
-                stats.Strength = 2;
-                stats.Defense = 2;
-                stats.Intelligence = 2;
-                stats.Resistance = 2;
-                stats.Precision = 2;
-                stats.Agility = 2;
+                stats.Resources.Health = 30;
+                stats.Resources.Magic = 20;
+                stats.Movement.Move = 1;
+                stats.Movement.Jump = 2;
+                stats.Attributes.Strength = 2;
+                stats.Attributes.Defense = 2;
+                stats.Attributes.Intelligence = 2;
+                stats.Attributes.Resistance = 2;
+                stats.Attributes.Precision = 2;
+                stats.Attributes.Agility = 2;
                 break;
         }
 
-        stats.MaxHealth = stats.Health;
-        stats.MaxMagic = stats.Magic;
+        stats.Resources.MaxHealth = stats.Resources.Health;
+        stats.Resources.MaxMagic = stats.Resources.Magic;
         return stats;
     }
 
-    public Stats AlterWithTraits(Stats stats, Character character) {
-        foreach (var trait in character.Traits) {
+    public Stats AlterWithTraits(Stats stats, Character character)
+    {
+        foreach (var trait in character.Traits)
+        {
             #region Movement
 
             if (trait.RadialOnly) character.MoveType = MovementType.Radial;
@@ -85,97 +91,62 @@ public class StatsGenerator : MonoBehaviour {
 
             #region Additions
 
-            if (trait.MoveAddition != 0) stats.Move += trait.MoveAddition;
-            if (Math.Abs(trait.JumpAddition) > 0) stats.Jump += trait.JumpAddition;
-            if (trait.HealthAddition != 0) stats.Health += trait.HealthAddition;
-            if (trait.MagicAddition != 0) stats.Magic += trait.MagicAddition;
-            if (trait.StrengthAddition != 0) stats.Strength += trait.StrengthAddition;
-            if (trait.DefenseAddition != 0) stats.Defense += trait.DefenseAddition;
-            if (trait.IntelligenceAddition != 0) stats.Intelligence += trait.IntelligenceAddition;
-            if (trait.ResistanceAddition != 0) stats.Resistance += trait.ResistanceAddition;
-            if (trait.PrecisionAddition != 0) stats.Precision += trait.PrecisionAddition;
-            if (trait.AgilityAddition != 0) stats.Agility += trait.AgilityAddition;
-            if (trait.FireAttunementAddition != 0) stats.FireAttunement += trait.FireAttunementAddition;
-            if (trait.IceAttunementAddition != 0) stats.IceAttunement += trait.IceAttunementAddition;
-            if (trait.WindAttunementAddition != 0) stats.WindAttunement += trait.WindAttunementAddition;
+            if (trait.MovementAddition.Move != 0) stats.Movement.Move += trait.MovementAddition.Move;
+            if (trait.MovementAddition.Jump != 0) stats.Movement.Jump += trait.MovementAddition.Jump;
+            if (trait.ResourceAddition.Health != 0) stats.Resources.Health += trait.ResourceAddition.Health;
+            if (trait.ResourceAddition.Magic != 0) stats.Resources.Magic += trait.ResourceAddition.Magic;
+            if (Math.Abs(trait.AttributeAddition.Strength) > 0) stats.Attributes.Strength += trait.AttributeAddition.Strength;
+            if (Math.Abs(trait.AttributeAddition.Defense) > 0)  stats.Attributes.Defense += trait.AttributeAddition.Defense;
+            if (Math.Abs(trait.AttributeAddition.Intelligence) > 0)  stats.Attributes.Intelligence += trait.AttributeAddition.Intelligence;
+            if (Math.Abs(trait.AttributeAddition.Resistance) > 0)  stats.Attributes.Resistance += trait.AttributeAddition.Resistance;
+            if (Math.Abs(trait.AttributeAddition.Precision) > 0)  stats.Attributes.Precision += trait.AttributeAddition.Precision;
+            if (Math.Abs(trait.AttributeAddition.Agility) > 0)  stats.Attributes.Agility += trait.AttributeAddition.Agility;
+            if (Math.Abs(trait.AttunementAddition.Fire) > 0) stats.Attunement.Fire += trait.AttunementAddition.Fire;
+            if (Math.Abs(trait.AttunementAddition.Ice) > 0) stats.Attunement.Ice += trait.AttunementAddition.Ice;
+            if (Math.Abs(trait.AttunementAddition.Wind) > 0) stats.Attunement.Wind += trait.AttunementAddition.Wind;
 
             #endregion
 
             #region Multipliers
 
-            if (Math.Abs(trait.MoveMultiplier) > 0) {
-                stats.Move = (int) (trait.MoveMultiplier * stats.Move);
-            }
-
-            if (Math.Abs(trait.JumpMultiplier) > 0) {
-                stats.Jump = (int) (trait.JumpMultiplier * stats.Jump);
-            }
-
-            if (Math.Abs(trait.HealthMultiplier) > 0) {
-                stats.Health = (int) (trait.HealthMultiplier * stats.Health);
-            }
-
-            if (Math.Abs(trait.MagicMultiplier) > 0) {
-                stats.Magic = (int) (trait.MagicMultiplier * stats.Magic);
-            }
-
-            if (Math.Abs(trait.StrengthMultiplier) > 0) {
-                stats.Strength = (int) (trait.StrengthMultiplier * stats.Strength);
-            }
-
-            if (Math.Abs(trait.DefenseMultiplier) > 0) {
-                stats.Defense = (int) (trait.DefenseMultiplier * stats.Defense);
-            }
-
-            if (Math.Abs(trait.IntelligenceMultiplier) > 0) {
-                stats.Intelligence = (int) (trait.IntelligenceMultiplier * stats.Intelligence);
-            }
-
-            if (Math.Abs(trait.ResistanceMultiplier) > 0) {
-                stats.Resistance = (int) (trait.ResistanceMultiplier * stats.Resistance);
-            }
-
-            if (Math.Abs(trait.PrecisionMultiplier) > 0) {
-                stats.Precision = (int) (trait.PrecisionMultiplier * stats.Precision);
-            }
-
-            if (Math.Abs(trait.AgilityMultiplier) > 0) {
-                stats.Agility = (int) (trait.AgilityMultiplier * stats.Agility);
-            }
-
-            if (Math.Abs(trait.FireAttunementMultiplier) > 0) {
-                stats.FireAttunement = (int) (trait.FireAttunementMultiplier * stats.FireAttunement);
-            }
-
-            if (Math.Abs(trait.IceAttunementMultiplier) > 0) {
-                stats.IceAttunement = (int) (trait.IceAttunementMultiplier * stats.IceAttunement);
-            }
-
-            if (Math.Abs(trait.WindAttunementMultiplier) > 0) {
-                stats.WindAttunement = (int) (trait.WindAttunementMultiplier * stats.WindAttunement);
-            }
+            if (Math.Abs(trait.ResourceModifier.Health) > 0) stats.Resources.Health = (trait.ResourceModifier.Health * stats.Resources.Health); 
+            if (Math.Abs(trait.ResourceModifier.Magic) > 0) stats.Resources.Magic = (trait.ResourceModifier.Magic * stats.Resources.Magic); 
+            if (Math.Abs(trait.MovementModifier.Move) > 0) stats.Movement.Move = (trait.MovementModifier.Move * stats.Movement.Move);
+            if (Math.Abs(trait.MovementModifier.Jump) > 0) stats.Movement.Jump = (trait.MovementModifier.Jump * stats.Movement.Jump);
+            if (Math.Abs(trait.AttributeModifier.Strength) > 0)     stats.Attributes.Strength =     (int) (trait.AttributeModifier.Strength * stats.Attributes.Strength);
+            if (Math.Abs(trait.AttributeModifier.Defense) > 0)      stats.Attributes.Defense =      (int) (trait.AttributeModifier.Defense * stats.Attributes.Defense); 
+            if (Math.Abs(trait.AttributeModifier.Intelligence) > 0) stats.Attributes.Intelligence = (int) (trait.AttributeModifier.Intelligence * stats.Attributes.Intelligence);
+            if (Math.Abs(trait.AttributeModifier.Resistance) > 0)   stats.Attributes.Resistance =   (int) (trait.AttributeModifier.Resistance * stats.Attributes.Resistance); 
+            if (Math.Abs(trait.AttributeModifier.Precision) > 0)    stats.Attributes.Precision =    (int) (trait.AttributeModifier.Precision * stats.Attributes.Precision);
+            if (Math.Abs(trait.AttributeModifier.Agility) > 0)      stats.Attributes.Agility =      (int) (trait.AttributeModifier.Agility * stats.Attributes.Agility);
+            if (Math.Abs(trait.AttunementModifier.Fire) > 0) stats.Attunement.Fire = (int) (trait.AttunementModifier.Fire * stats.Attunement.Fire);
+            if (Math.Abs(trait.AttunementModifier.Ice) > 0)  stats.Attunement.Ice = (int)  (trait.AttunementModifier.Ice *  stats.Attunement.Ice);
+            if (Math.Abs(trait.AttunementModifier.Wind) > 0) stats.Attunement.Wind = (int) (trait.AttunementModifier.Wind * stats.Attunement.Wind); 
 
             #endregion
 
             #region  Attack
 
-            if (trait.ElementOverride != Element.None) {
-                character.Attack.Element = trait.ElementOverride;
+            if (trait.CombatAddition.ElementOverride != Element.None)
+            {
+                character.Attack.Element = trait.CombatAddition.ElementOverride;
             }
 
-            if (trait.DamageModifierAddition != 0) {
-                character.Attack.DamageModifier += trait.DamageModifierAddition;
+            if (Math.Abs(trait.CombatAddition.DamageModifier) > 0)
+            {
+                character.Attack.DamageModifier += trait.CombatAddition.DamageModifier;
             }
 
-            if (Math.Abs(trait.DamageModifierMultiplier) > 0) {
-                character.Attack.DamageModifier *= trait.DamageModifierMultiplier;
+            if (Math.Abs(trait.CombatModifier.DamageModifier) > 0)
+            {
+                character.Attack.DamageModifier *= trait.CombatModifier.DamageModifier;
             }
 
             #endregion
         }
 
-        stats.MaxHealth = stats.Health;
-        stats.MaxMagic = stats.Magic;
+        stats.Resources.MaxHealth = stats.Resources.Health;
+        stats.Resources.MaxMagic = stats.Resources.Magic;
         return stats;
     }
 }

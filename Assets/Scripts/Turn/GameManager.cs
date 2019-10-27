@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unit;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {

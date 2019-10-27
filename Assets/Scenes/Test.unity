@@ -1346,7 +1346,7 @@ MonoBehaviour:
   - {fileID: 114008552220948234, guid: 4887e1da2b3936a47802d0a028bd93c1, type: 3}
   BaseTilePrefab: {fileID: 1714974028365014, guid: 89ab8d727b6f90d43b8778b3be6eb7e3,
     type: 3}
-  GridSize: 5
+  GridSize: 8
   uiManager: {fileID: 1198437206}
 --- !u!4 &1712668718
 Transform:
@@ -1534,8 +1534,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Names:
   - Charles
-  - Chopp
+  - Chop
   - Chie
+  - Arthur
+  - Alex
+  - Brad
+  - Chad
+  - Virgo
+  - Surge
+  - Paul
 --- !u!114 &1793270384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1571,6 +1578,9 @@ MonoBehaviour:
   - {fileID: 1880382069613182, guid: 44f4f58000b6ed94680c4572e17533f4, type: 3}
   - {fileID: 1880382069613182, guid: af24eeb6f148bb94e84370f9ddd0cb38, type: 3}
   cam: {fileID: 560330280}
+  nameGen: {fileID: 1793270383}
+  traitGen: {fileID: 1793270382}
+  statsGen: {fileID: 1793270381}
 --- !u!4 &1793270385
 Transform:
   m_ObjectHideFlags: 0

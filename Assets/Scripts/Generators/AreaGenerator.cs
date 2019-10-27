@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using NaughtyAttributes;
+using Unit;
 using UnityEngine;
 
 public class AreaGenerator : MonoBehaviour {
@@ -83,6 +85,7 @@ public class AreaGenerator : MonoBehaviour {
         return GetTileObject(x, z).GetComponent<Tile>();
     }
 
+    [Button("Generate")]
     public void Generate() {
         ResetTiles();
         SpawnGrid();

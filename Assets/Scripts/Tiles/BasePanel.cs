@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unit;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class BasePanel : MonoBehaviour, IPointerClickHandler {

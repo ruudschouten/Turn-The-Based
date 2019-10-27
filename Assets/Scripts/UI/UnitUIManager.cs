@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UI;
+using Unit;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -84,15 +85,15 @@ public class UnitUIManager : MonoBehaviour {
         HideAttackRange();
         _nameText.text = unit.Name;
         _classText.text = unit.Type.ToString();
-        _healthSlider.value = GetPercentage(unit.Stats.Health, unit.Stats.MaxHealth);
-        _magicSlider.value = GetPercentage(unit.Stats.Magic, unit.Stats.MaxMagic);
-        _resourceText.text = unit.Stats.PrintResources();
-        _statsText.text = unit.Stats.PrintBaseStats();
-        _moveValue.text = unit.Stats.Move.ToString();
-        _jumpValue.text = unit.Stats.Jump.ToString();
-        _fireValue.text = unit.Stats.FireAttunement.ToString();
-        _windValue.text = unit.Stats.WindAttunement.ToString();
-        _iceValue.text = unit.Stats.IceAttunement.ToString();
+        _healthSlider.value = GetPercentage(unit.Stats.Resources.Health, unit.Stats.Resources.MaxHealth);
+        _magicSlider.value = GetPercentage(unit.Stats.Resources.Magic, unit.Stats.Resources.MaxMagic);
+        _resourceText.text = unit.Stats.Resources.ToString();
+        _statsText.text = unit.Stats.Attributes.ToString();
+        _moveValue.text = unit.Stats.Movement.Move.ToString();
+        _jumpValue.text = unit.Stats.Movement.Jump.ToString();
+        _fireValue.text = unit.Stats.Attunement.Fire.ToString();
+        _windValue.text = unit.Stats.Attunement.Wind.ToString();
+        _iceValue.text = unit.Stats.Attunement.Wind.ToString();
         _ownerValue.text = unit.Ownable.GetOwner().Name;
     }
 
@@ -149,7 +150,7 @@ public class UnitUIManager : MonoBehaviour {
             Debug.Log("Unit already attacked, can't move anymore");
             return;
         }
-        foreach (var tile in AreaGen.GetTilesInRange(unit.GetStartTile(), unit.Stats.Move, unit.MoveType)) {
+        foreach (var tile in AreaGen.GetTilesInRange(unit.GetStartTile(), unit.Stats.Movement.Move, unit.MoveType)) {
             SpawnMovementTile(tile);
         }
         HideGUI();
