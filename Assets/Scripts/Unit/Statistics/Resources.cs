@@ -6,30 +6,30 @@ namespace Unit.Statistics
     [Serializable]
     public class Resources
     {
-        [SerializeField] private int health;
-        [SerializeField] private int magic;
-        [SerializeField] private int maxHealth;
-        [SerializeField] private int maxMagic;
+        [SerializeField] private float health;
+        [SerializeField] private float magic;
+        [SerializeField] private float maxHealth;
+        [SerializeField] private float maxMagic;
 
-        public int Health
+        public float Health
         {
             get => health;
             set => health = value;
         }
 
-        public int Magic
+        public float Magic
         {
             get => magic;
             set => magic = value;
         }
 
-        public int MaxHealth
+        public float MaxHealth
         {
             get => maxHealth;
             set => maxHealth = value;
         }
 
-        public int MaxMagic
+        public float MaxMagic
         {
             get => maxMagic;
             set => maxMagic = value;

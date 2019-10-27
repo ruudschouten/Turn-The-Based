@@ -18,9 +18,9 @@ namespace UI
             transform.LookAt(Camera.transform.position, Vector3.up);
         }
         
-        public void ShowHealthDegrade(int max, int current)
+        public void ShowHealthDegrade(float max, float current)
         {
-            var perc = ((float) current / max);
+            var perc = (current / max);
             var newPos = (perc * canvasWidth) - canvasWidth;
             healthSlider.offsetMax = new Vector2(newPos, healthSlider.offsetMax.y);
             sliderContainer.gameObject.SetActive(true);

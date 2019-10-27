@@ -85,8 +85,8 @@ public class UnitUIManager : MonoBehaviour {
         HideAttackRange();
         _nameText.text = unit.Name;
         _classText.text = unit.Type.ToString();
-        _healthSlider.value = GetPercentage(unit.Stats.Resources.Health, unit.Stats.Resources.MaxHealth);
-        _magicSlider.value = GetPercentage(unit.Stats.Resources.Magic, unit.Stats.Resources.MaxMagic);
+        _healthSlider.value = GetPercentage(unit.Stats.Resources.MaxHealth, unit.Stats.Resources.Health);
+        _magicSlider.value = GetPercentage(unit.Stats.Resources.MaxMagic, unit.Stats.Resources.Magic);
         _resourceText.text = unit.Stats.Resources.ToString();
         _statsText.text = unit.Stats.Attributes.ToString();
         _moveValue.text = unit.Stats.Movement.Move.ToString();
@@ -219,8 +219,8 @@ public class UnitUIManager : MonoBehaviour {
         _attackHighlights.Clear();
     }
 
-    private float GetPercentage(int current, int max) {
-        return ((float) current / max) * 100;
+    private float GetPercentage(float max, float current) {
+        return (current / max) * 100;
     }
 
     private void PrintTrait(Trait trait) {

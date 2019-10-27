@@ -6,14 +6,14 @@ namespace Unit.Statistics
     [Serializable]
     public class Combat
     {
-        [SerializeField] private int range;
+        [SerializeField] private float range;
         [SerializeField] private float height;
         [SerializeField] private float attackCost;
         [SerializeField] private float damageModifier;
         [SerializeField] private Element elementOverride;
-        [SerializeField] private int areaOfEffectSize;
+        [SerializeField] private float areaOfEffectSize;
         
-        public int Range
+        public float Range
         {
             get => range;
             set => range = value;
@@ -43,7 +43,7 @@ namespace Unit.Statistics
             set => elementOverride = value;
         }
 
-        public int AreaOfEffectSize
+        public float AreaOfEffectSize
         {
             get => areaOfEffectSize;
             set => areaOfEffectSize = value;
