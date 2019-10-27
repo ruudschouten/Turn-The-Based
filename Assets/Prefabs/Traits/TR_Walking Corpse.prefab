@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5849019090824149490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5849019090824149492}
+  - component: {fileID: 5849019090824149491}
+  m_Layer: 0
+  m_Name: TR_Walking Corpse
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5849019090824149492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5849019090824149490}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5849019090824149491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5849019090824149490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d1b06a1c7e75c947a2a9f339d36587a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Walking Corpse
+  Description: Gain lots of health on hit, but lose health every turn
+  DiagonalOnly: 0
+  RadialOnly: 0
+  onHitTriggers:
+    gold: 0
+    resources:
+      health: 15
+      magic: 0
+      maxHealth: 0
+      maxMagic: 15
+  onKillTriggers:
+    gold: 0
+    resources:
+      health: 0
+      magic: 0
+      maxHealth: 0
+      maxMagic: 0
+  onTurnStartTriggers:
+    gold: 0
+    resources:
+      health: 0
+      magic: 0
+      maxHealth: 0
+      maxMagic: 0
+  onTurnEndTriggers:
+    gold: 0
+    resources:
+      health: 25
+      magic: 0
+      maxHealth: 0
+      maxMagic: 0
+  resourceAddition:
+    health: 0
+    magic: 0
+    maxHealth: 0
+    maxMagic: 0
+  attributeAddition:
+    strength: 0
+    defense: 0
+    intelligence: 0
+    resistance: 0
+    precision: 0
+    agility: 0
+  movementAddition:
+    move: 0
+    jump: 0
+  combatAddition:
+    range: 0
+    height: 0
+    attackCost: 0
+    damageModifier: 0
+    elementOverride: 0
+    areaOfEffectSize: 0
+  attunementAddition:
+    fire: 0
+    ice: 0
+    wind: 0
+  resourceModifier:
+    health: 0
+    magic: 0
+    maxHealth: 0
+    maxMagic: 0
+  attributeModifier:
+    strength: 0
+    defense: 0
+    intelligence: 0
+    resistance: 0
+    precision: 0
+    agility: 0
+  movementModifier:
+    move: 0
+    jump: 0
+  combatModifier:
+    range: 0
+    height: 0
+    attackCost: 0
+    damageModifier: 0
+    elementOverride: 0
+    areaOfEffectSize: 0
+  attunementModifier:
+    fire: 0
+    ice: 0
+    wind: 0
