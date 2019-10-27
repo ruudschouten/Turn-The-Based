@@ -7,6 +7,7 @@ namespace UI
     public class DamageUI : MonoBehaviour
     {
         [SerializeField] private float canvasWidth;
+        [SerializeField] private RectTransform textContainer;
         [SerializeField] private TMP_Text textfield;
         [Space]
         [SerializeField] private RectTransform sliderContainer;
@@ -30,14 +31,14 @@ namespace UI
         public void ShowText(string text)
         {
             textfield.SetText(text);
-            textfield.gameObject.SetActive(true);
+            textContainer.gameObject.SetActive(true);
             StartCoroutine(HideAfter(1.5f));
         }
 
         private IEnumerator HideAfter(float seconds)
         {
             yield return new WaitForSeconds(seconds);
-            textfield.gameObject.SetActive(false);
+            textContainer.gameObject.SetActive(false);
             sliderContainer.gameObject.SetActive(false);
 
             yield return null;
