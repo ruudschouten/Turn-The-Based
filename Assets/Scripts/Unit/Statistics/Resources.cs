@@ -1,4 +1,5 @@
 ﻿using System;
+using UI;
 using UnityEngine;
 
 namespace Unit.Statistics
@@ -33,6 +34,35 @@ namespace Unit.Statistics
         {
             get => maxMagic;
             set => maxMagic = value;
+        }
+
+        public void Apply(Resources other, DamageUI ui)
+        {
+            var changed = false;
+            if (Math.Abs(other.Health) > 0)
+            {
+                Health += other.Health;
+                changed = true;
+            }
+            if (Math.Abs(other.Magic) > 0)
+            {
+                Magic += other.Magic;
+                changed = true;
+            }
+            if (Math.Abs(other.MaxHealth) > 0)
+            {
+                MaxHealth += other.MaxHealth;
+                changed = true;
+            }
+            if (Math.Abs(other.MaxMagic) > 0)
+            {
+                MaxMagic += other.MaxMagic;
+                changed = true;
+            }
+
+            if (!changed) return;
+            
+            ui.ShowHealthDegrade(maxHealth, health);
         }
 
         public override string ToString()

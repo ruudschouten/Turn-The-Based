@@ -176,7 +176,7 @@ public class UnitUIManager : MonoBehaviour {
     public void AttackOnClick(Transform tile) {
         HideMovementRange();
         var unit = tile.GetComponentInChildren<Character>();
-        unit.Damage(_currentUnit);
+        unit.GetHit(_currentUnit);
         HideAttackRange();
     }
 

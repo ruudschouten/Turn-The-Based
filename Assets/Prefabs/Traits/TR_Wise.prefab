@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Wise
-  Description: Unit has increased Intelligence and reduced Damage
+  Description: Unit has increased Intelligence and reduced Strength
   DiagonalOnly: 0
   RadialOnly: 0
   onHitTriggers:
@@ -54,6 +54,13 @@ MonoBehaviour:
       magic: 0
       maxHealth: 0
       maxMagic: 0
+    attributes:
+      strength: 0
+      defense: 0
+      intelligence: 0
+      resistance: 0
+      precision: 0
+      agility: 0
   onKillTriggers:
     gold: 0
     resources:
@@ -61,6 +68,13 @@ MonoBehaviour:
       magic: 0
       maxHealth: 0
       maxMagic: 0
+    attributes:
+      strength: 0
+      defense: 0
+      intelligence: 0
+      resistance: 0
+      precision: 0
+      agility: 0
   onTurnStartTriggers:
     gold: 0
     resources:
@@ -68,6 +82,13 @@ MonoBehaviour:
       magic: 0
       maxHealth: 0
       maxMagic: 0
+    attributes:
+      strength: 0
+      defense: 0
+      intelligence: 0
+      resistance: 0
+      precision: 0
+      agility: 0
   onTurnEndTriggers:
     gold: 0
     resources:
@@ -75,6 +96,13 @@ MonoBehaviour:
       magic: 0
       maxHealth: 0
       maxMagic: 0
+    attributes:
+      strength: 0
+      defense: 0
+      intelligence: 0
+      resistance: 0
+      precision: 0
+      agility: 0
   resourceAddition:
     health: 0
     magic: 0

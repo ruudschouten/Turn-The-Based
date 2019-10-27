@@ -91,10 +91,6 @@ namespace Unit
         #endregion
 
         private Tile _turnStartTile;
-    
-    
-//    [SerializeField] private List<Skill> Skills = new List<Skill>();
-//    [SerializeField] private Resource Cost;
 
         public void Start()
         {
@@ -141,34 +137,36 @@ namespace Unit
             return stats.Resources.Health > 0;
         }
 
-        public void Damage(Character other)
+        public void GetHit(Character attacker)
         {
             //Only attack enemies
             if (Ownable.GetOwner() == TurnManager.CurrentPlayer) return;
 
             TurnManager.InAttackMode = false;
             
-            if (other.hasAttackedThisTurn) return;
+            if (attacker.hasAttackedThisTurn) return;
             
-            if (other.attack.Perform(other, this))
+            if (attacker.attack.Perform(attacker, this))
             {
-                foreach (var trait in other.traits)
+                if (!IsAlive())
                 {
-                    if (!other.IsAlive())
+                    foreach (var trait in attacker.Traits)
                     {
-                        trait.OnKill(TurnManager, other);
+                        trait.OnKill(TurnManager, attacker);
                     }
                     
-                    trait.OnHit(TurnManager, other);
+                    Die();
                 }
-
-                if (other.IsAlive())
+                else
                 {
-                    other.Die();
+                    foreach (var trait in attacker.traits)
+                    {
+                        trait.OnHit(TurnManager, attacker);
+                    }
                 }
             }
 
-            other.hasAttackedThisTurn = true;
+            attacker.hasAttackedThisTurn = true;
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -176,12 +174,12 @@ namespace Unit
             if (!IsAlive()) return;
             if (TurnManager.InAttackMode)
             {
-                var other = unitUi.GetSelectedUnit();
-                if (!other.hasAttackedThisTurn)
+                var attacker = unitUi.GetSelectedUnit();
+                if (!attacker.hasAttackedThisTurn)
                 {
                     if (transform.parent.GetComponentsInChildren<AttackHighlight>() != null)
                     {
-                        Damage(other);
+                        GetHit(attacker);
                     }
                 }
 

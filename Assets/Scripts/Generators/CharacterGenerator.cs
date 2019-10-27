@@ -55,7 +55,9 @@ public class CharacterGenerator : MonoBehaviour
         Instantiate(BasePrefabs[(int) _character.Rarity], go.transform);
         for (int i = 0; i < (int) _character.Rarity; i++)
         {
-            _character.Traits.Add(traitGen.GetTrait(go.transform));
+            var trait = traitGen.GetTrait(go.transform);
+            trait.SetUI(_character.DamageUI);
+            _character.Traits.Add(trait);
         }
 
         InstantiateModel(go, owner.Color, type);

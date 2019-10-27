@@ -1,4 +1,5 @@
 ﻿using NaughtyAttributes;
+using UI;
 using Unit.Statistics;
 using UnityEngine;
 using Resources = Unit.Statistics.Resources;
@@ -53,24 +54,31 @@ namespace Unit
         public Attunement AttunementAddition => attunementAddition;
         public Attunement AttunementModifier => attunementModifier;
 
+        private DamageUI _ui;
+        
+        public void SetUI(DamageUI ui)
+        {
+            _ui = ui;
+        }
+        
         public void OnKill(TurnManager turnManager, Character unit)
         {
-            onKillTriggers.Activate(unit.Stats, turnManager);
+            onKillTriggers.Activate(unit.Stats, turnManager, _ui);
         }
 
         public void OnHit(TurnManager turnManager, Character unit)
         {
-            onHitTriggers.Activate(unit.Stats, turnManager);
+            onHitTriggers.Activate(unit.Stats, turnManager, _ui);
         }
 
         public void OnTurnStart(TurnManager turnManager, Character unit)
         {
-            onTurnStartTriggers.Activate(unit.Stats, turnManager);
+            onTurnStartTriggers.Activate(unit.Stats, turnManager, _ui);
         }
 
         public void OnTurnEnd(TurnManager turnManager, Character unit)
         {
-            onTurnEndTriggers.Activate(unit.Stats, turnManager);
+            onTurnEndTriggers.Activate(unit.Stats, turnManager, _ui);
         }
     }
 }

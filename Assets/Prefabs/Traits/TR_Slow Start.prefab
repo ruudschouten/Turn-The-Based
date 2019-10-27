@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Slow Start
-  Description: Gradually get stronger every turn, start very weak
+  Description: Gradually get stronger every turn, start weakened
   DiagonalOnly: 0
   RadialOnly: 0
   onHitTriggers:
