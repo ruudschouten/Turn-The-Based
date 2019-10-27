@@ -61,6 +61,7 @@ namespace Unit.Statistics
             }
 
             if (!changed) return;
+            if (ui == null) return;
             
             ui.ShowHealthDegrade(maxHealth, health);
         }

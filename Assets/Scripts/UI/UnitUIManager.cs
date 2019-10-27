@@ -93,7 +93,7 @@ public class UnitUIManager : MonoBehaviour {
         _jumpValue.text = unit.Stats.Movement.Jump.ToString();
         _fireValue.text = unit.Stats.Attunement.Fire.ToString();
         _windValue.text = unit.Stats.Attunement.Wind.ToString();
-        _iceValue.text = unit.Stats.Attunement.Wind.ToString();
+        _iceValue.text = unit.Stats.Attunement.Ice.ToString();
         _ownerValue.text = unit.Ownable.GetOwner().Name;
     }
 

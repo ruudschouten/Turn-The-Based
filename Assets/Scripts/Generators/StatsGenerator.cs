@@ -108,12 +108,12 @@ public class StatsGenerator : MonoBehaviour
                 stats.Movement.Jump += trait.MovementAddition.Jump;
             }
 
-            if (trait.ResourceAddition.Health != 0)
+            if (Math.Abs(trait.ResourceAddition.Health) > 0)
             {
                 stats.Resources.Health += trait.ResourceAddition.Health;
             }
 
-            if (trait.ResourceAddition.Magic != 0)
+            if (Math.Abs(trait.ResourceAddition.Magic) > 0)
             {
                 stats.Resources.Magic += trait.ResourceAddition.Magic;
             }
