@@ -21,7 +21,7 @@ namespace Tiles
             var unit = parent.GetComponentInChildren<Character>();
             if (unit == null)
             {
-                uiManager.UnitUIManager.MoveToClick(parent);
+                uiManager.UnitUIManager.ActionUI.MoveToClick(parent);
             }
             else
             {

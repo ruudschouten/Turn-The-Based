@@ -191,14 +191,14 @@ namespace Unit
             }
             else
             {
-                unitUi.ShowUI(this);
+                unitUi.Show(this);
                 if (TurnManager.CurrentPlayer == Ownable.GetOwner())
                 {
-                    unitUi.ShowActionUI(this);
+                    unitUi.ActionUI.Show(this);
                 }
                 else
                 {
-                    unitUi.HideActionUI();
+                    unitUi.ActionUI.Hide();
                 }
             }
         }

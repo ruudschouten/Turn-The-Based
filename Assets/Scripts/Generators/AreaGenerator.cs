@@ -40,18 +40,18 @@ public class AreaGenerator : MonoBehaviour {
         }
     }
 
-    public List<GameObject> GetTilesInRange(Tile origin, float range, MovementType moveType, bool addUnitTiles = false) {
-        var tiles = new List<GameObject>();
+    public List<Tile> GetTilesInRange(Tile origin, float range, MovementType moveType, bool addUnitTiles = false) {
+        var tiles = new List<Tile>();
 
         foreach (var tile in _tiles) {
             var t = tile.GetComponent<Tile>();
             if (InRange(origin, t, range, moveType)) {
                 if (addUnitTiles) {
-                    tiles.Add(t.gameObject);                    
+                    tiles.Add(t);                    
                 }
                 else {
                     if (t.GetUnit() == null) {
-                        tiles.Add(t.gameObject);
+                        tiles.Add(t);
                     }
                 }
             }

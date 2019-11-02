@@ -21,14 +21,14 @@ namespace Tiles
             var unit = parent.GetComponentInChildren<Character>();
             if (unit != null)
             {
-                uiManager.UnitUIManager.AttackOnClick(parent);
+                uiManager.UnitUIManager.ActionUI.AttackOnClick(parent);
             }
             else
             {
                 uiManager.ShowMessage("No target found");
             }
 
-            uiManager.UnitUIManager.HideAttackRange();
+            uiManager.UnitUIManager.ActionUI.HideAttackRange();
         }
     }
 }

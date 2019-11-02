@@ -25,7 +25,7 @@ namespace Tiles
         public void OnPointerClick(PointerEventData eventData)
         {
             if (UiManager == null) UiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
-            UiManager.Hide(true, true, false);
+            UiManager.Hide(true, true);
             if (transform.childCount > 1)
             {
                 Character unit = GetUnit();

@@ -40,13 +40,13 @@ namespace Tiles
                 var unit = transform.GetChild(1).GetComponent<Character>();
                 if (turnManager.CurrentPlayer == ownable.GetOwner())
                 {
-                    uiManager.UnitUIManager.ShowUI(unit);
-                    uiManager.UnitUIManager.ShowActionUI(unit);
+                    uiManager.UnitUIManager.Show(unit);
+                    uiManager.UnitUIManager.ActionUI.Show(unit);
                 }
             }
             else
             {
-                uiManager.Hide(true, true, false);
+                uiManager.Hide(true, true);
                 if (turnManager.CurrentPlayer == ownable.GetOwner())
                 {
                     uiManager.BasePanelUIManager.ShowBaseUi();

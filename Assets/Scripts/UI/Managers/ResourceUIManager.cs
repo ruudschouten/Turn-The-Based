@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace UI.Managers
 {
-    public class ResourceUIManager : MonoBehaviour {
-
+    public class ResourceUIManager : MonoBehaviour
+    {
+        [SerializeField] private List<Resources> resources;
         [SerializeField] private ResourcePanelDictionary panels;
 
         public void ChangeValues(Resource resource)

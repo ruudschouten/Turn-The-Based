@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using UI;
 using UI.Managers;
 using UnityEngine;
 using UnityEngine.UI;
@@ -65,7 +64,7 @@ namespace Turn
             CurrentPlayer = _playerQueue.Dequeue();
             CurrentPlayer.PlayerStartTurn();
             currentPlayerText.text = $"[{CurrentTeam}] {CurrentPlayer.Name}";
-            uiManager.Hide(true, true, false);
+            uiManager.Hide(true, true);
             uiManager.ShowForPlayer(CurrentPlayer);
             RotateCamera();
         }

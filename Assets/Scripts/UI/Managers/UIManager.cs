@@ -26,7 +26,7 @@ namespace UI.Managers
             HideBasePanelUI();
         }
 
-        public void Hide(bool unit, bool basePanel, bool resource)
+        public void Hide(bool unit, bool basePanel)
         {
             if (unit)
             {
