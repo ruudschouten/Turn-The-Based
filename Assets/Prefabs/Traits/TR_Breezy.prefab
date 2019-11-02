@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Breezy
-  Description: Unit deals wind damage and has increased wind attunement
-  DiagonalOnly: 0
-  RadialOnly: 0
+  description: Unit deals wind damage and has increased wind attunement
+  diagonalOnly: 0
+  radialOnly: 0
   onHitTriggers:
     gold: 0
     resources:

@@ -9,12 +9,12 @@ namespace Unit
     public class Trait : MonoBehaviour
     {
         public string Name;
-        public string Description;
+        [SerializeField] private string description;
 
         #region Toggles
 
-        [BoxGroup("Movement Types")] public bool DiagonalOnly;
-        [BoxGroup("Movement Types")] public bool RadialOnly;
+        [BoxGroup("Movement Types")] [SerializeField] private bool diagonalOnly;
+        [BoxGroup("Movement Types")] [SerializeField] private bool radialOnly;
 
         #endregion
 
@@ -39,6 +39,9 @@ namespace Unit
         [BoxGroup("Modifier")] [SerializeField] private Combat combatModifier;
         [BoxGroup("Modifier")] [SerializeField] private Attunement attunementModifier;
 
+        public string Description => description;
+        public bool RadialOnly => radialOnly;
+        public bool DiagonalOnly => diagonalOnly;
         public Trigger OnHitTriggers => onHitTriggers;
         public Trigger OnKillTriggers => onKillTriggers;
         public Trigger OnTurnStartTriggers => onTurnStartTriggers;

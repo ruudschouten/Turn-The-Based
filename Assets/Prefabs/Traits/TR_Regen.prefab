@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Regen
-  Description: Regenerates health every turn
-  DiagonalOnly: 0
-  RadialOnly: 0
+  description: Regenerates health every turn
+  diagonalOnly: 0
+  radialOnly: 0
   onHitTriggers:
     gold: 0
     resources:

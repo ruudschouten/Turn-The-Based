@@ -45,10 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasWidth: 5
-  textContainer: {fileID: 0}
+  textContainer: {fileID: 1098828652717294222}
   textfield: {fileID: 1059163152871525348}
   sliderContainer: {fileID: 4432822163816469643}
   healthSlider: {fileID: 7162945133483583402}
+  group: {fileID: 7791699238452008395}
+  timeVisible: 1.5
+  fadeDuration: 0.5
 --- !u!1 &1295815294636434952
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,6 +378,7 @@ GameObject:
   - component: {fileID: 6777275661915749194}
   - component: {fileID: 3225884026653633665}
   - component: {fileID: 3351169723834644476}
+  - component: {fileID: 7791699238452008395}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -463,6 +467,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &7791699238452008395
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3287232948794675721}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3586645028911248236
 GameObject:
   m_ObjectHideFlags: 0

@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Wise
-  Description: Unit has increased Intelligence and reduced Strength
-  DiagonalOnly: 0
-  RadialOnly: 0
+  description: Unit has increased Intelligence and reduced Strength
+  diagonalOnly: 0
+  radialOnly: 0
   onHitTriggers:
     gold: 0
     resources:
