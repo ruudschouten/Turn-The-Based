@@ -1,15 +1,19 @@
 ﻿using System;
+using UnityEngine;
 
 [Serializable]
-public class ResourceCost {
-    public Resource Resource;
-    public int Cost;
+public class ResourceCost
+{
+    [SerializeField] private Resource resource;
+    [SerializeField] private int cost;
 
-    public bool CanAfford() {
-        return Resource.CanAfford(Cost);
+    public bool CanAfford()
+    {
+        return resource.CanAfford(cost);
     }
 
-    public void Pay() {
-        Resource.ChangeAmount(-Cost);
+    public void Pay()
+    {
+        resource.ChangeAmount(-cost);
     }
 }

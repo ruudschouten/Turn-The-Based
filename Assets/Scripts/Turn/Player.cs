@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UI;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Turn
@@ -8,6 +9,7 @@ namespace Turn
         public string Name;
         [SerializeField] private TeamColor color;
         [SerializeField] private Resource gold;
+        [SerializeField] private ResourceUIManager resourceUiManager;
 
         [SerializeField] private UnityEvent onTurnStart = new UnityEvent();
         [SerializeField] private UnityEvent onTurnEnd = new UnityEvent();
@@ -18,11 +20,9 @@ namespace Turn
             set => color = value;
         }
 
-        public Resource Gold
-        {
-            get => gold;
-            set => gold = value;
-        }
+        public Resource Gold => gold;
+
+        public ResourceUIManager ResourceUIManager => resourceUiManager;
 
         public UnityEvent OnTurnStart => onTurnStart;
         public UnityEvent OnTurnEnd => onTurnEnd;
@@ -30,6 +30,7 @@ namespace Turn
         public void PlayerStartTurn()
         {
             ActivateChildren(true);
+            ResourceUIManager.ChangeValues(gold);
             onTurnStart.Invoke();
         }
 

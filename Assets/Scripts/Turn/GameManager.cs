@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UI;
 using Unit;
 using UnityEngine;
 
@@ -40,12 +41,6 @@ namespace Turn
             uiManager.BasePanelUIManager.SetBuyMagic(() => BuyCharacter(Rarity.Magic));
             uiManager.BasePanelUIManager.SetBuyRare(() => BuyCharacter(Rarity.Rare));
             uiManager.BasePanelUIManager.SetButtonValues(normalPrice, magicPrice, rarePrice);
-            uiManager.ResourceUIManager.SetupPanel(turnManager.Players[0].Gold);
-            
-            foreach (var player in turnManager.Players)
-            {
-                uiManager.ResourceUIManager.AddListener(player.Gold);
-            }
         }
 
         private void BuyCharacter(Rarity rarity)

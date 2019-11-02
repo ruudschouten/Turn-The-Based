@@ -18,8 +18,8 @@ public class StatsGenerator : MonoBehaviour
                 stats.Movement.Jump = 2;
                 stats.Attributes.Strength = 5;
                 stats.Attributes.Defense = 8;
-                stats.Attributes.Intelligence = 14;
-                stats.Attributes.Resistance = 14;
+                stats.Attributes.Intelligence = 15;
+                stats.Attributes.Resistance = 13;
                 stats.Attributes.Precision = 10;
                 stats.Attributes.Agility = 8;
                 break;

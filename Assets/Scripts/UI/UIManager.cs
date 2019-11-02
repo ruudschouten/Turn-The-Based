@@ -1,85 +1,71 @@
 ﻿using Turn;
-using UI;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private BasePanelUIManager basePanelUiManager;
-    [SerializeField] private ResourceUIManager resourceUiManager;
-    [SerializeField] private UnitUIManager unitUiManager;
-    [SerializeField] private GameOverUIManager gameOverUiManager;
-    [SerializeField] private MessageManager messageManager;
+    public class UIManager : MonoBehaviour
+    {
+        [SerializeField] private BasePanelUIManager basePanelUiManager;
+        [SerializeField] private UnitUIManager unitUiManager;
+        [SerializeField] private GameOverUIManager gameOverUiManager;
+        [SerializeField] private MessageManager messageManager;
     
-    public BasePanelUIManager BasePanelUIManager => basePanelUiManager;
-    public ResourceUIManager ResourceUIManager => resourceUiManager;
-    public UnitUIManager UnitUIManager => unitUiManager;
-    public GameOverUIManager GameOverUIManager => gameOverUiManager;
-    public MessageManager MessageManager => messageManager;
+        public BasePanelUIManager BasePanelUIManager => basePanelUiManager;
+        public UnitUIManager UnitUIManager => unitUiManager;
+        public GameOverUIManager GameOverUIManager => gameOverUiManager;
+        public MessageManager MessageManager => messageManager;
 
-    public void ShowForPlayer(Player player)
-    {
-        resourceUiManager.ChangeValues(player.Gold);
-    }
-
-    public void HideAll()
-    {
-        HideUnitUI();
-        HideResourceUI();
-        HideBasePanelUI();
-    }
-
-    public void Hide(bool unit, bool basePanel, bool resource)
-    {
-        if (unit)
+        public void ShowForPlayer(Player player)
         {
-            HideUnitUI();
+            player.ResourceUIManager.ChangeValues(player.Gold);
         }
 
-        if (basePanel)
+        public void HideAll()
         {
+            HideUnitUI();
             HideBasePanelUI();
         }
 
-        if (resource)
+        public void Hide(bool unit, bool basePanel, bool resource)
         {
-            HideResourceUI();
-        }
-    }
+            if (unit)
+            {
+                HideUnitUI();
+            }
 
-    private void HideUnitUI()
-    {
-        if (unitUiManager != null)
+            if (basePanel)
+            {
+                HideBasePanelUI();
+            }
+        }
+
+        private void HideUnitUI()
         {
-            unitUiManager.Hide();
+            if (unitUiManager != null)
+            {
+                unitUiManager.Hide();
+            }
         }
-    }
 
-    private void HideGameOverPanelUI()
-    {
-        if (gameOverUiManager != null)
+        private void HideGameOverPanelUI()
         {
-            gameOverUiManager.Hide();
+            if (gameOverUiManager != null)
+            {
+                gameOverUiManager.Hide();
+            }
         }
-    }
 
-    private void HideResourceUI()
-    {
-        if (resourceUiManager != null)
+        public void HideBasePanelUI()
         {
-            resourceUiManager.Hide();
+            if (basePanelUiManager != null)
+            {
+                basePanelUiManager.Hide();
+            }
         }
-    }
 
-    public void HideBasePanelUI()
-    {
-        if (basePanelUiManager != null)
+        public void ShowMessage(string message)
         {
-            basePanelUiManager.Hide();
+            messageManager.ShowMessage(message);
         }
-    }
-
-    public void ShowMessage(string message)
-    {
-        messageManager.ShowMessage(message);
     }
 }

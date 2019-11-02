@@ -1,44 +1,53 @@
-﻿using UI;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
+using UnityEngine.Serialization;
 
+namespace UI
+{
+    public class BasePanelUIManager : MonoBehaviour 
+    {
+        [FormerlySerializedAs("BasePanel")] [SerializeField] private GameObject basePanel;
 
-public class BasePanelUIManager : MonoBehaviour {
-    public GameObject BasePanel;
+        [SerializeField] private CustomButton btnBuyNormal;
+        [SerializeField] private CustomButton btnBuyMagic;
+        [SerializeField] private CustomButton btnBuyRare;
+        [SerializeField] private CustomButton btnClose;
 
-    [SerializeField] private CustomButton btnBuyNormal;
-    [SerializeField] private CustomButton btnBuyMagic;
-    [SerializeField] private CustomButton btnBuyRare;
-    [SerializeField] private CustomButton btnClose;
+        private void Awake()
+        {
+            btnClose.OnClickEvent.AddListener(Hide);
+        }
 
-    void Awake() {
-        btnClose.OnClickEvent.AddListener(Hide);
-    }
+        public void ShowBaseUi()
+        {
+            basePanel.SetActive(true);
+        }
 
-    public void ShowBaseUi() {
-        BasePanel.SetActive(true);
-    }
+        public void Hide()
+        {
+            basePanel.SetActive(false);
+        }
 
-    public void Hide() {
-        BasePanel.SetActive(false);
-    }
+        public void SetBuyNormal(UnityAction evt)
+        {
+            btnBuyNormal.OnClickEvent.AddListener(evt);
+        }
 
-    public void SetBuyNormal(UnityAction evt) {
-        btnBuyNormal.OnClickEvent.AddListener(evt);
-    }
+        public void SetBuyMagic(UnityAction evt)
+        {
+            btnBuyMagic.OnClickEvent.AddListener(evt);
+        }
 
-    public void SetBuyMagic(UnityAction evt) {
-        btnBuyMagic.OnClickEvent.AddListener(evt);
-    }
+        public void SetBuyRare(UnityAction evt)
+        {
+            btnBuyRare.OnClickEvent.AddListener(evt);
+        }
 
-    public void SetBuyRare(UnityAction evt) {
-        btnBuyRare.OnClickEvent.AddListener(evt);
-    }
-
-    public void SetButtonValues(int normal, int magic, int rare) {
-        btnBuyNormal.transform.GetChild(0).GetComponent<Text>().text = string.Format("Normal ({0})", normal);
-        btnBuyMagic.transform.GetChild(0).GetComponent<Text>().text = string.Format("Magic ({0})", magic);
-        btnBuyRare.transform.GetChild(0).GetComponent<Text>().text = string.Format("Rare ({0})", rare);
+        public void SetButtonValues(int normal, int magic, int rare)
+        {
+            btnBuyNormal.SetText($"Normal ({normal})");
+            btnBuyMagic.SetText($"Magic ({magic})");
+            btnBuyRare.SetText($"Rare ({rare})");
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -47,7 +48,6 @@ namespace Turn
             CurrentPlayer = _playerQueue.Dequeue();
             CurrentPlayer.PlayerStartTurn();
             currentPlayerText.text = $"[{CurrentTeam}] {CurrentPlayer.Name}";
-            uiManager.ShowForPlayer(CurrentPlayer);
             _targetRotation = camera.transform.rotation;
         }
 
@@ -77,6 +77,8 @@ namespace Turn
                 {
                     Winner = player;
                 }
+
+                player.ResourceUIManager.Hide();
             }
 
             Loser = loser;
