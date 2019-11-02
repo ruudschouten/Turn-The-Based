@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 
-namespace UI
+namespace UI.Managers
 {
     public class BasePanelUIManager : MonoBehaviour 
     {

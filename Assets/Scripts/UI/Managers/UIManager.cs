@@ -1,7 +1,7 @@
 ﻿using Turn;
 using UnityEngine;
 
-namespace UI
+namespace UI.Managers
 {
     public class UIManager : MonoBehaviour
     {

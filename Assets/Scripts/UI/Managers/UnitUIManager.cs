@@ -2,7 +2,7 @@
 using Unit;
 using UnityEngine;
 
-namespace UI
+namespace UI.Managers
 {
     public class UnitUIManager : MonoBehaviour
     {

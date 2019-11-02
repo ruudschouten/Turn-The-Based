@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace UI
+namespace UI.Managers
 {
     public class GameOverUIManager : MonoBehaviour
     {
