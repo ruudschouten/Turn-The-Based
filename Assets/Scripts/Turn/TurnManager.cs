@@ -2,87 +2,100 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TurnManager : MonoBehaviour {
-    public UIManager UiManager;
-    public Player Prototype;
-    [HideInInspector]
-    public Player CurrentPlayer;
-    public Text CurrentPlayerText;
-    public Player.TeamColor CurrentTeam;
-    public Camera Camera;
-    public List<Player> Players;
+namespace Turn
+{
+    public class TurnManager : MonoBehaviour
+    {
+        [SerializeField] private UIManager uiManager;
+        [SerializeField] private Text currentPlayerText;
+        
+        [SerializeField] private Player prefab;
+        [SerializeField] private new Camera camera;
+        
+        [SerializeField] private float smoothCamera;
+        
+        public Player.TeamColor CurrentTeam => CurrentPlayer.Color;
+        public List<Player> Players => _players;
 
-    public Player Winner;
-    public Player Loser;
+        public Player CurrentPlayer { get; private set; }
+        public Player Winner { get; private set; }
+        public Player Loser { get; private set; }
+        public bool InAttackMode { get; set; }
+        
+        private List<Player> _players;
+        private Queue<Player> _playerQueue;
+        private const int AmountOfPlayers = 2;
 
-    public float SmoothCamera;
+        private Quaternion _targetRotation;
 
-    public bool InAttackMode;
-
-    private Queue<Player> _players;
-    private int _amountOfPlayers = 2;
-
-    private Quaternion _targetRotation;
-
-    // Use this for initialization
-    void Start() {
-        _players = new Queue<Player>();
-        Players = new List<Player>();
-        for (int i = 0; i < _amountOfPlayers; i++) {
-            Player newPlayer = Instantiate(Prototype);
-            newPlayer.transform.SetParent(transform);
-            newPlayer.ActivateChildren(false);
-            newPlayer.Color = (Player.TeamColor) i;
-            if (i % 2 == 0) newPlayer.Name = "Richard";
-            else newPlayer.Name = "Notyard";
-            _players.Enqueue(newPlayer);
-            Players.Add(newPlayer);
-        }
-
-        CurrentPlayer = _players.Dequeue();
-        CurrentPlayer.PlayerStartTurn();
-        CurrentTeam = CurrentPlayer.Color;
-        CurrentPlayerText.text = string.Format("[{0}] {1}", CurrentTeam, CurrentPlayer.Name);
-        UiManager.ShowForPlayer(CurrentPlayer);
-        _targetRotation = Camera.transform.rotation;
-    }
-
-    void Update() {
-        Camera.transform.rotation = Quaternion.RotateTowards(Camera.transform.rotation, _targetRotation, SmoothCamera * Time.deltaTime);
-    }
-
-    public void NextTurn() {
-        CurrentPlayer.PlayerEndTurn();
-        _players.Enqueue(CurrentPlayer);
-        CurrentPlayer = _players.Dequeue();
-        CurrentPlayer.PlayerStartTurn();
-        CurrentTeam = CurrentPlayer.Color;
-        CurrentPlayerText.text = string.Format("[{0}] {1}", CurrentTeam, CurrentPlayer.Name);
-        UiManager.Hide(true, true, false);
-        UiManager.ShowForPlayer(CurrentPlayer);
-        RotateCamera();
-    }
-
-    public void SetLoser(Player loser) {
-        foreach (var player in Players) {
-            if (player != loser) {
-                Winner = player;
+        private void Start()
+        {
+            _playerQueue = new Queue<Player>();
+            _players = new List<Player>();
+            for (var i = 0; i < AmountOfPlayers; i++)
+            {
+                var newPlayer = Instantiate(prefab, transform);
+                newPlayer.ActivateChildren(false);
+                newPlayer.Color = (Player.TeamColor) i;
+                
+                newPlayer.Name = i % 2 == 0 ? "Richard" : "Blueyard";
+                
+                _playerQueue.Enqueue(newPlayer);
+                _players.Add(newPlayer);
             }
-        }
-        Loser = loser;
-        UiManager.GameOverUiManager.Show();
-    }
 
-    private void RotateCamera() {
-        switch (CurrentTeam) {
-            case Player.TeamColor.Red:
-                _targetRotation = Quaternion.Euler(60, 45, 0);
-                Camera.transform.localPosition = new Vector3(-2, 35, -2);
-                break;
-            case Player.TeamColor.Blue:
-                _targetRotation = Quaternion.Euler(60, 225, 0);
-                Camera.transform.localPosition = new Vector3(30, 35, 30);
-                break;
+            CurrentPlayer = _playerQueue.Dequeue();
+            CurrentPlayer.PlayerStartTurn();
+            currentPlayerText.text = $"[{CurrentTeam}] {CurrentPlayer.Name}";
+            uiManager.ShowForPlayer(CurrentPlayer);
+            _targetRotation = camera.transform.rotation;
+        }
+
+        private void Update()
+        {
+            camera.transform.rotation = 
+                Quaternion.RotateTowards(camera.transform.rotation, _targetRotation, smoothCamera * Time.deltaTime);
+        }
+
+        public void NextTurn()
+        {
+            CurrentPlayer.PlayerEndTurn();
+            _playerQueue.Enqueue(CurrentPlayer);
+            CurrentPlayer = _playerQueue.Dequeue();
+            CurrentPlayer.PlayerStartTurn();
+            currentPlayerText.text = $"[{CurrentTeam}] {CurrentPlayer.Name}";
+            uiManager.Hide(true, true, false);
+            uiManager.ShowForPlayer(CurrentPlayer);
+            RotateCamera();
+        }
+
+        public void SetLoser(Player loser)
+        {
+            foreach (var player in _players)
+            {
+                if (player != loser)
+                {
+                    Winner = player;
+                }
+            }
+
+            Loser = loser;
+            uiManager.GameOverUIManager.Show();
+        }
+
+        private void RotateCamera()
+        {
+            switch (CurrentTeam)
+            {
+                case Player.TeamColor.Red:
+                    _targetRotation = Quaternion.Euler(60, 45, 0);
+                    camera.transform.localPosition = new Vector3(-2, 35, -2);
+                    break;
+                case Player.TeamColor.Blue:
+                    _targetRotation = Quaternion.Euler(60, 225, 0);
+                    camera.transform.localPosition = new Vector3(30, 35, 30);
+                    break;
+            }
         }
     }
 }

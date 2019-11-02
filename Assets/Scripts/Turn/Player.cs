@@ -1,49 +1,56 @@
-﻿using System.Collections.Generic;
-using Unit;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class Player : MonoBehaviour {
-    public string Name;
-    public TeamColor Color;
-    public Resource Gold;
+namespace Turn
+{
+    public class Player : MonoBehaviour
+    {
+        public string Name;
+        [SerializeField] private TeamColor color;
+        [SerializeField] private Resource gold;
 
-    public List<Character> Units { get; private set; }
+        [SerializeField] private UnityEvent onTurnStart = new UnityEvent();
+        [SerializeField] private UnityEvent onTurnEnd = new UnityEvent();
 
-    public UnityEvent OnTurnStart = new UnityEvent();
-    public UnityEvent OnTurnEnd = new UnityEvent();
-
-    public void PlayerStartTurn() {
-        ActivateChildren(true);
-        OnTurnStart.Invoke();
-    }
-
-    public void PlayerEndTurn() {
-        ActivateChildren(false);
-        OnTurnEnd.Invoke();
-    }
-
-
-    public void Act() {
-        WaitForActionSelect();
-        PerformAction();
-    }
-
-    public void WaitForActionSelect() {
-    }
-
-    public void PerformAction() {
-    }
-
-
-    public void ActivateChildren(bool active) {
-        for (int i = 0; i < transform.childCount; i++) {
-            transform.GetChild(i).gameObject.SetActive(active);
+        public TeamColor Color
+        {
+            get => color;
+            set => color = value;
         }
-    }
 
-    public enum TeamColor {
-        Red,
-        Blue
+        public Resource Gold
+        {
+            get => gold;
+            set => gold = value;
+        }
+
+        public UnityEvent OnTurnStart => onTurnStart;
+        public UnityEvent OnTurnEnd => onTurnEnd;
+    
+        public void PlayerStartTurn()
+        {
+            ActivateChildren(true);
+            onTurnStart.Invoke();
+        }
+
+        public void PlayerEndTurn()
+        {
+            ActivateChildren(false);
+            onTurnEnd.Invoke();
+        }
+
+        public void ActivateChildren(bool active)
+        {
+            for (var i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(active);
+            }
+        }
+
+        public enum TeamColor
+        {
+            Red,
+            Blue
+        }
     }
 }

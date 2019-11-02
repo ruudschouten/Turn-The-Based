@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Tiles;
+using Turn;
 using UI;
 using Unit.Statistics;
 using UnityEngine;
@@ -219,21 +221,5 @@ namespace Unit
         {
             TurnManager.InAttackMode = true;
         }
-    }
-
-    public enum CharacterType
-    {
-        Acolyte = 0, // Bird
-        Esquire = 1, // Goat
-        Brute = 2, // Roided Goat
-        Rogue = 3, // Ermine
-        Ruler = 4 // Wolf
-    }
-
-    public enum MovementType
-    {
-        Straight,
-        Radial,
-        Diagonal
     }
 }

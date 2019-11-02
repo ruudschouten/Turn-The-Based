@@ -6,57 +6,69 @@ namespace Unit
 {
     public class Attack : MonoBehaviour
     {
-        public BoostedBy BoostedBy;
-        public Element Element;
-        public int BaseDamage = 4;
-        [Range(0.25f, 2.5f)] public float DamageModifier = 1;
-        public int Range = 1;
-        public float Height = 1.5f;
+        [SerializeField] private BoostedBy boostedBy;
+        [SerializeField] private Element element;
+        [SerializeField] private int baseDamage = 4;
+        [Range(0.25f, 2.5f)] [SerializeField] private float damageModifier = 1;
+        [SerializeField] private int range = 1;
+        [SerializeField] private float height = 1.5f;
+
+        public Element Element
+        {
+            get => element;
+            set => element = value;
+        }
+
+        public float DamageModifier
+        {
+            get => damageModifier;
+            set => damageModifier = value;
+        }
 
         public int GetDamage(Character attacker, Character defender)
         {
-            float damage = 0;
+            var damage = 0f;
             var aStats = attacker.Stats;
             var dStats = defender.Stats;
 
-            float attack = 0;
-            float defense = 0;
-            float element = 0;
+            var attack = 0f;
+            var defense = 0f;
+            var elementalModifier = 0f;
 
-            switch (BoostedBy)
+            switch (boostedBy)
             {
                 case BoostedBy.Strength:
-                    attack = aStats.Attributes.Strength * DamageModifier;
+                    attack = aStats.Attributes.Strength * damageModifier;
                     defense = dStats.Attributes.Defense;
                     break;
                 case BoostedBy.Intelligence:
-                    attack = aStats.Attributes.Intelligence * DamageModifier;
+                    attack = aStats.Attributes.Intelligence * damageModifier;
                     defense = dStats.Attributes.Resistance;
                     break;
                 case BoostedBy.Precision:
-                    attack = aStats.Attributes.Precision * DamageModifier;
+                    attack = aStats.Attributes.Precision * damageModifier;
                     defense = dStats.Attributes.Agility;
                     break;
             }
 
-            damage = BaseDamage + (attack - defense);
+            damage = baseDamage + (attack - defense);
 
-            switch (Element)
+            switch (element)
             {
                 case Element.None:
                     break;
                 case Element.Fire:
-                    element = aStats.Attunement.Fire - dStats.Attunement.Fire;
+                    elementalModifier = aStats.Attunement.Fire - dStats.Attunement.Fire;
                     break;
                 case Element.Ice:
-                    element = aStats.Attunement.Ice - dStats.Attunement.Ice;
+                    elementalModifier = aStats.Attunement.Ice - dStats.Attunement.Ice;
                     break;
                 case Element.Wind:
-                    element = aStats.Attunement.Wind - dStats.Attunement.Wind;
+                    elementalModifier = aStats.Attunement.Wind - dStats.Attunement.Wind;
                     break;
             }
 
-            damage *= 1 + (element / 100);
+            damage *= 1 + (elementalModifier / 100);
 
             return Convert.ToInt32(damage);
         }
@@ -64,16 +76,16 @@ namespace Unit
         public float GetChanceToHit(Character attacker, Character defender)
         {
             //Tweak this so missing is possible
-            return ((float) attacker.Stats.Attributes.Precision / defender.Stats.Attributes.Agility);
+            return (attacker.Stats.Attributes.Precision / defender.Stats.Attributes.Agility);
         }
 
         public bool Perform(Character attacker, Character defender)
         {
-            var cth = GetChanceToHit(attacker, defender);
+            var chanceToHit = GetChanceToHit(attacker, defender);
             var random = Random.Range(0, 100);
-            if ((cth * 100) >= random)
+            if ((chanceToHit * 100) >= random)
             {
-                int damage = GetDamage(attacker, defender);
+                var damage = GetDamage(attacker, defender);
                 if (damage < 1) damage = 1;
                 defender.Stats.Resources.Health -= damage;
                 defender.DamageUI.ShowHealthDegrade(defender.Stats.Resources.MaxHealth,

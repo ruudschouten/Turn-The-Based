@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using Tiles;
+using Turn;
 using Unit;
 using UnityEngine;
 
@@ -133,7 +135,7 @@ public class AreaGenerator : MonoBehaviour {
         _redBase.transform.SetParent(tile.transform, false);
         BasePanel redPanel = _redBase.GetComponent<BasePanel>();
         redPanel.TurnManager = TurnManager;
-        redPanel.UiManager = uiManager;
+        redPanel.UIManager = uiManager;
         redPanel.Ownable = _redBase.gameObject.AddComponent<Ownable>();
         redPanel.Ownable.Initialize(TurnManager.Players[0]);
 
@@ -144,7 +146,7 @@ public class AreaGenerator : MonoBehaviour {
         _blueBase.transform.SetParent(tile.transform, false);
         BasePanel bluePanel = _blueBase.GetComponent<BasePanel>();
         bluePanel.TurnManager = TurnManager;
-        bluePanel.UiManager = uiManager;
+        bluePanel.UIManager = uiManager;
         bluePanel.Ownable = _blueBase.gameObject.AddComponent<Ownable>();
         bluePanel.Ownable.Initialize(TurnManager.Players[1]);
     }

@@ -1,3 +1,4 @@
+using Turn;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -5,31 +6,34 @@ namespace Unit
 {
     public class Ownable : MonoBehaviour
     {
-        private Player owner;
+        [SerializeField] private UnityEvent turnStartEvent = new UnityEvent();
+        [SerializeField] private UnityEvent turnEndEvent = new UnityEvent();
 
-        public UnityEvent TurnStartEvent = new UnityEvent();
-        public UnityEvent TurnEndEvent = new UnityEvent();
+        public UnityEvent TurnStartEvent => turnStartEvent;
+        public UnityEvent TurnEndEvent => turnEndEvent;
+        
+        private Player _owner;
 
         public void Initialize(Player owner)
         {
-            this.owner = owner;
-            this.owner.OnTurnStart.AddListener(TurnStart);
-            this.owner.OnTurnEnd.AddListener(TurnEnd);
+            _owner = owner;
+            _owner.OnTurnStart.AddListener(TurnStart);
+            _owner.OnTurnEnd.AddListener(TurnEnd);
         }
 
         public Player GetOwner()
         {
-            return owner;
+            return _owner;
         }
 
         private void TurnStart()
         {
-            TurnStartEvent.Invoke();
+            turnStartEvent.Invoke();
         }
 
         private void TurnEnd()
         {
-            TurnEndEvent.Invoke();
+            turnEndEvent.Invoke();
         }
     }
 }
