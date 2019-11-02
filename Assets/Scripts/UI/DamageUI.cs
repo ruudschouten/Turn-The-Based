@@ -12,7 +12,11 @@ namespace UI
         [Space]
         [SerializeField] private RectTransform sliderContainer;
         [SerializeField] private RectTransform healthSlider;
-        public Camera Camera { get; set; }
+        [Space]
+        [SerializeField] private CanvasGroup group;
+        [SerializeField] private float timeVisible;
+        [SerializeField] private float fadeDuration;
+        public Camera Camera { private get; set; }
 
         public void Update()
         {
@@ -25,19 +29,27 @@ namespace UI
             var newPos = (perc * canvasWidth) - canvasWidth;
             healthSlider.offsetMax = new Vector2(newPos, healthSlider.offsetMax.y);
             sliderContainer.gameObject.SetActive(true);
-            StartCoroutine(HideAfter(1.5f));
+            StartCoroutine(HideAfter(timeVisible));
         }
         
         public void ShowText(string text)
         {
             textfield.SetText(text);
             textContainer.gameObject.SetActive(true);
-            StartCoroutine(HideAfter(1.5f));
+            StartCoroutine(HideAfter(timeVisible));
         }
 
         private IEnumerator HideAfter(float seconds)
         {
             yield return new WaitForSeconds(seconds);
+            
+            for (var t = 0.01f; t < fadeDuration;)
+            {
+                t += Time.deltaTime;
+                group.alpha -= t;
+                yield return null;
+            }
+            
             textContainer.gameObject.SetActive(false);
             sliderContainer.gameObject.SetActive(false);
 
