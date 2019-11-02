@@ -1,16 +1,14 @@
 ﻿using System.Collections.Generic;
 using Unit;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UI
 {
     public class UnitUIManager : MonoBehaviour
     {
-        public GameObject Parent;
-        public UnitUI unitUI;
-        public GameObject TraitParent;
-        public GameObject TraitPanel;
+        [SerializeField] private GameObject container;
+        [SerializeField] private UnitUI unitUI;
+        [SerializeField] private TraitManager traitManager;
         public GameObject ActionPanel;
 
         public GameObject MovementHighlightPrefab;
@@ -26,15 +24,7 @@ namespace UI
 
         private Character _currentUnit;
         private UnitUI _currentStatPanel;
-        private GameObject _newTraitPanel;
         private GameObject _newActionPanel;
-
-        private int _traitCount = 0;
-        private Vector3 _traitPos = new Vector3(0, -5, 0);
-        private int _traitHeight = 70;
-
-        private int _traitWidth = 150;
-        //2 is -75 | 3 = -145
 
         public Character GetSelectedUnit()
         {
@@ -43,18 +33,17 @@ namespace UI
 
         public void Awake()
         {
-            _newActionPanel = Instantiate(ActionPanel, Parent.transform);
+            _newActionPanel = Instantiate(ActionPanel, container.transform);
             _newActionPanel.SetActive(false);
             _btnMove = _newActionPanel.transform.GetChild(0).GetComponent<CustomButton>();
             _btnAttack = _newActionPanel.transform.GetChild(1).GetComponent<CustomButton>();
             _btnCancel = _newActionPanel.transform.GetChild(2).GetComponent<CustomButton>();
             _btnCancel.OnClickEvent.AddListener(HideActionUI);
 
-            _currentStatPanel = Instantiate(unitUI, Parent.transform);
+            _currentStatPanel = Instantiate(unitUI, container.transform);
             
-            _newTraitPanel = Instantiate(TraitParent, Parent.transform);
             _currentStatPanel.gameObject.SetActive(false);
-            _newTraitPanel.SetActive(false);
+            traitManager.Hide();
         }
 
         private void ShowStats(Character unit)
@@ -65,44 +54,33 @@ namespace UI
             _currentStatPanel.ShowStats(unit);
         }
 
-        private void ShowTraits(Character unit)
-        {
-            if (unit.Rarity != Rarity.Normal)
-            {
-                _newTraitPanel.SetActive(true);
-                foreach (var trait in unit.Traits)
-                {
-                    PrintTrait(trait);
-                    _traitCount++;
-                }
-
-                _traitCount = 0;
-            }
-        }
-
         public void Hide()
         {
             _currentStatPanel.gameObject.SetActive(false);
             HideActionUI();
             HideMovementRange();
             HideAttackRange();
-            Clear();
+            
+            traitManager.Clear();
         }
 
         public void HideGUI()
         {
             _currentStatPanel.gameObject.SetActive(false);
-            _newTraitPanel.SetActive(false);
+            traitManager.Hide();
             HideActionUI();
         }
 
         public void ShowUI(Character unit)
         {
-            Clear();
+            traitManager.Clear();
+            
             _currentUnit = unit;
             _currentStatPanel.gameObject.SetActive(true);
+            
             ShowStats(unit);
-            ShowTraits(unit);
+            
+            traitManager.ShowTraits(unit);
         }
 
         public void ShowActionUI(Character unit)
@@ -213,27 +191,6 @@ namespace UI
             }
 
             _attackHighlights.Clear();
-        }
-
-        private void PrintTrait(Trait trait)
-        {
-            var newTrait = Instantiate(TraitPanel, _newTraitPanel.transform);
-            Text nameText = newTrait.transform.GetChild(0).GetComponent<Text>();
-            Text descText = newTrait.transform.GetChild(1).GetComponent<Text>();
-            nameText.text = trait.Name;
-            descText.text = trait.Description;
-            var newHeight = -5 - (_traitHeight * _traitCount);
-            newTrait.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(_traitPos.x, newHeight, _traitPos.z);
-        }
-
-        private void Clear()
-        {
-            foreach (Transform child in _newTraitPanel.transform)
-            {
-                Destroy(child.gameObject);
-            }
-
-            _newTraitPanel.SetActive(false);
         }
     }
 }
