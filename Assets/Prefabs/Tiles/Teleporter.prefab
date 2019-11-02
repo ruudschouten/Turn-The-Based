@@ -44,11 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c90915e2568476dabb12219a6b262db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UiManager: {fileID: 0}
-  TurnManager: {fileID: 0}
-  Ownable: {fileID: 0}
-  Width: 4
-  Height: 2
+  highlightMaterial: {fileID: 2100000, guid: cac725758ea61f046952ffbbd1565821, type: 2}
+  renderer: {fileID: 4841515027926859156}
+  defaultMat: {fileID: 2100000, guid: 778eb59f5075bcc48835ba53001d6ceb, type: 2}
+  uiManager: {fileID: 0}
+  turnManager: {fileID: 0}
+  ownable: {fileID: 0}
 --- !u!65 &6481517682238039839
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -129,6 +130,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8527913725238738004, guid: faab09a9b76bd524db69c8d59e349066,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dbc274b4a94d9c84cbf266d05bf6e3bf, type: 2}
     - target: {fileID: 3014614768876417435, guid: faab09a9b76bd524db69c8d59e349066,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -139,11 +145,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2e79a6c1870737d45b79690db037cef5, type: 2}
-    - target: {fileID: 8527913725238738004, guid: faab09a9b76bd524db69c8d59e349066,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: dbc274b4a94d9c84cbf266d05bf6e3bf, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: faab09a9b76bd524db69c8d59e349066, type: 3}
 --- !u!1 &1857586942007481606 stripped
@@ -155,6 +156,12 @@ GameObject:
 --- !u!4 &3430652903660218133 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: faab09a9b76bd524db69c8d59e349066,
+    type: 3}
+  m_PrefabInstance: {fileID: 7703007409472392207}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4841515027926859156 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3014614768876417435, guid: faab09a9b76bd524db69c8d59e349066,
     type: 3}
   m_PrefabInstance: {fileID: 7703007409472392207}
   m_PrefabAsset: {fileID: 0}

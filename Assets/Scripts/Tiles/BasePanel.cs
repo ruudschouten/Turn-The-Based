@@ -1,29 +1,58 @@
-﻿using Unit;
+﻿using Turn;
+using Unit;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
-public class BasePanel : MonoBehaviour, IPointerClickHandler {
-    public UIManager UiManager;
-    [HideInInspector] public TurnManager TurnManager;
-    [HideInInspector] public Ownable Ownable;
+namespace Tiles
+{
+    public class BasePanel : HighlightableTile, IPointerClickHandler 
+    {
+        [FormerlySerializedAs("UiManager")] [SerializeField] private UIManager uiManager;
+        [FormerlySerializedAs("TurnManager")] [HideInInspector] [SerializeField] private TurnManager turnManager;
+        [FormerlySerializedAs("Ownable")] [HideInInspector] [SerializeField] private Ownable ownable;
 
-    public int Width;
-    public int Height;
-
-    public void OnPointerClick(PointerEventData eventData) {
-        if (transform.childCount > 1) {
-            //Unit in base
-            Character unit = transform.GetChild(1).GetComponent<Character>();
-            if (TurnManager.CurrentPlayer == Ownable.GetOwner()) {
-                UiManager.UnitUiManager.ShowUI(unit);
-                UiManager.UnitUiManager.ShowActionUI(unit);
-            }
+        public UIManager UIManager
+        {
+            get => uiManager;
+            set => uiManager = value;
         }
-        else {
-            UiManager.Hide(true, true, false);
-            if (TurnManager.CurrentPlayer == Ownable.GetOwner()) UiManager.BasePanelUiManager.ShowBaseUi();
-            else {
-                Debug.Log("Not my owner");
+
+        public TurnManager TurnManager
+        {
+            get => turnManager;
+            set => turnManager = value;
+        }
+
+        public Ownable Ownable
+        {
+            get => ownable;
+            set => ownable = value;
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (transform.childCount > 1)
+            {
+                //Unit in base
+                var unit = transform.GetChild(1).GetComponent<Character>();
+                if (turnManager.CurrentPlayer == ownable.GetOwner())
+                {
+                    uiManager.UnitUIManager.ShowUI(unit);
+                    uiManager.UnitUIManager.ShowActionUI(unit);
+                }
+            }
+            else
+            {
+                uiManager.Hide(true, true, false);
+                if (turnManager.CurrentPlayer == ownable.GetOwner())
+                {
+                    uiManager.BasePanelUIManager.ShowBaseUi();
+                }
+                else
+                {
+                    uiManager.ShowMessage("This isn't my base");
+                }
             }
         }
     }

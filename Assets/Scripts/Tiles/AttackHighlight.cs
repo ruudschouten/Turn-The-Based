@@ -1,22 +1,32 @@
 ﻿using Unit;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
+namespace Tiles
+{
+    public class AttackHighlight : MonoBehaviour, IPointerClickHandler
+    {
+        [SerializeField] private UIManager uiManager;
 
-public class AttackHighlight : MonoBehaviour, IPointerClickHandler {
-    public UIManager UiManager;
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (uiManager == null)
+            {
+                uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
+            }
+            var parent = transform.parent;
+            var unit = parent.GetComponentInChildren<Character>();
+            if (unit != null)
+            {
+                uiManager.UnitUIManager.AttackOnClick(parent);
+            }
+            else
+            {
+                uiManager.ShowMessage("No target found");
+            }
 
-    public void OnPointerClick(PointerEventData eventData) {
-        if (UiManager == null) UiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
-        Transform parent = transform.parent;
-        var unit = parent.GetComponentInChildren<Character>();
-        if (unit == null) {
-            Debug.Log("No unit was on the tile");
+            uiManager.UnitUIManager.HideAttackRange();
         }
-        else {
-            UiManager.UnitUiManager.AttackOnClick(parent);
-        }
-
-        UiManager.UnitUiManager.HideAttackRange();
     }
 }
