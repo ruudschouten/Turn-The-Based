@@ -31,6 +31,8 @@ namespace UI.Managers
             }
             
             container.gameObject.SetActive(false);
+            
+            group.alpha = 1;
 
             yield return null;
         }

@@ -53,6 +53,8 @@ namespace UI
             textContainer.gameObject.SetActive(false);
             sliderContainer.gameObject.SetActive(false);
 
+            group.alpha = 1;
+
             yield return null;
         }
     }
