@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Generators;
 using Tiles;
 using UI.Managers;
 using Unit;
@@ -22,7 +23,6 @@ namespace UI
         
         public void Show(Character unit)
         {
-            Debug.Log("Showing the unit");
             container.SetActive(true);
             moveButton.OnClickEvent.AddListener(() => ShowMovementRange(unit));
             attackButton.OnClickEvent.AddListener(() => ShowAttackRange(unit));

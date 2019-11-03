@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Generators;
 using UI;
 using UI.Managers;
 using Unit;
@@ -33,9 +34,9 @@ namespace Turn
             areaGenerator.Generate();
             //Add Rulers
             characterGenerator.Generate(CharacterType.Ruler, Rarity.Normal, turnManager.Players[0],
-                areaGenerator.GetTileObject(0, 0).transform);
+                areaGenerator.GetTile(0, 0).transform);
             characterGenerator.Generate(CharacterType.Ruler, Rarity.Normal, turnManager.Players[1],
-                areaGenerator.GetTileObject(areaGenerator.GridSize - 1, areaGenerator.GridSize - 1).transform);
+                areaGenerator.GetTile(areaGenerator.GridSize - 1, areaGenerator.GridSize - 1).transform);
 
             //Set actions for base panel
             uiManager.BasePanelUIManager.SetBuyNormal(() => BuyCharacter(Rarity.Normal));

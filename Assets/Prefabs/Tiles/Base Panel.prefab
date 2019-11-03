@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4015480062831140}
   - component: {fileID: 114004185066795026}
+  - component: {fileID: 7544409167052693112}
   m_Layer: 0
-  m_Name: Teleporter
+  m_Name: Base Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,8 +49,26 @@ MonoBehaviour:
   renderer: {fileID: 4841515027926859156}
   defaultMat: {fileID: 2100000, guid: 778eb59f5075bcc48835ba53001d6ceb, type: 2}
   uiManager: {fileID: 0}
+  ownable: {fileID: 7544409167052693112}
   turnManager: {fileID: 0}
-  ownable: {fileID: 0}
+--- !u!114 &7544409167052693112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714974028365014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94ffeb9c09834ad3bea985f0accac9ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  turnEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &6481517682238039839
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -130,16 +149,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8527913725238738004, guid: faab09a9b76bd524db69c8d59e349066,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: dbc274b4a94d9c84cbf266d05bf6e3bf, type: 2}
     - target: {fileID: 3014614768876417435, guid: faab09a9b76bd524db69c8d59e349066,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 778eb59f5075bcc48835ba53001d6ceb, type: 2}
+    - target: {fileID: 8527913725238738004, guid: faab09a9b76bd524db69c8d59e349066,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dbc274b4a94d9c84cbf266d05bf6e3bf, type: 2}
     - target: {fileID: 3743183676876087094, guid: faab09a9b76bd524db69c8d59e349066,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

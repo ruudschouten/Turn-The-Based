@@ -1,18 +1,16 @@
 ﻿using Turn;
-using UI;
 using UI.Managers;
 using Unit;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 
 namespace Tiles
 {
     public class BasePanel : HighlightableTile, IPointerClickHandler 
     {
-        [FormerlySerializedAs("UiManager")] [SerializeField] private UIManager uiManager;
-        [FormerlySerializedAs("TurnManager")] [HideInInspector] [SerializeField] private TurnManager turnManager;
-        [FormerlySerializedAs("Ownable")] [HideInInspector] [SerializeField] private Ownable ownable;
+        [SerializeField] private UIManager uiManager;
+        [SerializeField] private Ownable ownable;
+        [HideInInspector] [SerializeField] private TurnManager turnManager;
 
         public UIManager UIManager
         {

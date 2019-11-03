@@ -1191,6 +1191,52 @@ PrefabInstance:
       propertyPath: m_Name
       value: Old UnitStat Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
+        type: 3}
+      propertyPath: Parent
+      value: 
+      objectReference: {fileID: 1990057740}
+    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
+        type: 3}
+      propertyPath: StatPanel
+      value: 
+      objectReference: {fileID: 1723525702020906, guid: 496a87614600a2b44b2f8a32b15821f5,
+        type: 3}
+    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
+        type: 3}
+      propertyPath: ActionPanel
+      value: 
+      objectReference: {fileID: 1319949935753262, guid: 1d6b7d92c39c3974983c46455cd0a5ca,
+        type: 3}
+    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
+        type: 3}
+      propertyPath: HighlightPrefab
+      value: 
+      objectReference: {fileID: 1237282854283240, guid: 9a5a4770ca2d10749894ebacdcecc86d,
+        type: 3}
+    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
+        type: 3}
+      propertyPath: AreaGen
+      value: 
+      objectReference: {fileID: 1712668717}
+    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
+        type: 3}
+      propertyPath: MovementHighlightPrefab
+      value: 
+      objectReference: {fileID: 1237282854283240, guid: 9a5a4770ca2d10749894ebacdcecc86d,
+        type: 3}
+    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
+        type: 3}
+      propertyPath: AttackHighlightPrefab
+      value: 
+      objectReference: {fileID: 1297911760464612, guid: ec5e6c7c176c2c24dad7a1dc6d4228d5,
+        type: 3}
+    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
+        type: 3}
+      propertyPath: unitUI
+      value: 
+      objectReference: {fileID: 86952320847042001, guid: 496a87614600a2b44b2f8a32b15821f5,
+        type: 3}
     - target: {fileID: 224251527310498016, guid: e68c10fd00d037448b45c1a09a11593b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1281,52 +1327,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
-        type: 3}
-      propertyPath: Parent
-      value: 
-      objectReference: {fileID: 1990057740}
-    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
-        type: 3}
-      propertyPath: StatPanel
-      value: 
-      objectReference: {fileID: 1723525702020906, guid: 496a87614600a2b44b2f8a32b15821f5,
-        type: 3}
-    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
-        type: 3}
-      propertyPath: ActionPanel
-      value: 
-      objectReference: {fileID: 1319949935753262, guid: 1d6b7d92c39c3974983c46455cd0a5ca,
-        type: 3}
-    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
-        type: 3}
-      propertyPath: HighlightPrefab
-      value: 
-      objectReference: {fileID: 1237282854283240, guid: 9a5a4770ca2d10749894ebacdcecc86d,
-        type: 3}
-    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
-        type: 3}
-      propertyPath: AreaGen
-      value: 
-      objectReference: {fileID: 1712668717}
-    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
-        type: 3}
-      propertyPath: MovementHighlightPrefab
-      value: 
-      objectReference: {fileID: 1237282854283240, guid: 9a5a4770ca2d10749894ebacdcecc86d,
-        type: 3}
-    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
-        type: 3}
-      propertyPath: AttackHighlightPrefab
-      value: 
-      objectReference: {fileID: 1297911760464612, guid: ec5e6c7c176c2c24dad7a1dc6d4228d5,
-        type: 3}
-    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
-        type: 3}
-      propertyPath: unitUI
-      value: 
-      objectReference: {fileID: 86952320847042001, guid: 496a87614600a2b44b2f8a32b15821f5,
-        type: 3}
     - target: {fileID: 2211894054869350914, guid: e68c10fd00d037448b45c1a09a11593b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1487,6 +1487,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: UnitStat Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
+        type: 3}
+      propertyPath: ActionPanel
+      value: 
+      objectReference: {fileID: 1319949935753262, guid: 1d6b7d92c39c3974983c46455cd0a5ca,
+        type: 3}
+    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
+        type: 3}
+      propertyPath: AreaGen
+      value: 
+      objectReference: {fileID: 1712668717}
     - target: {fileID: 224251527310498016, guid: e68c10fd00d037448b45c1a09a11593b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1592,17 +1603,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
-        type: 3}
-      propertyPath: ActionPanel
-      value: 
-      objectReference: {fileID: 1319949935753262, guid: 1d6b7d92c39c3974983c46455cd0a5ca,
-        type: 3}
-    - target: {fileID: 114660992231996650, guid: e68c10fd00d037448b45c1a09a11593b,
-        type: 3}
-      propertyPath: AreaGen
-      value: 
-      objectReference: {fileID: 1712668717}
     - target: {fileID: 2211894054869350914, guid: e68c10fd00d037448b45c1a09a11593b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1643,11 +1643,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4392886769178452199, guid: e68c10fd00d037448b45c1a09a11593b,
-        type: 3}
-      propertyPath: areaGen
-      value: 
-      objectReference: {fileID: 1712668717}
     - target: {fileID: 6575608755952821031, guid: e68c10fd00d037448b45c1a09a11593b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1658,6 +1653,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0.40000153
       objectReference: {fileID: 0}
+    - target: {fileID: 4392886769178452199, guid: e68c10fd00d037448b45c1a09a11593b,
+        type: 3}
+      propertyPath: areaGen
+      value: 
+      objectReference: {fileID: 1712668717}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e68c10fd00d037448b45c1a09a11593b, type: 3}
 --- !u!224 &1228579018 stripped
@@ -2043,13 +2043,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56f1a339273a54140b1c01d28983a341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TurnManager: {fileID: 1154292108}
-  TilePrefabs:
+  turnManager: {fileID: 1154292108}
+  tilePrefabs:
   - {fileID: 114352913947387044, guid: f8ef106497abdc6468dff99265a273a0, type: 3}
   - {fileID: 114008552220948234, guid: 4887e1da2b3936a47802d0a028bd93c1, type: 3}
-  BaseTilePrefab: {fileID: 1714974028365014, guid: 89ab8d727b6f90d43b8778b3be6eb7e3,
+  baseTilePrefab: {fileID: 114004185066795026, guid: 89ab8d727b6f90d43b8778b3be6eb7e3,
     type: 3}
-  GridSize: 8
+  gridSize: 8
   uiManager: {fileID: 1198437206}
 --- !u!4 &1712668718
 Transform:
