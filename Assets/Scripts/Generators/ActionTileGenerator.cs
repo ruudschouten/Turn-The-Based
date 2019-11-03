@@ -28,6 +28,7 @@ namespace Generators
         {
             UnitUiManager.HideStatPanel();
             UnitUiManager.HideTraitPanel();
+            UnitUiManager.HideAction();
         }
         
         public void ShowMovementRange(Character unit)

@@ -57,6 +57,11 @@ namespace UI.Managers
             traitManager.Clear();
         }
 
+        public void HideAction()
+        {
+            actionUI.Hide();
+        }
+
         public void Show(Character unit)
         {
             traitManager.Clear();

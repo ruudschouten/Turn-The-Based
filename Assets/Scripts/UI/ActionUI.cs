@@ -1,4 +1,5 @@
 ﻿using Generators;
+using UI.Managers;
 using Unit;
 using UnityEngine;
 
@@ -16,10 +17,8 @@ namespace UI
         {
             container.SetActive(true);
             moveButton.OnClickEvent.AddListener(() => tileGenerator.ShowMovementRange(unit));
-            moveButton.OnClickEvent.AddListener(Hide);
             
             attackButton.OnClickEvent.AddListener(() => tileGenerator.ShowAttackRange(unit));
-            attackButton.OnClickEvent.AddListener(Hide);
         }
 
         public void Reset()
@@ -29,7 +28,7 @@ namespace UI
             attackButton.OnClickEvent.RemoveAllListeners();
         }
 
-        private void Hide()
+        public void Hide()
         {
             container.SetActive(false);
         }
