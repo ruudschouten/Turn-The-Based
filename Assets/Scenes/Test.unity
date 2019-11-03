@@ -1980,28 +1980,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfd2a7c47fce08b4895facd4480ea1d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TurnManager: {fileID: 1154292108}
-  UnitUiManager: {fileID: 921483031}
-  RedCharaPrefabs:
-  - {fileID: 1896985476832862, guid: a6d525662c85b894fa7f2e97f7c0f62d, type: 3}
-  - {fileID: 1913073452361444, guid: 74ba43603344daf4dbeb4d9275fe6588, type: 3}
-  - {fileID: 1662120209294422, guid: ade0e8edb49544642b8aee2c43614724, type: 3}
-  - {fileID: 1161909542551690, guid: fdc1da69db93cd244a6e2dc16ead48af, type: 3}
-  - {fileID: 1411549045515752, guid: dcc06dd4ddcd3284ca23edd37da339c8, type: 3}
-  BlueCharaPrefabs:
+  turnManager: {fileID: 1154292108}
+  unitUiManager: {fileID: 921483031}
+  characterPrefab: {fileID: 2857219077365189264, guid: 45c8c4e73b806b048abbee9826a68308,
+    type: 3}
+  redCharaPrefabs:
   - {fileID: 1177109531621342, guid: 1fc84d1acf7b07b4a8a15bd89f41a29b, type: 3}
   - {fileID: 1867302442444986, guid: 65761a7dd94ca514a83e4efacd63f62c, type: 3}
   - {fileID: 1760075970192126, guid: 53ad1ad0c2b46e34faf11fc1b5e1b07f, type: 3}
   - {fileID: 1751805000798922, guid: fa2972e8aee01a349ab56bd4d58d341f, type: 3}
   - {fileID: 1536681544573358, guid: cbb2844a15503ae458bb3fc7c6fc651f, type: 3}
-  BasePrefabs:
+  blueCharaPrefabs:
+  - {fileID: 1896985476832862, guid: a6d525662c85b894fa7f2e97f7c0f62d, type: 3}
+  - {fileID: 1913073452361444, guid: 74ba43603344daf4dbeb4d9275fe6588, type: 3}
+  - {fileID: 1662120209294422, guid: ade0e8edb49544642b8aee2c43614724, type: 3}
+  - {fileID: 1161909542551690, guid: fdc1da69db93cd244a6e2dc16ead48af, type: 3}
+  - {fileID: 1411549045515752, guid: dcc06dd4ddcd3284ca23edd37da339c8, type: 3}
+  basePrefabs:
   - {fileID: 1133343393580202, guid: 08b69f02bf4364042a29ecf17468feaf, type: 3}
   - {fileID: 1362752173962082, guid: 294bc000d485f354fab20759ccc86645, type: 3}
   - {fileID: 1844930012814166, guid: b357a022c93c3fe409260c77589ea951, type: 3}
-  AttackPrefabs:
-  - {fileID: 1880382069613182, guid: ff48066825053b04394505fc004b2fc2, type: 3}
-  - {fileID: 1880382069613182, guid: 44f4f58000b6ed94680c4572e17533f4, type: 3}
-  - {fileID: 1880382069613182, guid: af24eeb6f148bb94e84370f9ddd0cb38, type: 3}
+  attackPrefabs:
+  - {fileID: 114602264582424438, guid: ff48066825053b04394505fc004b2fc2, type: 3}
+  - {fileID: 114602264582424438, guid: 44f4f58000b6ed94680c4572e17533f4, type: 3}
+  - {fileID: 114602264582424438, guid: af24eeb6f148bb94e84370f9ddd0cb38, type: 3}
   cam: {fileID: 560330280}
   nameGen: {fileID: 1793270383}
   traitGen: {fileID: 1793270382}

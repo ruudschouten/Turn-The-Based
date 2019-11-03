@@ -33,15 +33,19 @@ namespace Turn
         {
             areaGenerator.Generate();
             //Add Rulers
-            characterGenerator.Generate(CharacterType.Ruler, Rarity.Normal, turnManager.Players[0],
-                areaGenerator.GetTile(0, 0).transform);
-            characterGenerator.Generate(CharacterType.Ruler, Rarity.Normal, turnManager.Players[1],
-                areaGenerator.GetTile(areaGenerator.GridSize - 1, areaGenerator.GridSize - 1).transform);
+            characterGenerator.Generate(CharacterType.Ruler, Rarity.Normal, 
+                areaGenerator.GetTile(0, 0).transform, 
+                turnManager.Players[0]);
+            
+            characterGenerator.Generate(CharacterType.Ruler, Rarity.Normal, 
+                areaGenerator.GetTile(areaGenerator.GridSize - 1, areaGenerator.GridSize - 1).transform,
+                turnManager.Players[1]);
 
             //Set actions for base panel
             uiManager.BasePanelUIManager.SetBuyNormal(() => BuyCharacter(Rarity.Normal));
             uiManager.BasePanelUIManager.SetBuyMagic(() => BuyCharacter(Rarity.Magic));
             uiManager.BasePanelUIManager.SetBuyRare(() => BuyCharacter(Rarity.Rare));
+            
             uiManager.BasePanelUIManager.SetButtonValues(normalPrice, magicPrice, rarePrice);
         }
 

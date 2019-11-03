@@ -19,6 +19,7 @@ namespace Unit
         [SerializeField] private CharacterType type;
         [SerializeField] private MovementType moveType;
         [SerializeField] private List<Trait> traits = new List<Trait>();
+        [SerializeField] private Ownable ownable;
 
         //Attacks
         [SerializeField] private Attack attack;
@@ -73,8 +74,8 @@ namespace Unit
             get => hasAttackedThisTurn;
             set => hasAttackedThisTurn = value;
         }
-    
-        public Ownable Ownable { get; set; }
+
+        public Ownable Ownable => ownable;
         public TurnManager TurnManager { get; set; }
     
         public UnitUIManager UnitUI
