@@ -1,4 +1,5 @@
-﻿using Unit;
+﻿using Generators;
+using Unit;
 using UnityEngine;
 
 namespace UI.Managers

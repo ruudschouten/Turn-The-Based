@@ -1,30 +1,39 @@
 ﻿using Unit;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 
-public class TraitGenerator : MonoBehaviour {
-    public GameObject[] TraitPrefabs;
+namespace Generators
+{
+    public class TraitGenerator : MonoBehaviour
+    {
+        [SerializeField] private Trait[] traitPrefabs;
 
-    private int _lastIndex;
+        private int _lastIndex;
 
-    public Trait GetTrait(Transform parent) {
-        GameObject traitGameObject = TraitPrefabs[GetRandom(TraitPrefabs.Length)];
-        traitGameObject = Instantiate(traitGameObject, parent);
-        return traitGameObject.GetComponent<Trait>();
-    }
-
-    int GetRandom(int length) {
-        if (length <= 1) {
-            return 0;
+        public Trait GetTrait(Transform parent)
+        {
+            var traitGameObject = traitPrefabs[GetRandom(traitPrefabs.Length)];
+            traitGameObject = Instantiate(traitGameObject, parent);
+            return traitGameObject;
         }
 
-        int randomIndex = _lastIndex;
-        while (randomIndex == _lastIndex) {
-            randomIndex = Random.Range(0, length);
-        }
+        private int GetRandom(int length)
+        {
+            if (length <= 1)
+            {
+                return 0;
+            }
 
-        _lastIndex = randomIndex;
-        return randomIndex;
+            var randomIndex = _lastIndex;
+            while (randomIndex == _lastIndex)
+            {
+                randomIndex = Random.Range(0, length);
+            }
+
+            _lastIndex = randomIndex;
+            return randomIndex;
+        }
     }
 }

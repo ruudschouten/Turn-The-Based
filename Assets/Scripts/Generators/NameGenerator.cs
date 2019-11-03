@@ -1,26 +1,34 @@
 ﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
+namespace Generators
+{
+    public class NameGenerator : MonoBehaviour
+    {
+        [SerializeField] private string[] names;
 
-public class NameGenerator : MonoBehaviour {
-    public string[] Names;
-    private int _lastIndex;
+        private int _lastIndex;
 
-    public string GetName() {
-        return Names[GetRandom(Names.Length)];
-    }
-
-    int GetRandom(int length) {
-        if (length <= 1) {
-            return 0;
+        public string GetName()
+        {
+            return names[GetRandom(names.Length)];
         }
 
-        int randomIndex = _lastIndex;
-        while (randomIndex == _lastIndex) {
-            randomIndex = Random.Range(0, length);
-        }
+        private int GetRandom(int length)
+        {
+            if (length <= 1)
+            {
+                return 0;
+            }
 
-        _lastIndex = randomIndex;
-        return randomIndex;
+            var randomIndex = _lastIndex;
+            while (randomIndex == _lastIndex)
+            {
+                randomIndex = Random.Range(0, length);
+            }
+
+            _lastIndex = randomIndex;
+            return randomIndex;
+        }
     }
 }
