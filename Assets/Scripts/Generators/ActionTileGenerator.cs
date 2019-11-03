@@ -55,8 +55,12 @@ namespace Generators
             if (unit.HasAttackedThisTurn) return;
             
             unit.PrepareAttack();
-            foreach (var tile in areaGenerator.GetTilesInRange(unit.GetTile(), 1.5f, MovementType.Radial, true))
+            var range = areaGenerator.GetTilesInRange(unit.GetTile(), unit.Attack.Range, MovementType.Radial, true);
+            foreach (var tile in range)
             {
+                // Skip own tile
+                if(tile == unit.GetTile()) continue;
+                
                 SpawnAttackTile(tile);
             }
 

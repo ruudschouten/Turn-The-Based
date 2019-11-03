@@ -10,7 +10,7 @@ namespace Unit
         [SerializeField] private Element element;
         [SerializeField] private int baseDamage = 4;
         [Range(0.25f, 2.5f)] [SerializeField] private float damageModifier = 1;
-        [SerializeField] private int range = 1;
+        [SerializeField] private float range = 1;
         [SerializeField] private float height = 1.5f;
 
         public Element Element
@@ -24,6 +24,8 @@ namespace Unit
             get => damageModifier;
             set => damageModifier = value;
         }
+        
+        public float Range => range;
 
         public int GetDamage(Character attacker, Character defender)
         {
