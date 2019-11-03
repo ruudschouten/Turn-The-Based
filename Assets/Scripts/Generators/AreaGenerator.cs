@@ -22,8 +22,15 @@ namespace Generators
         private readonly List<Tile> _tiles = new List<Tile>();
         private BasePanel _redBase;
         private BasePanel _blueBase;
-        private const float HeightBetween = 1f;
         private const float WidthBetween = 4f;
+
+        [Button("Generate")]
+        public void Generate()
+        {
+            ResetTiles();
+            SpawnGrid();
+            SetBase();
+        }
 
         private bool InRange(Tile origin, Tile target, float range, MovementType movementType)
         {
@@ -91,14 +98,6 @@ namespace Generators
             return tile;
         }
         
-        [Button("Generate")]
-        public void Generate()
-        {
-            ResetTiles();
-            SpawnGrid();
-            SetBase();
-        }
-
         private void SpawnGrid()
         {
             var xOffset = 0f;

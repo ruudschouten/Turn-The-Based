@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using Generators;
-using Tiles;
-using UI.Managers;
+﻿using Generators;
 using Unit;
 using UnityEngine;
 
@@ -12,134 +9,49 @@ namespace UI
         [SerializeField] private GameObject container;
         [SerializeField] private CustomButton moveButton;
         [SerializeField] private CustomButton attackButton;
-        [SerializeField] private UnitUIManager unitUIManager;
-        
-        [SerializeField] private MovementHighlight movementHighlightPrefab;
-        [SerializeField] private AttackHighlight attackHighlightPrefab;
-        [SerializeField] private AreaGenerator areaGen;
-        
-        private List<MovementHighlight> _moveHighlights = new List<MovementHighlight>();
-        private List<AttackHighlight> _attackHighlights = new List<AttackHighlight>();
+
+        [SerializeField] private ActionTileGenerator tileGenerator;
         
         public void Show(Character unit)
         {
             container.SetActive(true);
-            moveButton.OnClickEvent.AddListener(() => ShowMovementRange(unit));
-            attackButton.OnClickEvent.AddListener(() => ShowAttackRange(unit));
+            moveButton.OnClickEvent.AddListener(() => tileGenerator.ShowMovementRange(unit));
+            moveButton.OnClickEvent.AddListener(Hide);
+            
+            attackButton.OnClickEvent.AddListener(() => tileGenerator.ShowAttackRange(unit));
+            attackButton.OnClickEvent.AddListener(Hide);
         }
 
-        public void Hide()
+        public void Reset()
         {
-            container.SetActive(false);
+            Hide();
             moveButton.OnClickEvent.RemoveAllListeners();
             attackButton.OnClickEvent.RemoveAllListeners();
         }
 
-        private void HideUnitUI()
+        private void Hide()
         {
-            unitUIManager.HideStatPanel();
-            unitUIManager.HideTraitPanel();
-            Hide();
-        }
-        
-        private void ShowMovementRange(Character unit)
-        {
-            HideAttackRange();
-            
-            if (unit.HasAttackedThisTurn)
-            {
-                Debug.Log("Unit already attacked, can't move anymore");
-                return;
-            }
-
-            foreach (var tile in areaGen.GetTilesInRange(unit.GetStartTile(), unit.Stats.Movement.Move, unit.MoveType))
-            {
-                SpawnMovementTile(tile);
-            }
-
-            HideUnitUI();
-        }
-
-        private void ShowAttackRange(Character unit)
-        {
-            HideMovementRange();
-
-            if (unit.HasAttackedThisTurn) return;
-            
-            unit.PrepareAttack();
-            foreach (var tile in areaGen.GetTilesInRange(unit.GetTile(), 1.5f, MovementType.Radial, true))
-            {
-                SpawnAttackTile(tile);
-            }
-
-            HideUnitUI();
-        }
-        
-        public void MoveToClick(Transform tile)
-        {
-            HideAttackRange();
-            var unit = unitUIManager.GetSelectedUnit();
-            unit.transform.SetParent(tile, false);
-            HideMovementRange();
-        }
-
-        public void AttackOnClick(Transform tile)
-        {
-            HideMovementRange();
-            var unit = tile.GetComponentInChildren<Character>();
-            unit.GetHit(unitUIManager.GetSelectedUnit());
-            HideAttackRange();
-        }
-
-        private void SpawnMovementTile(Tile tile)
-        {
-            if (tile == null)
-            {
-                return;
-            }
-            
-            var highlight = Instantiate(movementHighlightPrefab, new Vector3(0, 0.125f, 0), new Quaternion());
-            highlight.transform.SetParent(tile.transform, false);
-            _moveHighlights.Add(highlight);
-        }
-
-        private void SpawnAttackTile(Tile tile)
-        {
-            if (tile == null)
-            {
-                return;
-            }
-
-            var highlight = Instantiate(attackHighlightPrefab, new Vector3(0, 0.125f, 0), new Quaternion());
-            highlight.transform.SetParent(tile.transform, false);
-            _attackHighlights.Add(highlight);
-        }
-
-        public void HideMovementRange()
-        {
-            foreach (var tile in _moveHighlights)
-            {
-                Destroy(tile.gameObject);
-            }
-
-            _moveHighlights.Clear();
+            container.SetActive(false);
         }
 
         public void HideAttackRange()
         {
-            var unit = unitUIManager.GetSelectedUnit();
-            
-            if (unit != null)
-            {
-                unit.TurnManager.InAttackMode = false;
-            }
-            
-            foreach (var tile in _attackHighlights)
-            {
-                Destroy(tile.gameObject);
-            }
+            tileGenerator.HideAttackRange();
+        }
 
-            _attackHighlights.Clear();
+        public void HideMovementRange()
+        {
+            tileGenerator.HideMovementRange();
+        }
+
+        public void AttackOnClick(Transform tile)
+        {
+            tileGenerator.AttackOnClick(tile);
+        }
+
+        public void MoveToClick(Transform tile)
+        {
+            tileGenerator.MoveToClick(tile);
         }
     }
 }

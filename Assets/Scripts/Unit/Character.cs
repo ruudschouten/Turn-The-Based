@@ -198,7 +198,7 @@ namespace Unit
                 }
                 else
                 {
-                    unitUi.ActionUI.Hide();
+                    unitUi.ActionUI.Reset();
                 }
             }
         }

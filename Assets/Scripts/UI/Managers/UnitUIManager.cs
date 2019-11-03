@@ -40,7 +40,7 @@ namespace UI.Managers
         {
             HideStatPanel();
             
-            actionUI.Hide();
+            actionUI.Reset();
             actionUI.HideMovementRange();
             actionUI.HideAttackRange();
             
