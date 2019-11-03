@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
+using TMPro;
 using UI.Managers;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Turn
 {
     public class TurnManager : MonoBehaviour
     {
         [SerializeField] private UIManager uiManager;
-        [SerializeField] private Text currentPlayerText;
+        [SerializeField] private TMP_Text currentPlayerText;
         
         [SerializeField] private Player prefab;
         [SerializeField] private new Camera camera;

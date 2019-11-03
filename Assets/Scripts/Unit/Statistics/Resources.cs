@@ -68,8 +68,8 @@ namespace Unit.Statistics
 
         public override string ToString()
         {
-            return $"HP:\t\t\t{health}/{maxHealth}\n" +
-                   $"MP:\t\t\t{magic}/{maxMagic}";
+            return $"HP: {health}/{maxHealth}\n" +
+                   $"MP: {magic}/{maxMagic}";
         }
     }
 }

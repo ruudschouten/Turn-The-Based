@@ -78,12 +78,12 @@ namespace Unit.Statistics
         }
         
         public override string ToString() {
-            return $"STR:\t\t\t{strength}\n" +
-                   $"DEF:\t\t\t{defense}\n" +
-                   $"INT:\t\t\t{intelligence}\n" +
-                   $"RES:\t\t\t{resistance}\n" +
-                   $"PRC:\t\t\t{precision}\n" +
-                   $"AGI:\t\t\t{agility}";
+            return $"STR: {strength}\n" +
+                   $"DEF: {defense}\n" +
+                   $"INT: {intelligence}\n" +
+                   $"RES: {resistance}\n" +
+                   $"PRC: {precision}\n" +
+                   $"AGI: {agility}";
         }
     }
 }

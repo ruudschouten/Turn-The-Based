@@ -1,4 +1,5 @@
-﻿using Unit;
+﻿using TMPro;
+using Unit;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,18 +7,18 @@ namespace UI
 {
     public class UnitUI : MonoBehaviour
     {
-       [SerializeField] private Text nameText;
-       [SerializeField] private Text classText;
+       [SerializeField] private TMP_Text nameText;
+       [SerializeField] private TMP_Text classText;
        [SerializeField] private Slider healthSlider;
        [SerializeField] private Slider magicSlider;
-       [SerializeField] private Text resourceText; //This is HP and SP
-       [SerializeField] private Text statsText; //STR, INT, RES, PRE, AGI
-       [SerializeField] private Text moveValue;
-       [SerializeField] private Text jumpValue;
-       [SerializeField] private Text fireValue;
-       [SerializeField] private Text windValue;
-       [SerializeField] private Text iceValue;
-       [SerializeField] private Text ownerValue;
+       [SerializeField] private TMP_Text resourceText; //This is HP and SP
+       [SerializeField] private TMP_Text statsText; //STR, INT, RES, PRE, AGI
+       [SerializeField] private TMP_Text moveValue;
+       [SerializeField] private TMP_Text jumpValue;
+       [SerializeField] private TMP_Text fireValue;
+       [SerializeField] private TMP_Text windValue;
+       [SerializeField] private TMP_Text iceValue;
+       [SerializeField] private TMP_Text ownerValue;
 
        public void ShowStats(Character unit)
        {

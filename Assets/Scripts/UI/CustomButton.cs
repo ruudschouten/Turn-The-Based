@@ -1,13 +1,13 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace UI
 {
     public class CustomButton : MonoBehaviour, IPointerClickHandler
     {
-        [SerializeField] private Text textField;
+        [SerializeField] private TMP_Text textField;
         [SerializeField] private UnityEvent onClickEvent;
 
         public UnityEvent OnClickEvent => onClickEvent;

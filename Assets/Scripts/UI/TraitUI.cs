@@ -1,16 +1,16 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using TMPro;
+using UnityEngine;
 
 namespace UI
 {
     public class TraitUI : MonoBehaviour
     {
         [SerializeField] private RectTransform rectTransform;
-        [SerializeField] private Text traitName;
-        [SerializeField] private Text description;
+        [SerializeField] private TMP_Text traitName;
+        [SerializeField] private TMP_Text description;
 
-        public Text Name => traitName;
-        public Text Description => description;
+        public TMP_Text Name => traitName;
+        public TMP_Text Description => description;
 
         public void SetHeight(float height)
         {

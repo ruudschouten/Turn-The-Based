@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
@@ -6,14 +7,14 @@ namespace UI
     public class ResourcePanel : MonoBehaviour
     {
         [SerializeField] private RectTransform container;
-        [SerializeField] private Text resourceName;
-        [SerializeField] private Text value;
+        [SerializeField] private TMP_Text resourceName;
+        [SerializeField] private TMP_Text value;
         [SerializeField] private Button addButton;
         [SerializeField] private Button removeButton;
 
         public RectTransform Container => container;
-        public Text Name => resourceName;
-        public Text Value => value;
+        public TMP_Text Name => resourceName;
+        public TMP_Text Value => value;
         public Button AddButton => addButton;
         public Button RemoveButton => removeButton;
 
