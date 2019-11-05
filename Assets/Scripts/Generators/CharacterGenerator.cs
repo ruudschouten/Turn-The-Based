@@ -1,4 +1,5 @@
 ﻿using System;
+using Audio;
 using Turn;
 using UI.Managers;
 using Unit;
@@ -21,6 +22,7 @@ namespace Generators
         [SerializeField] private Attack[] attackPrefabs; //0 STR || 1 INT || 2 PRC
 
         [SerializeField] private Camera cam;
+        [SerializeField] private CharacterAudio characterAudio;
 
         [SerializeField] private NameGenerator nameGen;
         [SerializeField] private TraitGenerator traitGen;
@@ -56,6 +58,8 @@ namespace Generators
             _newCharacter.Stats = statsGen.AlterWithTraits(statsGen.GetStats(_newCharacter.Type), _newCharacter);
             
             _newCharacter.name = $"[{_newCharacter.Rarity}] {_newCharacter.Name} {_newCharacter.Type}";
+            
+            _newCharacter.AssignAudioEvents(characterAudio);
             
             return _newCharacter;
         }

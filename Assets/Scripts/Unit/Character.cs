@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Audio;
 using Tiles;
 using Turn;
 using UI;
@@ -112,6 +113,16 @@ namespace Unit
             NewTurn();
         }
 
+        public void AssignAudioEvents(CharacterAudio player)
+        {
+            onSelect.AddListener(player.PlayUnitSelect);
+            onAttack.AddListener(player.PlayDamage);
+            onDeath.AddListener(player.PlayDeath);
+            onGameOver.AddListener(player.PlayGameOver);
+            
+            Ownable.TurnStartEvent.AddListener(player.PlayStartTurn);
+        }
+
         private void NewTurn()
         {
             _turnStartTile = GetTile();
@@ -223,8 +234,6 @@ namespace Unit
                 TurnManager.SetLoser(Ownable.GetOwner());
                 onGameOver.Invoke();
             }
-            
-            // TODO: Disable after death sound is done
 
             gameObject.SetActive(false);
         }
