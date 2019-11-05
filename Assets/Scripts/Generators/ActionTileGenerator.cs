@@ -3,6 +3,7 @@ using Tiles;
 using UI.Managers;
 using Unit;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Generators
 {
@@ -12,6 +13,8 @@ namespace Generators
         [SerializeField] private AreaGenerator areaGenerator;
         [SerializeField] private MovementHighlight movementHighlightPrefab;
         [SerializeField] private AttackHighlight attackHighlightPrefab;
+
+        [SerializeField] private UnityEvent onUnitMoved;
 
         private UnitUIManager UnitUiManager => uiManager.UnitUIManager;
         
@@ -74,6 +77,8 @@ namespace Generators
             var unit = UnitUiManager.GetSelectedUnit();
             unit.transform.SetParent(tile, false);
             HideMovementRange();
+            
+            onUnitMoved.Invoke();
         }
 
         public void AttackOnClick(Transform tile)

@@ -4,6 +4,7 @@ using UI;
 using UI.Managers;
 using Unit;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Turn
 {
@@ -16,6 +17,8 @@ namespace Turn
         [SerializeField] private int normalPrice;
         [SerializeField] private int magicPrice;
         [SerializeField] private int rarePrice;
+
+        [SerializeField] private UnityEvent onUnitPurchased;
 
         public void Start()
         {
@@ -83,6 +86,8 @@ namespace Turn
             {
                 uiManager.ShowMessage("There is already a unit on the base panel");
             }
+            
+            onUnitPurchased.Invoke();
 
             uiManager.HideBasePanelUI();
         }

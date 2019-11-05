@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
-using Generators;
+using Audio;
 using Tiles;
 using Turn;
 using UI;
 using UI.Managers;
 using Unit.Statistics;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 namespace Unit
@@ -29,6 +30,12 @@ namespace Unit
         //UI
         [SerializeField] private UnitUIManager unitUi;
         [SerializeField] private DamageUI damageUi;
+
+        [SerializeField] private UnityEvent onSelect;
+        [SerializeField] private UnityEvent onAttack;
+        [SerializeField] private UnityEvent onGetHit;
+        [SerializeField] private UnityEvent onDeath;
+        [SerializeField] private UnityEvent onGameOver;
     
         #endregion
     
@@ -101,8 +108,19 @@ namespace Unit
         {
             Ownable.TurnStartEvent.AddListener(NewTurn);
             Ownable.TurnStartEvent.AddListener(TriggerStartTurn);
+            
             Ownable.TurnEndEvent.AddListener(TriggerEndTurn);
             NewTurn();
+        }
+
+        public void AssignAudioEvents(CharacterAudio player)
+        {
+            onSelect.AddListener(player.PlayUnitSelect);
+            onAttack.AddListener(player.PlayDamage);
+            onDeath.AddListener(player.PlayDeath);
+            onGameOver.AddListener(player.PlayGameOver);
+            
+            Ownable.TurnStartEvent.AddListener(player.PlayStartTurn);
         }
 
         private void NewTurn()
@@ -151,10 +169,12 @@ namespace Unit
             
             if (attacker.hasAttackedThisTurn) return;
             
+            attacker.onAttack.Invoke();
             if (attacker.attack.Perform(attacker, this))
             {
                 if (!IsAlive())
                 {
+                    onDeath.Invoke();
                     foreach (var trait in attacker.Traits)
                     {
                         trait.OnKill(TurnManager, attacker);
@@ -164,6 +184,7 @@ namespace Unit
                 }
                 else
                 {
+                    onGetHit.Invoke();
                     foreach (var trait in attacker.traits)
                     {
                         trait.OnHit(TurnManager, attacker);
@@ -193,6 +214,7 @@ namespace Unit
             }
             else
             {
+                onSelect.Invoke();
                 unitUi.Show(this);
                 if (TurnManager.CurrentPlayer == Ownable.GetOwner())
                 {
@@ -210,6 +232,7 @@ namespace Unit
             if (type == CharacterType.Ruler)
             {
                 TurnManager.SetLoser(Ownable.GetOwner());
+                onGameOver.Invoke();
             }
 
             gameObject.SetActive(false);
