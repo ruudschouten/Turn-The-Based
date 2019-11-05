@@ -7,38 +7,53 @@ namespace UI
     public class DamageUI : MonoBehaviour
     {
         [SerializeField] private float canvasWidth;
+        [SerializeField] private RectTransform textContainer;
         [SerializeField] private TMP_Text textfield;
         [Space]
         [SerializeField] private RectTransform sliderContainer;
         [SerializeField] private RectTransform healthSlider;
-        public Camera Camera { get; set; }
+        [Space]
+        [SerializeField] private CanvasGroup group;
+        [SerializeField] private float timeVisible;
+        [SerializeField] private float fadeDuration;
+        public Camera Camera { private get; set; }
 
         public void Update()
         {
             transform.LookAt(Camera.transform.position, Vector3.up);
         }
         
-        public void ShowHealthDegrade(int max, int current)
+        public void ShowHealthDegrade(float max, float current)
         {
-            var perc = ((float) current / max);
+            var perc = (current / max);
             var newPos = (perc * canvasWidth) - canvasWidth;
             healthSlider.offsetMax = new Vector2(newPos, healthSlider.offsetMax.y);
             sliderContainer.gameObject.SetActive(true);
-            StartCoroutine(HideAfter(1.5f));
+            StartCoroutine(HideAfter(timeVisible));
         }
         
         public void ShowText(string text)
         {
             textfield.SetText(text);
-            textfield.gameObject.SetActive(true);
-            StartCoroutine(HideAfter(1.5f));
+            textContainer.gameObject.SetActive(true);
+            StartCoroutine(HideAfter(timeVisible));
         }
 
         private IEnumerator HideAfter(float seconds)
         {
             yield return new WaitForSeconds(seconds);
-            textfield.gameObject.SetActive(false);
+            
+            for (var t = 0.01f; t < fadeDuration;)
+            {
+                t += Time.deltaTime;
+                group.alpha -= t;
+                yield return null;
+            }
+            
+            textContainer.gameObject.SetActive(false);
             sliderContainer.gameObject.SetActive(false);
+
+            group.alpha = 1;
 
             yield return null;
         }

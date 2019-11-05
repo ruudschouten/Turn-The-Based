@@ -1,27 +1,36 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class Resource : MonoBehaviour {
+
+public class Resource : MonoBehaviour
+{
     public string Name;
-    public int Amount;
-    public int InitialAmount;
+    [SerializeField] private int amount;
+    [SerializeField] private int initialAmount;
 
-    public UnityEvent OnValueChanged;
+    [SerializeField] private UnityEvent onValueChanged;
 
-    private void Awake() {
-        Amount = InitialAmount;
+    public int Amount => amount;
+    public UnityEvent OnValueChanged => onValueChanged;
+
+    private void Awake()
+    {
+        amount = initialAmount;
     }
 
-    public void ChangeAmount(int amount) {
-        Amount += amount;
-        OnValueChanged.Invoke();
+    public void ChangeAmount(int amount)
+    {
+        this.amount += amount;
+        onValueChanged.Invoke();
     }
 
-    public bool CanAfford(int cost) {
-        return Amount >= cost;
+    public bool CanAfford(int cost)
+    {
+        return amount >= cost;
     }
 
-    public bool Purchase(int cost) {
+    public bool Purchase(int cost)
+    {
         if (!CanAfford(cost)) return false;
         ChangeAmount(-cost);
         return true;

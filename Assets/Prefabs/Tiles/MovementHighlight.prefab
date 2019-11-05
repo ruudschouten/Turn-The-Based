@@ -45,7 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d455c56303441e5be6b03a6d5280c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UiManager: {fileID: 0}
+  highlightMaterial: {fileID: 2100000, guid: 6369f54c17034514389c41823ae88193, type: 2}
+  renderer: {fileID: 5960379743775793634}
+  defaultMat: {fileID: 2100000, guid: ef79a9c04cad4af469c55f9184383154, type: 2}
+  uiManager: {fileID: 0}
 --- !u!65 &6473762965859179131
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -167,6 +170,12 @@ PrefabInstance:
 --- !u!4 &8993699555936855853 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: af47ff1e6429a2844848ae57006020c0,
+    type: 3}
+  m_PrefabInstance: {fileID: 4155343436589681719}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5960379743775793634 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1504981713932161579, guid: af47ff1e6429a2844848ae57006020c0,
     type: 3}
   m_PrefabInstance: {fileID: 4155343436589681719}
   m_PrefabAsset: {fileID: 0}
