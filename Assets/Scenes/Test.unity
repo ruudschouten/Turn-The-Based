@@ -1395,6 +1395,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d0023bb4add85314ead7522618586117, type: 3}
   - {fileID: 8300000, guid: 02ce01bd5b852bb4fb9b7beb5e0c5a12, type: 3}
   randomizePitch: 1
+  pitchRange: {x: 0.85, y: 1.25}
 --- !u!1 &684970844
 GameObject:
   m_ObjectHideFlags: 0
@@ -1917,6 +1918,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f5197a6036ece514aafb2000636acb2d, type: 3}
   - {fileID: 8300000, guid: 24a6f9bc198d8c646b1d69b8736dc8e1, type: 3}
   randomizePitch: 1
+  pitchRange: {x: 0.85, y: 1.25}
 --- !u!4 &986007296
 Transform:
   m_ObjectHideFlags: 0
@@ -2079,6 +2081,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5baf7f534d8399449a7db7816e1111f4, type: 3}
   - {fileID: 8300000, guid: 4697cd207743f8243a9dc61274298d16, type: 3}
   randomizePitch: 1
+  pitchRange: {x: 0.85, y: 1.25}
 --- !u!1 &1154292107
 GameObject:
   m_ObjectHideFlags: 0
