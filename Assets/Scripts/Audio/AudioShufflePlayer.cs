@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 namespace Audio
 {
@@ -7,6 +8,7 @@ namespace Audio
         [SerializeField] private AudioSource source;
         [SerializeField] private List<AudioClip> audioClips;
         [SerializeField] private bool randomizePitch;
+        [ShowIf("randomizePitch")] [SerializeField] private Vector2 pitchRange;
 
         public void PlayRandomClip()
         {
@@ -14,7 +16,7 @@ namespace Audio
 
             if (randomizePitch)
             {
-                source.pitch = Random.Range(0.5f, 1f);
+                source.pitch = Random.Range(pitchRange.x, pitchRange.y);
             }
             
             source.clip = clip;
