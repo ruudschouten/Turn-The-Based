@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 namespace Audio
@@ -15,7 +14,7 @@ namespace Audio
 
         private int _prevIndex;
         private IEnumerator _musicRoutine;
-        private UnityEvent _songFinished = new UnityEvent();
+        private bool _paused;
 
         private static MusicPlayer _instance;
         
@@ -37,13 +36,27 @@ namespace Audio
         {
             if (Input.GetKeyDown(nextSongKey))
             {
-                source.Stop();                
+                source.Stop();
             }
 
+            if (_paused) return;
+            
             if (!source.isPlaying)
             {
                 PlayNextSong();
             }
+        }
+
+        public void Pause()
+        {
+            _paused = true;
+            source.Pause();
+        }
+
+        public void Unpause()
+        {
+            _paused = false;
+            source.UnPause();
         }
         
         private void PlayNextSong()

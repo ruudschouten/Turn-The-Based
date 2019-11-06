@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Audio;
+using TMPro;
 using Turn;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,7 @@ namespace UI.Managers
         [SerializeField] private GameObject gameOverPanel;
         [SerializeField] private TurnManager turnManager;
         [SerializeField] private TMP_Text winLoseText;
+        [SerializeField] private MusicPlayer player;
 
         private void Start()
         {
@@ -19,6 +21,8 @@ namespace UI.Managers
 
         public void Show()
         {
+            player.Pause();
+            
             winLoseText.text = GetWinLose();
             gameOverPanel.SetActive(true);
         }
@@ -30,6 +34,8 @@ namespace UI.Managers
 
         public void Restart()
         {
+            player.Unpause();
+            
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 

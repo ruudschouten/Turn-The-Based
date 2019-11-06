@@ -3368,6 +3368,7 @@ MonoBehaviour:
   gameOverPanel: {fileID: 633157631}
   turnManager: {fileID: 1154292108}
   winLoseText: {fileID: 2026659992}
+  player: {fileID: 91096000}
 --- !u!1 &1990057740
 GameObject:
   m_ObjectHideFlags: 0
