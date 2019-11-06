@@ -3137,17 +3137,17 @@ MonoBehaviour:
   characterPrefab: {fileID: 2857219077365189264, guid: 45c8c4e73b806b048abbee9826a68308,
     type: 3}
   redCharaPrefabs:
-  - {fileID: 1177109531621342, guid: 1fc84d1acf7b07b4a8a15bd89f41a29b, type: 3}
-  - {fileID: 1867302442444986, guid: 65761a7dd94ca514a83e4efacd63f62c, type: 3}
-  - {fileID: 1760075970192126, guid: 53ad1ad0c2b46e34faf11fc1b5e1b07f, type: 3}
-  - {fileID: 1751805000798922, guid: fa2972e8aee01a349ab56bd4d58d341f, type: 3}
-  - {fileID: 1536681544573358, guid: cbb2844a15503ae458bb3fc7c6fc651f, type: 3}
-  blueCharaPrefabs:
   - {fileID: 1896985476832862, guid: a6d525662c85b894fa7f2e97f7c0f62d, type: 3}
   - {fileID: 1913073452361444, guid: 74ba43603344daf4dbeb4d9275fe6588, type: 3}
   - {fileID: 1662120209294422, guid: ade0e8edb49544642b8aee2c43614724, type: 3}
   - {fileID: 1161909542551690, guid: fdc1da69db93cd244a6e2dc16ead48af, type: 3}
   - {fileID: 1411549045515752, guid: dcc06dd4ddcd3284ca23edd37da339c8, type: 3}
+  blueCharaPrefabs:
+  - {fileID: 1177109531621342, guid: 1fc84d1acf7b07b4a8a15bd89f41a29b, type: 3}
+  - {fileID: 1867302442444986, guid: 65761a7dd94ca514a83e4efacd63f62c, type: 3}
+  - {fileID: 1760075970192126, guid: 53ad1ad0c2b46e34faf11fc1b5e1b07f, type: 3}
+  - {fileID: 1751805000798922, guid: fa2972e8aee01a349ab56bd4d58d341f, type: 3}
+  - {fileID: 1536681544573358, guid: cbb2844a15503ae458bb3fc7c6fc651f, type: 3}
   basePrefabs:
   - {fileID: 1133343393580202, guid: 08b69f02bf4364042a29ecf17468feaf, type: 3}
   - {fileID: 1362752173962082, guid: 294bc000d485f354fab20759ccc86645, type: 3}
