@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 namespace Audio
@@ -12,6 +14,8 @@ namespace Audio
         [SerializeField] private KeyCode nextSongKey = KeyCode.N;
 
         private int _prevIndex;
+        private IEnumerator _musicRoutine;
+        private UnityEvent _songFinished = new UnityEvent();
 
         private static MusicPlayer _instance;
         
@@ -27,13 +31,16 @@ namespace Audio
             {
                 Destroy(gameObject);
             }
-            
-            PlayNextSong();
         }
 
         public void Update()
         {
             if (Input.GetKeyDown(nextSongKey))
+            {
+                source.Stop();                
+            }
+
+            if (!source.isPlaying)
             {
                 PlayNextSong();
             }
@@ -45,7 +52,7 @@ namespace Audio
             
             while (index == _prevIndex)
             {
-                GetRandomIndex();
+                index = GetRandomIndex();
             }
             
             var clip = audioClips[index];
